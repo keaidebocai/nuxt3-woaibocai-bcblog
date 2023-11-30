@@ -18,5 +18,6 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/sass/Normalize.scss',
+    '~/assets/sass/myBackgroundImage.scss'
   ]
 })
