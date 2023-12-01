@@ -8,7 +8,7 @@ const heandleclick = () => {
 <template>
 <div>
     <div style="width: 100%;height: 100vh;">
-      asd
+      <a href="www.baidu.com">asd</a>
     </div>
     <div class="common-layout">
     <el-container>

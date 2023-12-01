@@ -138,6 +138,7 @@ if (typeof window !== 'undefined') {
 </script>
 
 <template>
+    <AppHeader />
         <nuxt-page />
 </template>
 
