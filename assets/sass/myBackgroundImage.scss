@@ -1,8 +1,10 @@
 //设置全屏背景
 body {
     font-family: YunFengHanChanTi;
-    cursor: url(https://cdn.woaibocai.top/bcblog/assets/cursor/help.cur), default;
+    cursor: url(https://cdn.woaibocai.top/bcblog/assets/cursor/link.cur), default;
+    // ~/assets/img/dandelion-445228_1280.jpg
     background-image: url("https://img.crowya.com/wp-content/uploads/2023/05/beauty.jpg");
+    // background-image: url(~/assets/img/dandelion-445228_1280.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

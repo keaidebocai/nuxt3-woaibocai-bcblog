@@ -4,46 +4,56 @@ const activeIndex2 = ref('100')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const goto = ref("/")
+const items = [
+  {
+    asd: '1',
+    qwe: '1-1'
+  },
+  {
+    asd: '2',
+    qwe: '2-1'
+  }
+]
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
 <client-only>
     <el-menu
-    :default-active="activeIndex2"
-    class="el-menu-mydemo"
-    mode="horizontal"
-    background-color="000000"
-    text-color="#fff"
-    active-text-color="000000"
-    @select="handleSelect"
-  >
-    <el-menu-item index="1" class="blog-title-logo"><img src="https://qiniu.woaibocai.top/static/img/tou.png" style="width: 60px;height: 60px;"/></el-menu-item>
-    <el-menu-item index="11"><nuxt-link :to="goto"><h1 class="blog-title">菠菜的小窝</h1></nuxt-link></el-menu-item>
-    <el-sub-menu index="2">
-      <template #title>Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-sub-menu>
+      router
+      unique-opened
+      mode="horizontal"
+      background-color="transparent"
+      @select="handleSelect"
+    >
+    <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
+    <el-menu-item style="display: flex;" index="/">
+      <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
+      <h1 class="blog-title">菠菜的小窝</h1>
+    </el-menu-item>
+    <el-sub-menu style="background-color: 000000;" index="/nmsl">
+      <template #title><h1 style="color: #fff; font-size: 20px;">分类</h1></template>
+        <el-menu-item v-for="item in items" :index="item.asd">
+          <p style="font-weight: bolder; font-size: 20px;">
+            {{ item.qwe }}
+          </p>
+        </el-menu-item>
+        <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
     </el-sub-menu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
+    <el-menu-item v-for="item in items" :index="item.asd">
+      <p style="font-weight: bolder; font-size: 20px; color: #fff;">
+        {{ item.qwe }}
+      </p>
+    </el-menu-item>
   </el-menu>
 </client-only>
 </template>
 
 <style lang="scss" scoped>
 .el-menu--horizontal > .el-menu-item.is-active {
-  border-bottom: 2px solid #fff;
+  border-bottom: 0;
   // 菠菜的小窝选中状态下面横线的颜色
   color: #fff !important;
-  background-color: 000000;
+  background-color: 000000 !important;
 
 }
 .blog-title {
@@ -51,6 +61,34 @@ const goto = ref("/")
   font-size: 30px;
 }
 .blog-title-logo {
-  padding: 0 0 0 20px;
+  width: 60px;
+  height: 60px;
+  padding-right: 20px;
+
+}
+.el-menu--horizontal ul {
+  margin-bottom: 0;
+}
+* {
+  cursor: url(https://cdn.woaibocai.top/bcblog/assets/cursor/help.cur), pointer;
+}
+:deep(.el-menu--horizontal.el-menu) {
+  border-bottom: solid 10px 0 !important;
+}
+// 菜单栏下面的border
+.el-menu--horizontal.el-menu {
+  border-bottom: 0;
+}
+.el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+  outline: 0;
+  color: #fff;
+  background-color: transparent;
+}
+.el-menu-item:hover {
+  background-color: #fff;
+}
+.el-menu--horizontal .el-menu .el-menu-item:hover {
+  background-color: transparent !important;
+  color: green;
 }
 </style>

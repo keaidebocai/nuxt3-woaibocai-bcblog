@@ -138,10 +138,9 @@ if (typeof window !== 'undefined') {
 </script>
 
 <template>
-    <AppHeader />
-        <nuxt-page />
+        <AppHeader />
+            <nuxt-page />
 </template>
 
-<style lanh="scss" scoped>
-
+<style lang="scss" scoped>
 </style>

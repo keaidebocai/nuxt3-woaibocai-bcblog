@@ -2,29 +2,51 @@
 const heandleclick = () => {
   ElMessage.success('成功!')
 }
-
 </script>
 
 <template>
-<div>
-    <div style="width: 100%;height: 100vh;">
-      <a href="www.baidu.com">asd</a>
+    <div style="
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center; 
+      justify-content: center;">
+      <div 
+        style="
+        font-size: 5rem;
+        color: #fff;
+        ">
+            <p>
+                暂时预留模块
+            </p>
+      </div>
+      <br/>
+      <ElIconArrowDownBold style="width: 2rem;position: absolute;bottom: 2rem;color: #fff;"/>
     </div>
-    <div class="common-layout">
-    <el-container>
-      <el-header style="width: 100%;height: 10vh;; background-color: antiquewhite;">
-        Header
-      </el-header>
-      <el-container>
-        <el-aside style="width: 300px;height: 90vh;background-color: aqua;">Aside</el-aside>
-        <el-container>
-          <el-main>Main</el-main>
-          <el-footer style="width: 100%;height: 100px; background-color: blue;">Footer</el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
-  </div>
-</div>
+<!-- <div style="width: 100%;height: 20vh;">
+        <div 
+        style="
+        font-size: 5rem;
+        color: #fff;
+        display: flex;
+        align-items: center; 
+        justify-content: center;">
+            <p >
+                暂时预留模块
+            </p>
+        </div>
+    </div> -->
+    <div style="display: flex;">
+        <div style="width: 25%;height: 80vh; background-color: #fff;">
+            fsdfsd
+        </div>
+        <div style="width: 50%;height: 80vh; background-color: green;">
+            asdasd
+        </div>
+        <div style="width: 25%;height: 80vh; background-color: #fff;">
+            fsdfsd
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
