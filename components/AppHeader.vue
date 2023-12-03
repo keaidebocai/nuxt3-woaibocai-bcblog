@@ -4,6 +4,7 @@ const activeIndex2 = ref('100')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const phone = ref()
 const items = [
   {
     asd: '1',
@@ -30,7 +31,7 @@ const items = [
       <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
       <h1 class="blog-title">菠菜的小窝</h1>
     </el-menu-item>
-    <el-sub-menu style="background-color: 000000;" index="/nmsl">
+    <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
       <template #title><h1 style="color: #fff; font-size: 20px;">分类</h1></template>
         <el-menu-item v-for="item in items" :index="item.asd">
           <p style="font-weight: bolder; font-size: 20px;">
@@ -40,7 +41,7 @@ const items = [
         <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
     </el-sub-menu>
     <el-menu-item v-for="item in items" :index="item.asd">
-      <p style="font-weight: bolder; font-size: 20px; color: #fff;">
+      <p style="font-weight: bolder; font-size: 20px; color: black;">
         {{ item.qwe }}
       </p>
     </el-menu-item>
@@ -53,7 +54,7 @@ const items = [
   border-bottom: 0;
   // 菠菜的小窝选中状态下面横线的颜色
   color: #fff !important;
-  background-color: 000000 !important;
+  background-color: transparent !important;
 
 }
 .blog-title {
@@ -84,9 +85,9 @@ const items = [
   color: #fff;
   background-color: transparent;
 }
-.el-menu-item:hover {
-  background-color: #fff;
-}
+// .el-menu-item:hover {
+//   background-color: red;
+// }
 .el-menu--horizontal .el-menu .el-menu-item:hover {
   background-color: transparent !important;
   color: green;

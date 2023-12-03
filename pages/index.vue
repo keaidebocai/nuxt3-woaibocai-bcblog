@@ -2,6 +2,10 @@
 const heandleclick = () => {
   ElMessage.success('成功!')
 }
+const phone = ref(true)
+useHead({
+    title: '首页'
+})
 </script>
 
 <template>

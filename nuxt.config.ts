@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         { name: 'keywords', content: '群晖,IT,Java,emby' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }
+        { rel: 'icon', type: 'image/x-icon', href: 'https://cdn.woaibocai.top/bcblog/public/favicon.ico' }
       ]
     }
   },
