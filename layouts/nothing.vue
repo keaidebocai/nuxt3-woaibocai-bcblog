@@ -3,9 +3,9 @@
 </script>
 
 <template>
-<div>
-    <p style="color: red;">asdasdsadasdasdasdasdasdas</p>
-</div>
+    <div>
+        <slot />
+    </div>
 </template>
 
 <style lang="scss" scoped>

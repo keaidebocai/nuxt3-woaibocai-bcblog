@@ -4,7 +4,6 @@ const activeIndex2 = ref('100')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const phone = ref()
 const items = [
   {
     asd: '1',
@@ -15,6 +14,7 @@ const items = [
     qwe: '2-1'
   }
 ]
+
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
@@ -48,7 +48,6 @@ const items = [
   </el-menu>
 </client-only>
 </template>
-
 <style lang="scss" scoped>
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: 0;
