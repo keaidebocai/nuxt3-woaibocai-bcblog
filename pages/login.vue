@@ -17,38 +17,130 @@ if (typeof window !== 'undefined') {
         container.classList.add("panel-active" )
 })
 }
+//定义表单校验规则 elementPlus 和 TS 泛型的增益效果
+const rules = reactive<FormRules>({
+  userName: [
+    { required: true, message: '请输入电话号码', trigger: 'blur' },
+    { min: 5, message: '账户必须大于5位', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { min: 8, max: 18, message: '长度必须在8-18位', trigger: 'blur' }
+  ],
+  email: [
+    { required: true, message: '邮箱不能为空', trigger: 'blur' },
+    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$ 必须是腾讯或谷歌
+    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com)$ 必须是腾讯
+    { pattern: '^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$', message: '请正确输入腾讯/谷歌邮箱', trigger: 'blur'}
+  ]
+})
+//是否定义加载中
+const isLoading = ref(false)
+const formRef = ref<FormInstance>()
+const formRefByRegister = ref<FormInstance>()
+//图标引入
+import { Message, User, Lock } from '@element-plus/icons-vue'
+//表单的响应式数据
+const formData = {
+  userName: '',
+  password: ''
+}
+const fromRegisterData = {
+  userName: '',
+  email: '',
+  password: ''
+}
+const form = ref(formData)
+const fromRegister = ref(fromRegisterData)
+//登陆事件
+const onSubmit = async () => {
+  isLoading.value = true
+  //表单校验
+    await formRefByRegister.value?.validate().catch((err) => {
+    ElMessage.error('请你看看你输入的信息是否有误...')
+    isLoading.value = false
+    throw err
+    //return new Promise(() => {})
+  })
+}
+import type { FormRules, FormInstance } from 'element-plus'
+const onSubmitByRegister = async () => {
+    isLoading.value = true
+    //表单校验
+    await formRef.value?.validate().catch((err) => {
+    ElMessage.error('请你康康你输入的信息是否有误...')
+    isLoading.value = false
+    throw err
+    //return new Promise(() => {})
+  })
+}
 
 </script>
 <template>
 <div class="myApp">
     <div class="container">
         <div class="container-form container-signup" id="signup-container">
-            <form action="#" class="form" id="form1">
-                <h2 class="form-title">注册账号</h2>
-                <input type="text"
-                    placeholder="User"
-                    class="input"/>
-                <input type="email"
-                    placeholder="Email"
-                    class="input"/>
-                <input type="password"
-                    placeholder="Password"
-                    class="input"/>
-                <button type="button" class="btn">点击注册</button>
+            <form action="#" class="form" id="form1" style="font-size: 18px;">
+                <h1 class="form-title" style="font-size: 20px;">注册账号</h1>
+                <el-form
+                :model="fromRegister"
+                ref="formRef"
+                :rules="rules"
+                label-width="120px"
+                label-position="top"
+                size="large"
+                @keyup.enter="onSubmit"
+                :loading="isLoading"
+                >
+                    <el-form-item label="用户名:" prop="userName">
+                        <el-input v-model="fromRegister.userName" :prefix-icon="User" placeholder="输入你的用户名/手机号" />
+                    </el-form-item>
+                    <br />
+                    <el-form-item label="邮箱:" prop="email">
+                        <el-input v-model="fromRegister.email" :prefix-icon="Message" placeholder="输入你的邮箱"/>
+                    </el-form-item>
+                    <br />
+                    <el-form-item label="密&emsp;码:" prop="password">
+                        <el-input
+                        v-model="fromRegister.password"
+                        show-password
+                        :prefix-icon="Lock"
+                        placeholder="请输入你的密码"
+                        />
+                    </el-form-item>
+                </el-form>
+                <button type="button" class="btn"  @click="onSubmitByRegister" :disabled="isLoading">点击注册</button>
             </form>
         </div>
 
         <div class="container-form container-signin hidden" id="signin-container">
             <form action="#" class="form" id="form2">
-                <h2 class="form-title">欢迎登录</h2>
-                <input type="email"
-                    placeholder="Email"
-                    class="input"/>
-                <input type="password"
-                    placeholder="Password"
-                    class="input"/>
+                <h1 class="form-title" style="font-size: 20px;">欢迎登录</h1>
+                <el-form
+                :model="form"
+                ref="formRefByRegister"
+                :rules="rules"
+                label-width="120px"
+                label-position="top"
+                size="large"
+                @keyup.enter="onSubmit"
+                :loading="isLoading"
+                >
+                    <el-form-item label="用户名:" prop="userName">
+                        <el-input v-model="form.userName" :prefix-icon="User" placeholder="输入你的用户名/手机号" />
+                    </el-form-item>
+                    <br />
+                    <el-form-item label="密&emsp;码:" prop="password">
+                        <el-input
+                        v-model="form.password"
+                        show-password
+                        :prefix-icon="Lock"
+                        placeholder="请输入你的密码"
+                        />
+                    </el-form-item>
+                </el-form>
                 <a href="#" class="link">忘记密码?</a>
-                <button type="button" class="btn">登录</button>
+                <button type="button" class="btn" @click="onSubmit">登录</button>
             </form>
         </div>
 
@@ -246,5 +338,12 @@ body {
       display: flex;
       align-items: center; 
       justify-content: center;
+}
+:deep(.el-form-item__label) {
+  font-size: 16px;
+}
+:deep(.el-form-item__error) {
+  color: var(--el-color-danger);
+  font-size: 16px;
 }
 </style>
