@@ -10,7 +10,6 @@ if (typeof window !== 'undefined') {
         = document.querySelector("#signUp")
     const container
         = document.querySelector(".container")
-
     signInBtn.addEventListener("click",() => {
         container.classList.remove("panel-active")})
     signUpBtn.addEventListener("click",() =>{
@@ -52,6 +51,7 @@ const fromRegisterData = {
 }
 const form = ref(formData)
 const fromRegister = ref(fromRegisterData)
+const router = useRouter()
 //登陆事件
 const onSubmit = async () => {
   isLoading.value = true
@@ -62,6 +62,7 @@ const onSubmit = async () => {
     throw err
     //return new Promise(() => {})
   })
+  router.push("/")
 }
 import type { FormRules, FormInstance } from 'element-plus'
 const onSubmitByRegister = async () => {
