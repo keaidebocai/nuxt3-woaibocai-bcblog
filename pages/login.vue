@@ -24,7 +24,7 @@ const rules = reactive<FormRules>({
   ],
   password: [
     { required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 8, max: 18, message: '长度必须在8-18位', trigger: 'blur' }
+    { min: 6, max: 18, message: '长度必须在6-18位', trigger: 'blur' }
   ],
   email: [
     { required: true, message: '邮箱不能为空', trigger: 'blur' },
@@ -52,6 +52,8 @@ const fromRegisterData = {
 const form = ref(formData)
 const fromRegister = ref(fromRegisterData)
 const router = useRouter()
+import { useTokenStore } from '~/store/useToken'
+const useToken = useTokenStore()
 //登陆事件
 const onSubmit = async () => {
   isLoading.value = true
@@ -62,6 +64,13 @@ const onSubmit = async () => {
     throw err
     //return new Promise(() => {})
   })
+  const { data } = await useFetch('http://localhost:16289/admin/api/manager/login',{
+        method: 'post',
+        body: form.value,
+    })
+    const userInfo = unref(data).data
+    useToken.saveToken(userInfo)
+    console.log(userInfo)
   router.push("/")
 }
 import type { FormRules, FormInstance } from 'element-plus'
