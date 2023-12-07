@@ -54,6 +54,7 @@ const fromRegister = ref(fromRegisterData)
 const router = useRouter()
 import { useTokenStore } from '~/store/useToken'
 const useToken = useTokenStore()
+import { Login } from '~/api/login'
 //登陆事件
 const onSubmit = async () => {
   isLoading.value = true
@@ -64,10 +65,11 @@ const onSubmit = async () => {
     throw err
     //return new Promise(() => {})
   })
-  const { data } = await useFetch('http://localhost:16289/admin/api/manager/login',{
-        method: 'post',
-        body: form.value,
-    })
+//   const { data } = await useFetch('http://localhost:16289/admin/api/manager/login',{
+//         method: 'post',
+//         body: form.value,
+//     })
+    const { data } = await Login(form.value)
     const userInfo = unref(data).data
     useToken.saveToken(userInfo)
     console.log(userInfo)
