@@ -5,8 +5,8 @@ interface Token {
     refresh_token: string 
 }
 
-export const useTokenStore = defineStore('useToken', () => {
-    //ref 相当于state
+export const useTokenStore = defineStore('useToken',() => {
+    // //ref 相当于state
     const tokenJson = ref('')
     const getToken = computed<Token>(() => {
         try {
@@ -24,9 +24,6 @@ export const useTokenStore = defineStore('useToken', () => {
     }
     function removeToken() {
         window.localStorage.setItem('TokenInfo','')
-    }
-    persist: process.client && {
-        storage: localStorage
     }
     // 导出
     return { getToken, saveToken, removeToken }

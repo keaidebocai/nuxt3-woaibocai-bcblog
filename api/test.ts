@@ -1,9 +1,12 @@
-import { useRuntimeConfig } from 'nuxt/app'
-import httpRequest from '~/server/index'
-
-const BASE_URL = useRuntimeConfig().public.BASE_URL
-const URL = BASE_URL + '/admin/api/manager/'
-
+const BASE_URL = "http://localhost:16289";
+const URL = BASE_URL + "/admin/api/manager/";
+import { useTokenStore } from "~/store/useToken";
 export const GetUserInfo = () => {
-    return httpRequest.get(true, URL + 'userInfo')
-} 
+  const store = useTokenStore();
+  return useFetch(URL + "userInfo", {
+    method: "get",
+    headers: {
+      Authorization: "Bearer " + store.getToken.token,
+    },
+  });
+};

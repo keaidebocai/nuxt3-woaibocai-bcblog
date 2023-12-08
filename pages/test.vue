@@ -3,14 +3,19 @@ definePageMeta({
     layout: 'nothing'
 })
 import { GetUserInfo } from '~/api/test'
+const num = ref({})
 const click = async() => {
-    const { res } = await GetUserInfo()
-    console.log(res)
+    const { data } =  await GetUserInfo()
+
+    const userInfo = unref(data).data
+    num.value = userInfo
 }
 </script>
 
 <template>
     <div>
+        点按钮获取数据
+        <p style="color: red;">{{ num }}</p>
         <el-button type="primary" @click="click">点我</el-button>
     </div>
 </template>
