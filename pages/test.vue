@@ -2,14 +2,20 @@
 definePageMeta({
     layout: 'nothing'
 })
-import { GetUserInfo } from '~/api/test'
+// import { GetUserInfo } from '~/api/test'
 const num = ref({})
 const click = async() => {
-    const { data } =  await GetUserInfo()
+    // const { data } =  await GetUserInfo()
 
-    const userInfo = unref(data).data
-    num.value = userInfo
+    // const userInfo = unref(data).data
+    const { data } = await userInfoFetch({
+        method: "get"
+    })
+    num.value = data
 }
+onMounted(()=>{
+    click()
+})
 </script>
 
 <template>

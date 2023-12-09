@@ -2,36 +2,43 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      BASE_URL : 'http://localhost:16289'
-    }
+      BASE_URL: "http://localhost:16289",
+    },
   },
   modules: [
-    '@element-plus/nuxt',
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt'
+    "@element-plus/nuxt",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
   ],
   piniaPersistedstate: {
     cookieOptions: {
-      sameSite: 'strict'
+      sameSite: "strict",
     },
-    storage: 'localStorage'
+    storage: "localStorage",
   },
   devtools: { enabled: true },
   app: {
     head: {
-      title: '菠菜的小窝',
+      title: "菠菜的小窝",
       meta: [
-        { name: 'description', content: '这是一个充满传奇故事狗狗的互联网小窝' },
-        { name: 'keywords', content: '群晖,IT,Java,emby' }
+        {
+          name: "description",
+          content: "这是一个充满传奇故事狗狗的互联网小窝",
+        },
+        { name: "keywords", content: "群晖,IT,Java,emby" },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: 'https://cdn.woaibocai.top/bcblog/public/favicon.ico' }
-      ]
-    }
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "https://cdn.woaibocai.top/bcblog/public/favicon.ico",
+        },
+      ],
+    },
   },
   css: [
-    '~/assets/sass/Normalize.scss',
-    '~/assets/sass/myBackgroundImage.scss',
-    '~/assets/fonts/fonts.scss'
-  ]
-})
+    "~/assets/sass/Normalize.scss",
+    "~/assets/sass/myBackgroundImage.scss",
+    "~/assets/fonts/fonts.scss",
+  ],
+});
