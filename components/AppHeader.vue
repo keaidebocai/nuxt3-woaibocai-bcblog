@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const activeIndex2 = ref('100')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -15,9 +14,86 @@ const items = [
   }
 ]
 const liginName = ref(true)
-const asdasd = () => {
-  console.log("asdasdas")
+const dialogLoginVisible = ref(false)
+const LoginClick = () => {
+  Myform.value = {
+    userName: '',
+    password: ''
+  }
+  dialogLoginVisible.value = true
 }
+
+import type { TabsPaneContext } from 'element-plus'
+import { Message, User, Lock } from '@element-plus/icons-vue'
+const activeName = ref('login')
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+  console.log(tab, event)
+}
+//登录弹框
+import type { FormRules, FormInstance } from 'element-plus'
+const isLoading = ref(false)
+//定义表单校验规则 elementPlus 和 TS 泛型的增益效果
+const MyRules = reactive<FormRules>({
+  userName: [
+    { required: true, message: '请输入电话号码', trigger: 'blur' },
+    { min: 5, message: '账户必须大于5位', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '密码不能为空', trigger: 'blur' },
+    { min: 6, max: 18, message: '长度必须在6-18位', trigger: 'blur' }
+  ],
+  email: [
+    { required: true, message: '邮箱不能为空', trigger: 'blur' },
+    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$ 必须是腾讯或谷歌
+    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com)$ 必须是腾讯
+    { pattern: '^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$', message: '请正确输入腾讯/谷歌邮箱', trigger: 'blur'}
+  ]
+})
+const MyFormRef = ref<FormInstance>()
+//表单的响应式数据
+const formData = {
+  userName: '',
+  password: ''
+}
+const Myform = ref(formData)
+import { useTokenStore } from '~/store/useToken'
+const useToken = useTokenStore()
+const router = useRouter()
+import { Login } from '~/api/login'
+const LoginMyBlog = async() => {
+  // isLoading.value = true
+  // 表单校验
+//   await MyFormRef.value?.validate().catch((err) => {
+//   ElMessage.error('请你康康你输入的信息是否有误...')
+//   isLoading.value = false
+//   throw err
+//   //return new Promise(() => {})
+// })
+  //正式发送登录请求
+  const { data } = await Login(Myform.value)
+  .then((res) => {
+    isLoading.value = true
+    console.log(res.code)
+    if (res.code === 200) {
+        useToken.saveToken(res.data)
+        ElMessage.success('登陆成功!')
+        isLoading.value = false
+        return res.data
+    } else {
+        ElMessage.error(res.message)
+        isLoading.value = false
+        throw new Error('登录信息有误!')
+    }
+  })
+  console.log(data)
+  isLoading.value = false
+
+  //跳转到主页面
+  dialogLoginVisible.value = false
+  router.push("/")
+}
+
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
@@ -55,7 +131,7 @@ const asdasd = () => {
     </el-col>
     <el-col :span="3">
       <div class="myLogin">
-        <p style="font-size: 20px;color: #fff;" link v-show="liginName" @click="asdasd">登录</p>
+        <p style="font-size: 20px;color: #fff;" link v-show="liginName" @click="LoginClick">登录</p>
         <el-dropdown v-show="!liginName">
           <span>
             <el-avatar :size="32" src="https://qiniu.woaibocai.top/static/img/tou.png" />
@@ -71,6 +147,33 @@ const asdasd = () => {
       </div>
     </el-col>
   </el-row>
+  <!-- 登录注册弹框 -->
+  <client-only>
+    <el-dialog style="max-width: 50vh;" v-model="dialogLoginVisible" title="登录" center>
+      <el-tabs v-model="activeName" :stretch="true" class="demo-tabs" @tab-click="handleClick">
+        <el-tab-pane label="登录" name="login">
+          <el-from
+            label-position="top"
+            size="large"
+            class="loginForm"
+            >
+            <el-form-item label="用户名:" prop="userName">
+              <el-input v-model="Myform.userName" :prefix-icon="User" placeholder="请输入用户名"/>
+            </el-form-item>
+            <br/>
+            <el-form-item label="密码:" prop="password">
+              <el-input v-model="Myform.password" :prefix-icon="Lock" type="password" show-password placeholder="请输入你的密码" /> 
+            </el-form-item>
+            <br/>
+            <el-form-item class="LoginButton">
+              <el-button style="width: 20rem;" size="large" type="primary" :loading="isLoading" @click="LoginMyBlog">登录</el-button>
+            </el-form-item>
+          </el-from>
+        </el-tab-pane>
+        <el-tab-pane label="注册" name="register">Register</el-tab-pane>
+      </el-tabs>
+    </el-dialog>
+  </client-only>
 </template>
 <style lang="scss" scoped>
 .myLogin {
@@ -125,6 +228,30 @@ const asdasd = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.loginForm{
+  width: auto;
+  .el-form-item {
+    width: 20rem;
+  }
+}
+.demo-tabs {
+  .el-tab-pane {
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .el-input {
+      height: 2.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+.LoginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 * {
   // 菜单栏的宽度

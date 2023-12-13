@@ -10,3 +10,9 @@ import { useTokenStore } from "~/store/useToken";
 //     },
 //   });
 // };
+const getUserInfo = () => {
+  return useMyFetch("/blog/user/auth/getUserInfo", {
+    method: "get",
+  });
+};
+export { getUserInfo };

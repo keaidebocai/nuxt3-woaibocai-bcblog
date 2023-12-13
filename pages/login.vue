@@ -74,13 +74,12 @@ const onSubmit = async () => {
   //正式发送登录请求
   const data = await Login(form.value).then((res) => {
     isMyLoading.value = true
-    const myData = res.data._rawValue
-    if (myData.code === 200) {
-        useToken.saveToken(myData.data)
+    if (res.code === 200) {
+        useToken.saveToken(res.data)
         ElMessage.success('登陆成功!')
         return res.data
     } else {
-        ElMessage.error(myData.message)
+        ElMessage.error(res.message)
         isMyLoading.value = false
         throw new Error('登录信息有误!')
     }
