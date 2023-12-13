@@ -141,7 +141,9 @@ if (typeof window !== 'undefined') {
 <template>
     <el-row>
         <el-col :span="24">
-            <AppHeader />
+            <el-affix>
+                <AppHeader />
+            </el-affix>
         </el-col>
     </el-row> 
     <slot />

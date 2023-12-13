@@ -21,7 +21,7 @@ export const useMyFetch = (url, opt) => {
   opt.headers = headers;
   return useFetch(url, {
     ...opt,
-    baseURL: "http://127.0.0.1:16289", // 你的接口地址
+    baseURL: "http://127.0.0.1:16280", // 你的接口地址
     async onResponse({ request, response, options }) {
       return response;
     },
@@ -30,7 +30,7 @@ export const useMyFetch = (url, opt) => {
         refresh_token: store.getToken.refresh_token,
       });
       if (response.status == 401) {
-        useFetch("http://localhost:16289/admin/api/manager/authorizations", {
+        useFetch("http://localhost:16280/blog/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -83,7 +83,7 @@ export const useMyFetch = (url, opt) => {
 };
 
 export const userInfoFetch = (opt) => {
-  return useMyFetch("/admin/api/manager/userInfo", opt);
+  return useMyFetch("/blog/user/auth/getUserInfo", opt);
 };
 export const userNameFetch = (opt) => {
   return useMyFetch("/user/name", opt);

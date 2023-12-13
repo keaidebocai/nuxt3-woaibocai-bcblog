@@ -35,6 +35,7 @@ const rules = reactive<FormRules>({
 })
 //是否定义加载中
 const isLoading = ref(false)
+const isMyLoading = ref(false)
 const formRef = ref<FormInstance>()
 const formRefByRegister = ref<FormInstance>()
 //图标引入
@@ -57,22 +58,38 @@ const useToken = useTokenStore()
 import { Login } from '~/api/login'
 //登陆事件
 const onSubmit = async () => {
-  isLoading.value = true
+    isMyLoading.value = true
   //表单校验
     await formRefByRegister.value?.validate().catch((err) => {
     ElMessage.error('请你看看你输入的信息是否有误...')
-    isLoading.value = false
+    isMyLoading.value = false
     throw err
     //return new Promise(() => {})
-  })
+})
 //   const { data } = await useFetch('http://localhost:16289/admin/api/manager/login',{
 //         method: 'post',
 //         body: form.value,
 //     })
-    const { data } = await Login(form.value)
-    const userInfo = unref(data).data
-    useToken.saveToken(userInfo)
-    console.log(userInfo)
+
+  //正式发送登录请求
+  const data = await Login(form.value).then((res) => {
+    isMyLoading.value = true
+    const myData = res.data._rawValue
+    if (myData.code === 200) {
+        useToken.saveToken(myData.data)
+        ElMessage.success('登陆成功!')
+        return res.data
+    } else {
+        ElMessage.error(myData.message)
+        isMyLoading.value = false
+        throw new Error('登录信息有误!')
+    }
+  })
+  //保存tokrn信息
+  console.log(data)
+  isMyLoading.value = false
+
+  //跳转到主页面
   router.push("/")
 }
 import type { FormRules, FormInstance } from 'element-plus'
@@ -85,6 +102,7 @@ const onSubmitByRegister = async () => {
     throw err
     //return new Promise(() => {})
   })
+  console.log("asdasdas")
 }
 
 </script>
@@ -101,7 +119,6 @@ const onSubmitByRegister = async () => {
                 label-width="120px"
                 label-position="top"
                 size="large"
-                @keyup.enter="onSubmit"
                 :loading="isLoading"
                 >
                     <el-form-item label="用户名:" prop="userName">
@@ -135,8 +152,7 @@ const onSubmitByRegister = async () => {
                 label-width="120px"
                 label-position="top"
                 size="large"
-                @keyup.enter="onSubmit"
-                :loading="isLoading"
+                :loading="isMyLoading"
                 >
                     <el-form-item label="用户名:" prop="userName">
                         <el-input v-model="form.userName" :prefix-icon="User" placeholder="输入你的用户名/手机号" />
@@ -152,7 +168,7 @@ const onSubmitByRegister = async () => {
                     </el-form-item>
                 </el-form>
                 <a href="#" class="link">忘记密码?</a>
-                <button type="button" class="btn" @click="onSubmit">登录</button>
+                <el-button type="button" class="btn" @click="onSubmit" :disabled="isMyLoading">登录</el-button>
             </form>
         </div>
 
