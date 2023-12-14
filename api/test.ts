@@ -11,7 +11,7 @@ import { useTokenStore } from "~/store/useToken";
 //   });
 // };
 const getUserInfo = () => {
-  return useMyFetch("/blog/user/auth/getUserInfo", {
+  return useMyFetch("/api/blog/user/auth/getUserInfo", {
     method: "get",
   });
 };

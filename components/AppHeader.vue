@@ -13,14 +13,15 @@ const items = [
     qwe: '2-1'
   }
 ]
-const liginName = ref(true)
+const isLogin = ref(true)
 const dialogLoginVisible = ref(false)
 const LoginClick = () => {
-  Myform.value = {
-    userName: '',
-    password: ''
-  }
-  dialogLoginVisible.value = true
+  // Myform.value = {
+  //   userName: '',
+  //   password: ''
+  // }
+  // dialogLoginVisible.value = true
+  router.push("/login")
 }
 
 import type { TabsPaneContext } from 'element-plus'
@@ -56,11 +57,16 @@ const formData = {
   userName: '',
   password: ''
 }
+const userInfoData = {
+  avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
+  nickName: ""
+}
+const userInfo = ref(userInfoData)
 const Myform = ref(formData)
 import { useTokenStore } from '~/store/useToken'
 const useToken = useTokenStore()
 const router = useRouter()
-import { Login } from '~/api/login'
+import { Login, Logout } from '~/api/login'
 const LoginMyBlog = async() => {
   // isLoading.value = true
   // 表单校验
@@ -77,6 +83,7 @@ const LoginMyBlog = async() => {
     console.log(res.code)
     if (res.code === 200) {
         useToken.saveToken(res.data)
+        getUserInfo()
         ElMessage.success('登陆成功!')
         isLoading.value = false
         return res.data
@@ -91,9 +98,36 @@ const LoginMyBlog = async() => {
 
   //跳转到主页面
   dialogLoginVisible.value = false
-  router.push("/")
+  // location.reload()
+  // router.push("/")
+  router.go(0)
 }
-
+const getUserInfo = async() => {
+  const { data } = await useGetUserInfo({
+    method: 'get'
+  })
+  useToken.saveUserInfo(data)
+  userInfo.value = data
+  isLogin.value = false
+}
+const fectData = () => {
+  if(localStorage.getItem("likebocai:userInfo") != null) {
+    console.log(useToken.getUserInfo)
+    isLogin.value = false
+    userInfo.value = useToken.getUserInfo
+  } else {
+    isLogin.value = true
+  }
+}
+const logout = async() => {
+  await Logout(useToken.getToken)
+  useToken.removeToken()
+  useToken.removeUserInfo()
+  isLogin.value = true
+}
+onMounted(()=>{
+  fectData()
+})
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
@@ -131,16 +165,16 @@ const LoginMyBlog = async() => {
     </el-col>
     <el-col :span="3">
       <div class="myLogin">
-        <p style="font-size: 20px;color: #fff;" link v-show="liginName" @click="LoginClick">登录</p>
-        <el-dropdown v-show="!liginName">
+        <p style="font-size: 20px;color: #fff;" link v-show="isLogin" @click="LoginClick">登录</p>
+        <el-dropdown v-show="!isLogin">
           <span>
-            <el-avatar :size="32" src="https://qiniu.woaibocai.top/static/img/tou.png" />
-            <p>hello! likebocai</p>
+            <el-avatar :size="32" :src="userInfo.avatar" />
+            <p>hello! {{ userInfo.nickName }}</p>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>编辑</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item @click="logout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -170,7 +204,7 @@ const LoginMyBlog = async() => {
             </el-form-item>
           </el-from>
         </el-tab-pane>
-        <el-tab-pane label="注册" name="register">Register</el-tab-pane>
+        <el-tab-pane label="注册" name="register"><nuxt-link to="/login" @click="dialogLoginVisible = false;">去注册</nuxt-link></el-tab-pane>
       </el-tabs>
     </el-dialog>
   </client-only>

@@ -3,19 +3,11 @@ definePageMeta({
     layout: 'nothing'
 })
 
-if (typeof window !== 'undefined') {
-    const signInBtn
-        = document.querySelector("#signIn")
-    const signUpBtn
-        = document.querySelector("#signUp")
-    const container
-        = document.querySelector(".container")
-    signInBtn.addEventListener("click",() => {
-        container.classList.remove("panel-active")})
-    signUpBtn.addEventListener("click",() =>{
-        container.classList.add("panel-active" )
-})
-}
+//图标引入
+import { Message, User, Lock } from '@element-plus/icons-vue'
+import { useTokenStore } from '~/store/useToken'
+import { Login, Register } from '~/api/login'
+import type { FormRules, FormInstance } from 'element-plus'
 //定义表单校验规则 elementPlus 和 TS 泛型的增益效果
 const rules = reactive<FormRules>({
   userName: [
@@ -33,29 +25,36 @@ const rules = reactive<FormRules>({
     { pattern: '^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$', message: '请正确输入腾讯/谷歌邮箱', trigger: 'blur'}
   ]
 })
-//是否定义加载中
-const isLoading = ref(false)
-const isMyLoading = ref(false)
-const formRef = ref<FormInstance>()
-const formRefByRegister = ref<FormInstance>()
-//图标引入
-import { Message, User, Lock } from '@element-plus/icons-vue'
+
 //表单的响应式数据
 const formData = {
   userName: '',
   password: ''
 }
 const fromRegisterData = {
-  userName: '',
-  email: '',
-  password: ''
+    userName: '',
+    password: '',
+    email: ''
 }
+
+//是否定义加载中
+const isLoading = ref(false)
+const isMyLoading = ref(false)
 const form = ref(formData)
 const fromRegister = ref(fromRegisterData)
 const router = useRouter()
-import { useTokenStore } from '~/store/useToken'
 const useToken = useTokenStore()
-import { Login } from '~/api/login'
+const formRef = ref<FormInstance>()
+const formRefByRegister = ref<FormInstance>()
+
+
+const getUserInfo = async() => {
+  const { data } = await useGetUserInfo({
+    method: 'get'
+  })
+  useToken.saveUserInfo(data)
+}
+
 //登陆事件
 const onSubmit = async () => {
     isMyLoading.value = true
@@ -64,46 +63,74 @@ const onSubmit = async () => {
     ElMessage.error('请你看看你输入的信息是否有误...')
     isMyLoading.value = false
     throw err
-    //return new Promise(() => {})
-})
-//   const { data } = await useFetch('http://localhost:16289/admin/api/manager/login',{
-//         method: 'post',
-//         body: form.value,
-//     })
-
+    })
   //正式发送登录请求
-  const data = await Login(form.value).then((res) => {
-    isMyLoading.value = true
-    if (res.code === 200) {
-        useToken.saveToken(res.data)
-        ElMessage.success('登陆成功!')
-        return res.data
-    } else {
-        ElMessage.error(res.message)
-        isMyLoading.value = false
-        throw new Error('登录信息有误!')
-    }
-  })
-  //保存tokrn信息
-  console.log(data)
-  isMyLoading.value = false
-
-  //跳转到主页面
-  router.push("/")
+  console.log(form.value)
+    const data = await Login(form.value).then((res) => {
+        isMyLoading.value = true
+        if (res.code === 200) {
+            useToken.saveToken(res.data)
+            getUserInfo()
+            ElMessage.success('登陆成功!')
+            ElMessage.success('遇事不绝？CTRL + R !')
+            return res.data
+        } else {
+            ElMessage.error(res.message)
+            isMyLoading.value = false
+            throw new Error('登录信息有误!')
+        }
+    })
+    //保存tokrn信息
+    console.log(data)
+    isMyLoading.value = false
+    //跳转到主页面
+    router.push("/")
+    // router.go(-1)
 }
-import type { FormRules, FormInstance } from 'element-plus'
+
+//注册
 const onSubmitByRegister = async () => {
     isLoading.value = true
     //表单校验
     await formRef.value?.validate().catch((err) => {
-    ElMessage.error('请你康康你输入的信息是否有误...')
-    isLoading.value = false
-    throw err
-    //return new Promise(() => {})
-  })
-  console.log("asdasdas")
+        ElMessage.error('请你康康你输入的信息是否有误...')
+        isLoading.value = false
+        throw err
+        //return new Promise(() => {})
+    })
+    console.log(fromRegister.value)
+    const { data } = await Register(fromRegister.value)
+    console.log(data)
 }
-
+// 用ts控制本地登录和注册组件
+const signInBtn = ref<HTMLElement | null>(null);
+const signUpBtn = ref<HTMLElement | null>(null);
+const container = ref<HTMLElement | null>(null);
+const addEventListeners = () => {
+    if (container.value !== null) {
+    if (signInBtn.value !== null) {
+        signInBtn.value.addEventListener("click", () => {
+            if ( container.value !== null ) {
+                container.value.classList.remove("panel-active");
+            }
+        });
+    }
+    if (signUpBtn.value !== null) {
+        signUpBtn.value.addEventListener("click", () => {
+            if ( container.value !== null ) {
+                container.value.classList.add("panel-active");
+            }
+        });
+    }
+    }
+};
+// 页面初始化
+onMounted(() => {
+    signInBtn.value = document.querySelector("#signIn");
+    signUpBtn.value = document.querySelector("#signUp");
+    container.value = document.querySelector(".container");
+    addEventListeners();
+});
 </script>
 <template>
 <div class="myApp">
