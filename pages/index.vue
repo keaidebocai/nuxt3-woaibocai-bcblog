@@ -36,7 +36,7 @@ useHead({
         </div>
     </div>
     <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
-    <div style="display: flex;">
+    <!-- <div style="display: flex;">
         <div style="width: 25%;height: 110vh; background-color: #fff;">
             fsdfsd
         </div>
@@ -46,7 +46,11 @@ useHead({
         <div style="width: 25%;height: 110vh; background-color: #fff;">
             fsdfsd
         </div>
-    </div>
+    </div> -->
+    <!-- 
+        <AppMainLeft
+     -->
+    
 </template>
 
 <style lang="scss" scoped>
