@@ -2,29 +2,8 @@
 definePageMeta({
     layout: 'nothing'
 })
-// import { GetUserInfo } from '~/api/test'
-import { getUserInfo } from '~/api/test'
 const num = ref({})
 const click = async() => {
-    // const { data } =  await GetUserInfo()
-
-    // const userInfo = unref(data).data
-    // const { data } = await userInfoFetch({
-    //     method: "get"
-    // })
-
-
-    // await getUserInfo().then((res)=> {
-    //     const data = unref(res.data)
-    //     console.log(data.code)
-
-    //     num.value = data.data
-    // })
-    // console.log(data)
-
-
-    // num.value = data
-
     const { data } = await useGetUserInfo({
         method: 'get'
     })

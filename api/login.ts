@@ -1,13 +1,13 @@
 import { useFetch } from "nuxt/app";
 // import { useMyFetch } from "~/composables/useMyFetch";
-const URL = "/api/blog/user/";
+const URL = "/api/user/";
 type formData = {
   userName: string;
   password: string;
 };
 
 const Login = (data: formData) => {
-  return $fetch("http://localhost:16280/api/blog/user/login", {
+  return $fetch("http://localhost:16280/api/user/login", {
     method: "post",
     body: data,
   });

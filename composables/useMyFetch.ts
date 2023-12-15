@@ -31,7 +31,7 @@ export const useMyFetch = (url, opt) => {
         refresh_token: store.getToken.refresh_token,
       });
       if (response.status == 401) {
-        useFetch(URl + "/api/blog/user/authorizations", {
+        useFetch(URl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -113,7 +113,7 @@ export const useMyOtherFetch = (url, opt) => {
         refresh_token: store.getToken.refresh_token,
       });
       if (response._data.code == 401) {
-        useFetch(URl + "/api/blog/user/authorizations", {
+        useFetch(URl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -158,7 +158,7 @@ export const useMyOtherFetch = (url, opt) => {
       });
       console.log("--------------" + response);
       if (response.status == 401) {
-        useFetch(URl + "/api/blog/user/authorizations", {
+        useFetch(URl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -208,11 +208,12 @@ export const useMyOtherFetch = (url, opt) => {
   });
 };
 
+// 不要乱删这里的东西
 export const userInfoFetch = (opt) => {
-  return useMyFetch("/api/blog/user/auth/getUserInfo", opt);
+  return useMyFetch("/api/user/auth/getUserInfo", opt);
 };
 export const useGetUserInfo = (opt) => {
-  return useMyOtherFetch("/api/blog/user/auth/getUserInfo", opt);
+  return useMyOtherFetch("/api/user/auth/getUserInfo", opt);
 };
 export const userNameFetch = (opt) => {
   return useMyFetch("/user/name", opt);

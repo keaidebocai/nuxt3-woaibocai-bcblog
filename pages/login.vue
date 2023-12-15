@@ -79,6 +79,9 @@ const onSubmit = async () => {
             isMyLoading.value = false
             throw new Error('登录信息有误!')
         }
+    }).catch((err) => {
+        ElMessage.error("我不粘锅的，你的网络出问题了!")
+        throw err
     })
     //保存tokrn信息
     console.log(data)
@@ -99,7 +102,10 @@ const onSubmitByRegister = async () => {
         //return new Promise(() => {})
     })
     console.log(fromRegister.value)
-    const { data } = await Register(fromRegister.value)
+    const { data } = await Register(fromRegister.value).catch((err) => {
+        ElMessage.error("我不粘锅的，你的网络出问题了!")
+        throw err
+    })
     console.log(data)
 }
 // 用ts控制本地登录和注册组件

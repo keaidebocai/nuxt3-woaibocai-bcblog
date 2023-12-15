@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+import { Logout } from '~/api/login'
+import { useTokenStore } from '~/store/useToken'
+
 const items = [
   {
     asd: '1',
@@ -13,117 +12,35 @@ const items = [
     qwe: '2-1'
   }
 ]
-const isLogin = ref(true)
-const dialogLoginVisible = ref(false)
-const LoginClick = () => {
-  // Myform.value = {
-  //   userName: '',
-  //   password: ''
-  // }
-  // dialogLoginVisible.value = true
-  router.push("/login")
-}
-
-import type { TabsPaneContext } from 'element-plus'
-import { Message, User, Lock } from '@element-plus/icons-vue'
-const activeName = ref('login')
-
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
-}
-//登录弹框
-import type { FormRules, FormInstance } from 'element-plus'
-const isLoading = ref(false)
-//定义表单校验规则 elementPlus 和 TS 泛型的增益效果
-const MyRules = reactive<FormRules>({
-  userName: [
-    { required: true, message: '请输入电话号码', trigger: 'blur' },
-    { min: 5, message: '账户必须大于5位', trigger: 'blur' }
-  ],
-  password: [
-    { required: true, message: '密码不能为空', trigger: 'blur' },
-    { min: 6, max: 18, message: '长度必须在6-18位', trigger: 'blur' }
-  ],
-  email: [
-    { required: true, message: '邮箱不能为空', trigger: 'blur' },
-    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$ 必须是腾讯或谷歌
-    // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com)$ 必须是腾讯
-    { pattern: '^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com)$', message: '请正确输入腾讯/谷歌邮箱', trigger: 'blur'}
-  ]
-})
-const MyFormRef = ref<FormInstance>()
-//表单的响应式数据
-const formData = {
-  userName: '',
-  password: ''
-}
 const userInfoData = {
   avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
   nickName: ""
 }
+const isLogin = ref(true)
 const userInfo = ref(userInfoData)
-const Myform = ref(formData)
-import { useTokenStore } from '~/store/useToken'
 const useToken = useTokenStore()
 const router = useRouter()
-import { Login, Logout } from '~/api/login'
-const LoginMyBlog = async() => {
-  // isLoading.value = true
-  // 表单校验
-//   await MyFormRef.value?.validate().catch((err) => {
-//   ElMessage.error('请你康康你输入的信息是否有误...')
-//   isLoading.value = false
-//   throw err
-//   //return new Promise(() => {})
-// })
-  //正式发送登录请求
-  const { data } = await Login(Myform.value)
-  .then((res) => {
-    isLoading.value = true
-    console.log(res.code)
-    if (res.code === 200) {
-        useToken.saveToken(res.data)
-        getUserInfo()
-        ElMessage.success('登陆成功!')
-        isLoading.value = false
-        return res.data
-    } else {
-        ElMessage.error(res.message)
-        isLoading.value = false
-        throw new Error('登录信息有误!')
-    }
-  })
-  console.log(data)
-  isLoading.value = false
-
-  //跳转到主页面
-  dialogLoginVisible.value = false
-  // location.reload()
-  // router.push("/")
-  router.go(0)
+const LoginClick = () => {
+  router.push("/login")
 }
-const getUserInfo = async() => {
-  const { data } = await useGetUserInfo({
-    method: 'get'
-  })
-  useToken.saveUserInfo(data)
-  userInfo.value = data
-  isLogin.value = false
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
 }
-const fectData = () => {
-  if(localStorage.getItem("likebocai:userInfo") != null) {
-    console.log(useToken.getUserInfo)
-    isLogin.value = false
-    userInfo.value = useToken.getUserInfo
-  } else {
-    isLogin.value = true
-  }
-}
+// 登出
 const logout = async() => {
   await Logout(useToken.getToken)
   useToken.removeToken()
   useToken.removeUserInfo()
   isLogin.value = true
+}
+// 初始化数据
+const fectData = () => {
+  if(localStorage.getItem("likebocai:userInfo") != null) {
+    isLogin.value = false
+    userInfo.value = useToken.getUserInfo
+  } else {
+    isLogin.value = true
+  }
 }
 onMounted(()=>{
   fectData()
@@ -147,7 +64,7 @@ onMounted(()=>{
           <h1 class="blog-title">菠菜的小窝</h1>
         </el-menu-item>
         <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
-          <template #title><h1 style="color: #fff; font-size: 20px;">分类</h1></template>
+          <template #title><h1 style="color: #fff; font-size: 20px;" >分类</h1></template>
             <el-menu-item v-for="item in items" :index="item.asd">
               <p style="font-weight: bolder; font-size: 20px;">
                 {{ item.qwe }}
@@ -182,7 +99,7 @@ onMounted(()=>{
     </el-col>
   </el-row>
   <!-- 登录注册弹框 -->
-  <client-only>
+  <!-- <client-only>
     <el-dialog style="max-width: 50vh;" v-model="dialogLoginVisible" title="登录" center>
       <el-tabs v-model="activeName" :stretch="true" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="登录" name="login">
@@ -207,7 +124,7 @@ onMounted(()=>{
         <el-tab-pane label="注册" name="register"><nuxt-link to="/login" @click="dialogLoginVisible = false;">去注册</nuxt-link></el-tab-pane>
       </el-tabs>
     </el-dialog>
-  </client-only>
+  </client-only> -->
 </template>
 <style lang="scss" scoped>
 .myLogin {
