@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { Logout } from '~/api/login'
+import { GetAllCategory } from '~/api/blog/category'
+import { GetAllMenu } from '~/api/blog/menu'
 import { useTokenStore } from '~/store/useToken'
 
-const items = [
-  {
-    asd: '1',
-    qwe: '1-1'
-  },
-  {
-    asd: '2',
-    qwe: '2-1'
-  }
-]
+const menuData = [{
+  id: '',
+  menuName: '',
+  url: ''
+}]
 const userInfoData = {
   avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
   nickName: ""
 }
+const categoryData = [{
+  id: '',
+  categoryName: ''
+}]
+const categorys = ref(categoryData)
+const menus = ref(menuData)
 const isLogin = ref(true)
 const userInfo = ref(userInfoData)
 const useToken = useTokenStore()
@@ -33,6 +36,24 @@ const logout = async() => {
   useToken.removeUserInfo()
   isLogin.value = true
 }
+// 分类列表
+const allCategoryList = async() => {
+  const { data } = await GetAllCategory()
+  .catch((err) => {
+    ElMessage.error("我不粘锅的,肯定是你的网络出问题了!")
+    throw err
+  })
+  categorys.value = data
+}
+// 菜单列表
+const allMenuList = async() => {
+  const { data } = await GetAllMenu()
+  .catch((err) => {
+    ElMessage.error("我不粘锅的,肯定是你的网络出问题了!")
+    throw err
+  })
+  menus.value = data
+}
 // 初始化数据
 const fectData = () => {
   if(localStorage.getItem("likebocai:userInfo") != null) {
@@ -44,6 +65,8 @@ const fectData = () => {
 }
 onMounted(()=>{
   fectData()
+  allCategoryList()
+  allMenuList()
 })
 </script>
 <!-- #545c64 #fff #ffd04b -->
@@ -64,17 +87,17 @@ onMounted(()=>{
           <h1 class="blog-title">菠菜的小窝</h1>
         </el-menu-item>
         <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
-          <template #title><h1 style="color: #fff; font-size: 20px;" >分类</h1></template>
-            <el-menu-item v-for="item in items" :index="item.asd">
+          <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
+            <el-menu-item v-for="category in categorys" :index="category.id">
               <p style="font-weight: bolder; font-size: 20px;">
-                {{ item.qwe }}
+                {{ category.categoryName }}
               </p>
             </el-menu-item>
             <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
         </el-sub-menu>
-        <el-menu-item v-for="item in items" :index="item.asd">
+        <el-menu-item v-for="menu in menus" :index="menu.url">
           <p style="font-weight: bolder; font-size: 20px; color: #fff;">
-            {{ item.qwe }}
+            {{ menu.menuName }}
           </p>
         </el-menu-item>
       </el-menu>
