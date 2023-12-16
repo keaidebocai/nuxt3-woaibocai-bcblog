@@ -170,7 +170,7 @@ clickEffect()
             <AppMainLeft   justify="center" />
         </el-col>
         <el-col :span="12">
-            <div style="background-color: black;height: 210vh;">
+            <div style="height: 210vh;">
                 <slot />
             </div>
         </el-col>

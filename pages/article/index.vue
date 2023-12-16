@@ -6,12 +6,11 @@ useHead({
         { name: 'keywords', content: '文章,群晖,IT,Java,emby' }
     ]
 })
+
 </script>
 
 <template>
-<div>
-    <h1>asdasdasdasdas</h1>
-</div>
+
 </template>
 
 <style lang="scss" scoped>
