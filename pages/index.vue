@@ -50,11 +50,53 @@ useHead({
     <!-- 
         <AppMainLeft
      -->
-    
+     <el-row>
+        <el-col :span="6">
+            <!-- <div style="background-color: #fff;height: 110vh;">
+
+            </div> -->
+            <AppMainLeft   justify="center" />
+        </el-col>
+        <el-col :span="12">
+            <div class="articleCard" style="height: 210vh;">
+                <div>
+                    <el-alert
+                        title="每日一言"
+                        description="秦奋六世之余烈,东出灭六国而统一天下！"
+                        effect="light"
+                        center
+                    />
+                </div>
+            </div>
+        </el-col>
+        <el-col :span="6">
+            <div style="background-color: #fff;height: 110vh;">
+
+            </div>
+        </el-col>
+    </el-row>
 </template>
 
 <style lang="scss" scoped>
 .affix-container {
     height: 100vh;
+}
+.articleCard {
+    background-color: green;
+}
+
+* {
+    // 提示卡片
+    --el-alert-title-font-size: 2rem;
+    --el-alert-description-font-size: 1.5rem;
+    --el-alert-padding: 20px 16px;
+}
+:deep(.el-alert__description) {
+    margin: 15px 0 0 0;
+}
+:deep(.el-alert__title) {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
 }
 </style>
