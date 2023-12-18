@@ -36,25 +36,23 @@ useHead({
         </div>
     </div>
     <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
-    <!-- <div style="display: flex;">
-        <div style="width: 25%;height: 110vh; background-color: #fff;">
-            fsdfsd
-        </div>
-        <div style="width: 50%;height: 110vh; background-color: green;">
-            asdasd
-        </div>
-        <div style="width: 25%;height: 110vh; background-color: #fff;">
-            fsdfsd
-        </div>
-    </div> -->
-    <!-- 
-        <AppMainLeft
-     -->
-     <el-row>
+        <!-- <div style="display: flex;">
+            <div style="width: 25%;height: 110vh; background-color: #fff;">
+                fsdfsd
+            </div>
+            <div style="width: 50%;height: 110vh; background-color: green;">
+                asdasd
+            </div>
+            <div style="width: 25%;height: 110vh; background-color: #fff;">
+                fsdfsd
+            </div>
+        </div> -->
+        <!-- 
+            <AppMainLeft
+        -->
+    <el-row>
         <el-col :span="6">
-            <!-- <div style="background-color: #fff;height: 110vh;">
 
-            </div> -->
             <AppMainLeft   justify="center" />
         </el-col>
         <el-col :span="12">
@@ -67,6 +65,7 @@ useHead({
                         center
                     />
                 </div>
+
             </div>
         </el-col>
         <el-col :span="6">
@@ -76,7 +75,12 @@ useHead({
         </el-col>
     </el-row>
 </template>
-
+<style>
+body {
+    /* https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg */
+    background-image: url(https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg);
+}
+</style>
 <style lang="scss" scoped>
 .affix-container {
     height: 100vh;

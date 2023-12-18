@@ -182,7 +182,6 @@ clickEffect()
     </el-row>
 
 </template>
-
 <style lang="scss" scoped>
 
 </style>
