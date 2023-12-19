@@ -161,16 +161,10 @@ clickEffect()
                 <AppHeader />
             </el-affix>
         </el-col>
-    </el-row> 
+    </el-row>
     <el-row>
-        <el-col :span="6">
-            <!-- <div style="background-color: #fff;height: 110vh;">
-
-            </div> -->
-            <AppMainLeft   justify="center" />
-        </el-col>
         <el-col :span="12">
-            <div style="height: 210vh;">
+            <div style="height: 210vh;background-color: forestgreen;">
                 <slot />
             </div>
         </el-col>
@@ -180,7 +174,6 @@ clickEffect()
             </div>
         </el-col>
     </el-row>
-
 </template>
 <style lang="scss" scoped>
 

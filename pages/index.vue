@@ -9,6 +9,7 @@ const phone = ref(true)
 useHead({
     title: '首页'
 })
+const items = [{name: 1},{name: 2},{name: 3},{name: 4}]
 </script>
 
 <template>
@@ -50,11 +51,7 @@ useHead({
         <!-- 
             <AppMainLeft
         -->
-    <el-row>
-        <el-col :span="6">
-
-            <AppMainLeft   justify="center" />
-        </el-col>
+    <el-row style="display:flex;justify-content: center;" :gutter="20">
         <el-col :span="12">
             <div class="articleCard" style="height: 210vh;">
                 <div>
@@ -65,7 +62,15 @@ useHead({
                         center
                     />
                 </div>
-
+                <div  v-for="item in items" style="background-color: black;width:100%;height: 25vh;display:flex;">
+                    <div style="height: 25vh;width:40%;background-color: #fff;"></div>
+                    <div style="background-color: aquamarine;height: 25vh;width: 60%;">
+                        <div style="display:flex;align-items: center;justify-content: center;background-color: blue;height: 5vh;">
+                            <p style="font-size: 1.5rem;">关于nuxt3奴有的解读与记录</p>
+                            <p>{{ item.name }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </el-col>
         <el-col :span="6">
