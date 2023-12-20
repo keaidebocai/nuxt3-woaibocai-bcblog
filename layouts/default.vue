@@ -162,14 +162,14 @@ clickEffect()
             </el-affix>
         </el-col>
     </el-row>
-    <el-row>
+    <el-row style="display:flex;justify-content: center;" :gutter="20">
         <el-col :span="12">
             <div style="height: 210vh;background-color: forestgreen;">
                 <slot />
             </div>
         </el-col>
         <el-col :span="6">
-            <div style="background-color: #fff;height: 110vh;">
+            <div style="border-radius: 20px; background-color: #fff;height: 110vh;">
 
             </div>
         </el-col>

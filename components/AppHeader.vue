@@ -74,42 +74,42 @@ onMounted(()=>{
   <el-row>
     <el-col :span="21">
       <client-only>
-      <el-menu
-          router
-          unique-opened
-          mode="horizontal"
-          background-color="transparent"
-          @select="handleSelect"
-        >
-        <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
-        <el-menu-item style="display: flex;" index="/">
-          <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
-          <h1 class="blog-title">菠菜的小窝</h1>
-        </el-menu-item>
-        <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
-          <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
-            <el-menu-item v-for="category in categorys" :index="category.id">
-              <p style="font-weight: bolder; font-size: 20px;">
-                {{ category.categoryName }}
-              </p>
-            </el-menu-item>
-            <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
-        </el-sub-menu>
-        <el-menu-item v-for="menu in menus" :index="menu.url">
-          <p style="font-weight: bolder; font-size: 20px; color: #fff;">
-            {{ menu.menuName }}
-          </p>
-        </el-menu-item>
-      </el-menu>
-    </client-only>
+        <el-menu
+            router
+            unique-opened
+            mode="horizontal"
+            background-color="transparent"
+            @select="handleSelect"
+          >
+          <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
+          <el-menu-item style="display: flex;" index="/">
+            <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
+            <h1 class="blog-title">菠菜的小窝</h1>
+          </el-menu-item>
+          <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
+            <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
+              <el-menu-item v-for="category in categorys" :index="category.id">
+                <p style="font-weight: bolder; font-size: 20px;">
+                  {{ category.categoryName }}
+                </p>
+              </el-menu-item>
+              <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
+          </el-sub-menu>
+          <el-menu-item v-for="menu in menus" :index="menu.url">
+            <p style="font-weight: bolder; font-size: 20px; color: #fff;">
+              {{ menu.menuName }}
+            </p>
+          </el-menu-item>
+        </el-menu>
+      </client-only>
     </el-col>
     <el-col :span="3">
       <div class="myLogin">
         <p style="font-size: 20px;color: #fff;" link v-show="isLogin" @click="LoginClick">登录</p>
         <el-dropdown v-show="!isLogin">
           <span>
-            <el-avatar :size="32" :src="userInfo.avatar" />
-            <p>hello! {{ userInfo.nickName }}</p>
+            <el-avatar :size="48" :src="userInfo.avatar" />
+            <p style="font-weight: bolder;font-size: 20px;">Hi! {{ userInfo.nickName }}</p>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
