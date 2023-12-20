@@ -52,7 +52,7 @@ const items = [{name: 1},{name: 2},{name: 3},{name: 4}]
             <AppMainLeft
         -->
     <el-row style="display:flex;justify-content: center;" :gutter="30">
-        <el-col :span="10">
+        <el-col :span="12">
             <div class="articleCard" >
                 <div>
                     <el-alert
@@ -83,19 +83,13 @@ const items = [{name: 1},{name: 2},{name: 3},{name: 4}]
                 </div>
             </div>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="5">
             <div style="border-radius: 20px; background-color: #fff;height: 110vh;">
 
             </div>
         </el-col>
     </el-row>
 </template>
-<style>
-body {
-    /* https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg */
-    background-image: url(https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg);
-}
-</style>
 <style lang="scss" scoped>
 .affix-container {
     height: 100vh;
