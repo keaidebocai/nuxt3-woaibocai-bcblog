@@ -1,13 +1,11 @@
 <script setup lang="ts">
-definePageMeta({
-    layout: 'mobile'
-})
+
 </script>
 
 <template>
-<div>
-
-</div>
+    <div style="">
+        
+    </div>
 </template>
 
 <style lang="scss" scoped>

@@ -9,7 +9,7 @@ const phone = ref(true);
 useHead({
   title: "首页",
 });
-const MyStrings = ref(["我的剑也未尝不利!&emsp;&ensp; --袁绍","秦奋六世之余烈,东出灭六国而统一天下!","受命于天,既寿永昌。&emsp;&ensp;--《尚书·洪范》"])
+const MyStrings = ref(["我的剑也未尝不利!&emsp;&ensp; --袁绍","秦奋六世之余烈,东出灭六国而统一天下!&emsp;&ensp;--《过秦论》","受命于天,既寿永昌。&emsp;&ensp;--《尚书·洪范》"])
 const items = [{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }];
 // 打字机效果
 import { Typed } from "@duskmoon/vue3-typed-js";
@@ -39,7 +39,7 @@ const options1: TypedOptions = {
       <AppHeader />
     </el-affix>
     <div class="MyWelcome">
-        <div style="font-size: 5rem; color: #fff">
+        <div style="font-weight: bolder; font-size: 5rem; color: rgba(255,255,255)">
             <!-- <p>暂时预留模块</p> -->
             <Typed :options="options">
                 <p class="typing"></p>
@@ -75,10 +75,12 @@ const options1: TypedOptions = {
             description="秦奋六世之余烈,东出灭六国而统一天下！"
             effect="light"
             center
-        >
+          >
+          <div style="height: 2rem;">
             <Typed :options="options1">
                 <p class="typing"></p>
             </Typed>
+          </div>
         </el-alert>
         </div>
         <div v-for="item in items" class="articleCard-box">
@@ -98,12 +100,118 @@ const options1: TypedOptions = {
             </template>
           </el-image>
           <div class="articleCard-box-right">
+            <!-- 标题 -->
             <div class="articleCard-box-right-top">
               <p class="articleCard-box-right-top-title">
-                关于nuxt3奴有的解读与记录
+                关于nuxt3路由的解读与记录
               </p>
               <p>{{ item.name }}</p>
             </div>
+            <!-- 时间、浏览量、发布人、分类、字数、阅读时间 -->
+            <div class="articleCard-box-right-items">
+              <div class="top">
+                <ul>
+                  <li>
+                    <div class="header-span">
+                      <ElIconStar class="icon"/>
+                      <div class="Mydiv">置顶</div>
+                      <span>|</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-span">
+                      <ElIconUser class="icon"/>
+                      <div class="Mydiv">likebocai</div>
+                      <span>|</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-span"> 
+                      <ElIconView class="icon"/>
+                      <div class="Mydiv">230</div>
+                      <span>|</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-span"> 
+                      <ElIconCollectionTag class="icon"/>
+                      <div class="Mydiv">前端</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="articleCard-box-right-items">
+              <div class="top">
+                <ul>
+                  <li>
+                    <div class="header-span">
+                      <ElIconDocument class="icon"/>
+                      <div class="Mydiv">3000 字</div>
+                      <span>|</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-span"> 
+                      <ElIconTimer class="icon"/>
+                      <div class="Mydiv">8 min</div>
+                      <span>|</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="header-span"> 
+                      <ElIconStopwatch class="icon"/>
+                      <div class="Mydiv">2023-10-10</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 文章简述 -->
+            <div class="articleCard-box-right-descriptions">
+              <p>
+                1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些1.什么是索引索引（在 MySQL 中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。 2.索引的有哪些
+              </p>
+            </div>
+
+            <!-- 标签 -->
+            <div class="articleCard-box-right-tags">
+              <div class="articleCard-box-right-tags-icon">
+                <ul>
+                  <li>
+                    <IconTags class="MyIconTags"/>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="articleCard-box-right-tags-tag">
+                <ul>
+                  <li>
+                    <el-badge :value="12">
+                      <el-tag style="font-size: 2vh;">Tag 1</el-tag>
+                    </el-badge>
+                  </li>
+                  <li>
+                    <el-badge :value="12">
+                      <el-tag>Tag 1</el-tag>
+                    </el-badge>
+                  </li>
+                  <li>
+                    <el-badge :value="12">
+                      <el-tag>Tag 1</el-tag>
+                    </el-badge>
+                  </li>
+                  <li>
+                    <el-badge :value="12">
+                      <el-tag>Tag 1</el-tag>
+                    </el-badge>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -154,13 +262,13 @@ const options1: TypedOptions = {
       width: 44.4vh;
       height: 25vh;
       border-radius: 20px;
-      z-index: 1;
+      z-index: 99;
       transform: scale(1.05);
     }
     .articleCard-box-right {
+      background-color: rgba(255,255,255, 0.6);
       border-bottom-right-radius: 20px;
       border-top-right-radius: 20px;
-      background-color: aquamarine;
       height: 25vh;
       width: 60%;
       .articleCard-box-right-top {
@@ -168,10 +276,105 @@ const options1: TypedOptions = {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: blue;
-        height: 5vh;
+        height: 4vh;
         .articleCard-box-right-top-title {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
+          font-weight: bolder;
+        }
+      }
+      .articleCard-box-right-items {
+        height: 2vh;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          li {
+            display: inline-block;
+            .header-span {
+              height: 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .Mydiv {
+                height: 1.1rem;
+                padding-left:5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              span {
+                height: 1.3rem;
+                font-size: 1.3rem;
+                padding-left:10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              .icon {
+                padding-left:10px;
+                padding-bottom: 3px;
+                height: 1.1rem;
+                width: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+      .articleCard-box-right-descriptions {
+        height: 11vh;
+        padding: 1vh;
+        p {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 7;
+          font-size: 1.1rem;
+        }
+      }
+      .articleCard-box-right-tags {
+        height: 4vh;
+        border-bottom-right-radius:20px ;
+        .articleCard-box-right-tags-icon {
+          position:absolute;
+          float: left;
+          li {
+            display: inline-block;
+            .MyIconTags {
+              height: 2.5vh;
+              position: absolute;
+              margin-left: 9px;
+            }
+          }
+        }
+        .articleCard-box-right-tags-tag {
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          margin-left: 4vh;
+          height: 4vh;
+          border-bottom-right-radius:20px ;
+          ul {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            li {
+              display: inline-block;
+              margin-right: 20px;
+              .el-badge {
+                z-index: 5;
+                .el-tag {
+                  font-size: 1.8vh;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -194,16 +397,21 @@ const options1: TypedOptions = {
   --el-alert-title-font-size: 2rem;
   --el-alert-description-font-size: 1.5rem;
   --el-alert-padding: 20px 16px;
+  //
+  --el-badge-font-size: 1vh;
 }
 :deep(.el-alert__description) {
   margin: 15px 0 0 0;
 }
 :deep(.el-alert__title) {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 :deep(.el-alert) {
+  background-color: rgba(255,255,255, 0.6);
   margin-bottom: 15px;
   border-radius: 10px;
 }

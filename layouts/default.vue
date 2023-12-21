@@ -175,6 +175,11 @@ clickEffect()
         </el-col>
     </el-row>
 </template>
+<style>
+body {
+  background-image: url(https://qiniu.woaibocai.top/static/img/headbg05.jpeg);
+}
+</style>
 <style lang="scss" scoped>
 
 </style>
