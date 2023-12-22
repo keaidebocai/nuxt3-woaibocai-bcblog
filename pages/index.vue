@@ -211,10 +211,18 @@ const options1: TypedOptions = {
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
       </div>
+
+      <!-- <el-row>
+        <el-col :spna="10">
+          <div style="width: 50vh; height: 20vh;background-color: red;">
+
+          </div>
+        </el-col>
+      </el-row> -->
+      <AppButtom />
     </el-col>
     <el-col :span="5">
       <div
@@ -222,6 +230,8 @@ const options1: TypedOptions = {
       ></div>
     </el-col>
   </el-row>
+
+
 </template>
 <style lang="scss" scoped>
 .affix-container {
