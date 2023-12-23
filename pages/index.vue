@@ -39,7 +39,7 @@ const options1: TypedOptions = {
       <AppHeader />
     </el-affix>
     <div class="MyWelcome">
-        <div style="font-weight: bolder; font-size: 5rem; color: rgba(255,255,255)">
+        <div style="font-weight: bold; font-size: 5rem; color: rgba(255,255,255,0.8)">
             <!-- <p>暂时预留模块</p> -->
             <Typed :options="options">
                 <p class="typing"></p>

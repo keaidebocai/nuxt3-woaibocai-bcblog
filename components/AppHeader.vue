@@ -67,6 +67,7 @@ onMounted(()=>{
   fectData()
   allCategoryList()
   allMenuList()
+  // setInterval(fectData,1000)
 })
 </script>
 <!-- #545c64 #fff #ffd04b -->
@@ -166,12 +167,12 @@ onMounted(()=>{
 .blog-title {
   color: #fff;
   font-size: 30px;
+  padding-left: 20px;
 }
 .blog-title-logo {
   width: 8vh;
   height: 8vh;
-  padding-right: 20px;
-
+  border-radius: 20px;
 }
 .el-menu--horizontal ul {
   margin-bottom: 0;
