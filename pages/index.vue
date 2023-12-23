@@ -250,7 +250,7 @@ const options1: TypedOptions = {
     width: 100%;
     height: 25vh;
     display: flex;
-    padding: 10px 0;
+    padding: 0 0 20px 0;
     .articleCard-box-left {
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px;
@@ -391,7 +391,7 @@ const options1: TypedOptions = {
   }
   .articleCard-box:hover {
     padding: 0;
-    margin: 10px 0;
+    margin: 0 0 20px 0;
     border-radius: 20px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
     transform: scale(1.03);
