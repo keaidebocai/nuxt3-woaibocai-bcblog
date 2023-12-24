@@ -255,6 +255,8 @@ if (props.isMobile) {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 7;
         font-size: 1.1rem;
+        align-items: center;
+        justify-content: center;
       }
     }
     .articleCard-box-right-tags {
@@ -401,6 +403,8 @@ if (props.isMobile) {
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 6;
         font-size: 1.1rem;
+        align-items: center;
+        justify-content: center;
       }
     }
     .articleCard-box-right-tags {

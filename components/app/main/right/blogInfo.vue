@@ -56,8 +56,38 @@ const changAvatarSrc = () => {
         <div class="statistics">
             <ul>
                 <li>
-
+                    <div class="data">
+                        213
+                    </div>
+                    <div class="info">
+                        文章
+                    </div>
                 </li>
+                <li style="border-left: 1px solid rgba(50, 50, 93,0.3);">
+                    <div class="data">
+                        34
+                    </div>
+                    <div class="info">
+                        分类
+                    </div>
+                </li>
+                <li style="border-left: 1px solid rgba(50, 50, 93,0.3);">
+                    <div class="data">
+                        79
+                    </div>
+                    <div class="info">
+                        标签
+                    </div>
+                </li>
+                <li style="border-left: 1px solid rgba(50, 50, 93,0.3);">
+                    <div class="data">
+                        57300
+                    </div>
+                    <div class="info">
+                        总浏览
+                    </div>
+                </li>
+
             </ul>
         </div>
 
@@ -122,9 +152,39 @@ const changAvatarSrc = () => {
         }
     }
     .statistics  {
-        height: 8vh;
+        height: 6vh;
         margin: 1vh 2vh 0 2vh;
-        background-color: aqua;
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            li {
+                width: 20%;
+                height: 6vh;
+                margin: 0 4px;
+                display: inline-block;
+                .data {
+                    height: 2vh;
+                    font-size: 2vh;
+                    margin: 0.5vh 0;
+                    color:  #32325d;
+                    font-weight: bolder;
+                    display: flex;
+                    align-items: last baseline;
+                    justify-content: center;
+                }
+                .info {
+                    height: 2vh;
+                    font-size: 2vh;
+                    margin: 0.5vh 0;
+                    color:  #32325d;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
     }
 }
 </style>

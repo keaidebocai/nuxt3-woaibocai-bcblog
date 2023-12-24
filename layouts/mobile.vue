@@ -4,11 +4,12 @@
 <template>
 <el-row>
     <el-col>
-        <div style="height: 8vh;width: 100%;">
-
+        <div style="height: 8vh;width: 100%;display: flex;align-items: center;justify-content: center;font-size: 3vh;font-weight: bold;">
+            菠菜的小窝
         </div>
     </el-col>
 </el-row>
+<el-backtop :right="40" :bottom="40" :visibility-height="960" />
 <slot />
 </template>
 <style>
@@ -17,5 +18,4 @@ body {
 }
 </style>
 <style lang="scss" scoped>
-
 </style>

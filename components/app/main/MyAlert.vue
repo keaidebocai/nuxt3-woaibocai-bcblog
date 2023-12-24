@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const MyStrings = ref(["我的剑也未尝不利!","秦奋六世之余烈,东出灭六国而统一天下!","受命于天,既寿永昌"]);
+const MyStrings = ref(["我的剑也未尝不利!","秦奋六世之余烈,东出灭六国而统一天下!","受命于天,既寿永昌。"]);
 // 打字机效果
 import { Typed } from "@duskmoon/vue3-typed-js";
 import type { TypedOptions } from "@duskmoon/vue3-typed-js";
@@ -34,7 +34,7 @@ const options1: TypedOptions = {
 * {
   // 提示卡片
   --el-alert-title-font-size: 2rem;
-  --el-alert-description-font-size: 1.5rem;
+  --el-alert-description-font-size: 2vh;
   --el-alert-padding: 20px 16px;
   //
   --el-badge-font-size: 1vh;

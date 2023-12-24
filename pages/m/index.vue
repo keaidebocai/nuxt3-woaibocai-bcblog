@@ -5,7 +5,6 @@ definePageMeta({
 useHead({
   title: "首页",
 });
-const articleClass = ref('articleCard-box-m')
 const myStrings = ref(["Wecome To<br>BoCai's Kennel", "欢迎来到<br>菠菜的小窝!"])
 </script>
 

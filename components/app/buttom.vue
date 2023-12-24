@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const startTime = new Date("2023-12-23T13:00:00"); // 你站点启动的时间
+const startTime = new Date("2023-06-08T13:00:00"); // 你站点启动的时间
 const uptime = ref<string>('');
 const nowYear = new Date().getFullYear()
 console.log(nowYear)

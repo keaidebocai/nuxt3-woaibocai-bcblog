@@ -31,7 +31,11 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 // 登出
 const logout = async() => {
-  await Logout(useToken.getToken)
+  const { data } = await Logout(useToken.getToken)
+  .catch((err) => {
+    ElMessage.error("退出失败!请清除浏览器缓存！")
+    throw err
+  })
   useToken.removeToken()
   useToken.removeUserInfo()
   isLogin.value = true
