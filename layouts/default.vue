@@ -153,27 +153,18 @@ clickEffect()
  
 }
 </script>
-
 <template>
-    <el-row>
-        <el-col :span="24">
-            <el-affix>
-                <AppHeader />
-            </el-affix>
-        </el-col>
-    </el-row>
-    <el-row style="display:flex;justify-content: center;" :gutter="20">
-        <el-col :span="12">
-            <div style="height: 210vh;background-color: forestgreen;">
-                <slot />
-            </div>
-        </el-col>
-        <el-col :span="6">
-            <div style="border-radius: 20px; background-color: #fff;height: 110vh;">
-
-            </div>
-        </el-col>
-    </el-row>
+<el-row style="display: flex;justify-content: center;">
+  <el-col :span="17">
+    <div class="affix-container">
+      <el-affix target=".affix-container">
+        <AppHeader />
+      </el-affix>
+    </div>
+  </el-col>
+</el-row>
+<el-backtop :right="40" :bottom="40" :visibility-height="1000" />
+<slot />
 </template>
 <style>
 body {
@@ -181,5 +172,7 @@ body {
 }
 </style>
 <style lang="scss" scoped>
-
+.affix-container {
+  height: 8vh;
+}
 </style>

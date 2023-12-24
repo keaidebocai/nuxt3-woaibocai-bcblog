@@ -15,7 +15,12 @@ const calculateUptime = () => {
 
   uptime.value = `${years}年 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
 };
-
+// 组件通信 
+const props = defineProps(['isMobile'])
+const imgMargin = ref('3px')
+if (props.isMobile) {
+    imgMargin.value = '0px';
+}
 onMounted(() => {
   calculateUptime();
   setInterval(calculateUptime, 1000); // 每秒钟更新一次
@@ -37,7 +42,7 @@ onMounted(() => {
                             <a href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2022006198号-2</a>
                         </span>
                     </li>
-                    <li>
+                    <li v-show="!props.isMobile">
                         <span>
                             Powered By&nbsp;
                             <a href="https://www.likebocai.com" target="_blank">
@@ -56,9 +61,39 @@ onMounted(() => {
                             </a>
                         </span>
                     </li>
+                    <li v-show="props.isMobile" style="height: 4vh;margin-top: 1.5vh;">
+                        <span>
+                            <ul>
+                                <li>
+                                    Powered By&nbsp;
+                                    <a href="https://www.likebocai.com" target="_blank">
+                                        Likebocai
+                                    </a>
+                                </li>
+                                <li>
+                                    Design By&ensp;
+                                    <img src="https://cdn.woaibocai.top/bcblog/public/favicon.ico" />
+                                    <a href="https://www.likebocai.com" target="_blank">
+                                        菠菜的小窝
+                                    </a>
+                                </li>
+                                <li>
+                                    Code By&nbsp;
+                                    <a href="https://www.likebocai.com" target="_blank">
+                                        Likebocai
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </li>
                     <li>
                         <span class="upupText">
                             本站已苟延残喘 {{ uptime }}
+                        </span>
+                    </li>
+                    <li>
+                        <span style="font-size: 1.5vh;color: rgba(255, 255, 255, 0.6);">
+                            当前本站版本: V2.0.0.231224_Likebocai
                         </span>
                     </li>
                 </ul>
@@ -70,7 +105,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .MyButtom {
     width: 100%;
-    height: 20vh;
+    height: 22vh;
     margin-top: 5vh;
     margin-bottom: 10vh;
     border-radius: 20px;
@@ -84,46 +119,44 @@ onMounted(() => {
         color: transparent;
     }
     @-webkit-keyframes shake {
-            0% {
-                -webkit-transform: translate(5px, 5px);
-            }
+        0% {
 
-            25% {
-                -webkit-transform: translate(-5px, -5px);
-            }
+        }
 
-            50% {
-                -webkit-transform: translate(5px, 5px);
-            }
+        25% {
+            transform: rotate(3deg);
+        }
 
-            75% {
-                -webkit-transform: translate(-5px, -5px);
-            }
+        50% {
+            -webkit-transform: translate(0px, 15px);
+        }
+        75% {
+            transform: rotate(-3deg);
+        }
 
-            100% {
-                -webkit-transform: translate(5px, 5px);
-            }
+        100% {
+
+        }
         }
 
         @keyframes shake {
             0% {
-                -webkit-transform: translate(5px, 5px);
+
             }
 
             25% {
-                -webkit-transform: translate(-5px, -5px);
+                transform: rotate(3deg);
             }
 
             50% {
-                -webkit-transform: translate(5px, 5px);
+                -webkit-transform: translate(0px, 15px);
             }
-
             75% {
-                -webkit-transform: translate(-5px, -5px);
+                transform: rotate(-3deg);
             }
 
             100% {
-                -webkit-transform: translate(5px, 5px);
+
             }
         }
     .shake {
@@ -141,13 +174,15 @@ onMounted(() => {
         display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
         a {
             color: rgba(0,0,0,0.4);
             font-weight: bolder;
+            text-align: center;
         }
         img {
             height: 1.5vh;
-            margin-bottom: 3px;
+            margin-bottom: v-bind(imgMargin);
             border-radius: 25%;
         }
     }

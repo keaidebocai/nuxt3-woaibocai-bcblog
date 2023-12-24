@@ -10,7 +10,7 @@ useHead({
 </script>
 
 <template>
-
+<div style="background-color: beige;width: 100%; height: 200vh;"></div>
 </template>
 
 <style lang="scss" scoped>

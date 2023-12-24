@@ -72,7 +72,7 @@ onMounted(()=>{
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
-  <el-row>
+  <el-row :gutter="30">
     <el-col :span="21">
       <client-only>
         <el-menu
@@ -154,7 +154,7 @@ onMounted(()=>{
 .myLogin {
   height: 8vh;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 .el-menu--horizontal > .el-menu-item.is-active {

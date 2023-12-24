@@ -2,9 +2,14 @@
 </script>
 
 <template>
-<div>
-    <slot />
-</div>
+<el-row>
+    <el-col>
+        <div style="height: 8vh;width: 100%;">
+
+        </div>
+    </el-col>
+</el-row>
+<slot />
 </template>
 <style>
 body {
