@@ -79,56 +79,55 @@ onMounted(()=>{
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
-  <el-row :gutter="30">
-    <el-col :span="21">
-      <client-only>
-        <el-menu
-            router
-            unique-opened
-            mode="horizontal"
-            background-color="transparent"
-            @select="handleSelect"
-          >
-          <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
-          <el-menu-item style="display: flex;" index="/">
-            <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
-            <h1 class="blog-title">菠菜的小窝</h1>
-          </el-menu-item>
-          <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
-            <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
-              <el-menu-item v-for="category in categorys" :index="category.id">
-                <p style="font-weight: bolder; font-size: 20px;">
-                  {{ category.categoryName }}
-                </p>
-              </el-menu-item>
-              <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
-          </el-sub-menu>
-          <el-menu-item v-for="menu in menus" :index="menu.url">
-            <p style="font-weight: bolder; font-size: 20px; color: #fff;">
-              {{ menu.menuName }}
-            </p>
-          </el-menu-item>
-        </el-menu>
-      </client-only>
-    </el-col>
-    <el-col :span="3">
-      <div class="myLogin">
-        <p style="font-size: 20px;color: #fff;" link v-show="isLogin" @click="LoginClick">登录</p>
-        <el-dropdown v-show="!isLogin">
-          <span>
-            <el-avatar :size="48" :src="userInfo.avatar" />
-            <p style="font-weight: bolder;font-size: 20px;">Hi! {{ userInfo.nickName }}</p>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item>编辑</el-dropdown-item>
-              <el-dropdown-item @click="logout">退出</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
-    </el-col>
-  </el-row>
+<div style="display: flex;">
+  <div>
+    <client-only>
+          <el-menu
+              router
+              unique-opened
+              mode="horizontal"
+              background-color="transparent"
+              @select="handleSelect"
+              style="max-width: 1426.25px;min-width: 1052.625px;"
+            >
+            <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
+            <el-menu-item style="display: flex;" index="/">
+              <img class="blog-title-logo" src="https://qiniu.woaibocai.top/static/img/tou.png"/>
+              <h1 class="blog-title">菠菜的小窝</h1>
+            </el-menu-item>
+            <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
+              <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
+                <el-menu-item v-for="category in categorys" :index="category.id">
+                  <p style="font-weight: bolder; font-size: 20px;">
+                    {{ category.categoryName }}
+                  </p>
+                </el-menu-item>
+                <!-- <el-menu-item index="2-3">item three</el-menu-item> -->
+            </el-sub-menu>
+            <el-menu-item v-for="menu in menus" :index="menu.url">
+              <p style="font-weight: bolder; font-size: 20px; color: #fff;">
+                {{ menu.menuName }}
+              </p>
+            </el-menu-item>
+          </el-menu>
+        </client-only>
+  </div>
+  <div class="myLogin">
+    <p style="font-size: 20px;color: #fff;" link v-show="isLogin" @click="LoginClick">登录</p>
+    <el-dropdown v-show="!isLogin">
+      <span>
+        <el-avatar :size="48" :src="userInfo.avatar" />
+          <p style="font-weight: bolder;font-size: 20px;">Hi! {{ userInfo.nickName }}</p>
+      </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>编辑</el-dropdown-item>
+            <el-dropdown-item @click="logout">退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+    </el-dropdown>
+  </div>
+</div>
   <!-- 登录注册弹框 -->
   <!-- <client-only>
     <el-dialog style="max-width: 50vh;" v-model="dialogLoginVisible" title="登录" center>
@@ -163,6 +162,8 @@ onMounted(()=>{
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 203.75px;
+  min-width: 150.374px;
 }
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: 0;

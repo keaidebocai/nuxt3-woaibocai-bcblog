@@ -8,7 +8,7 @@ const myStrings = ref(["Wecome To BoCai's Kennel", "欢迎来到菠菜的小窝!
 
 <template>
   <AppMainWelcome :myStrings="myStrings" />
-  <el-row style="display: flex; justify-content: center" :gutter="30">
+  <!-- <el-row style="display: flex; justify-content: center" :gutter="30">
     <el-col :span="12">
       <AppMainMyAlert />
       <AppMainArticle />
@@ -17,7 +17,17 @@ const myStrings = ref(["Wecome To BoCai's Kennel", "欢迎来到菠菜的小窝!
     <el-col :span="5">
       <AppMainRightBlogInfo />
     </el-col>
-  </el-row>
+  </el-row> -->
+  <div style="height: 100vh;display: flex;justify-content: center;padding: 0 214px;">
+    <div>
+      <AppMainMyAlert />
+      <AppMainArticle />
+      <AppButtom />
+    </div>
+    <div style="margin-left: 30px;">
+      <AppMainRightBlogInfo />
+    </div>
+  </div>
 
 </template>
 <style lang="scss" scoped>

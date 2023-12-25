@@ -98,7 +98,7 @@ const changAvatarSrc = () => {
 .appRightMyInfo {
     min-width: 300px;
     max-width: 400px;
-    height:400px;
+    height:500px;
     background-color: rgba(255,255,255,0.6);
     border-radius: 20px;
     padding: 2vh 0;
@@ -171,7 +171,7 @@ const changAvatarSrc = () => {
             justify-content: center;
             li {
                 height: 6vh;
-                margin: 0 4px;
+                padding: 0 4px;
                 display: inline-block;
                 .data {
                     height: 2vh;

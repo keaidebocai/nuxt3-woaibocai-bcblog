@@ -113,20 +113,11 @@ if (props.isMobile) {
       <!-- 标签 -->
       <div class="articleCard-box-right-tags">
         <div v-show="!props.isMobile" class="articleCard-box-right-tags-icon">
-          <ul>
-            <li>
               <IconTags class="MyIconTags" />
-            </li>
-          </ul>
         </div>
 
         <div class="articleCard-box-right-tags-tag">
           <ul>
-            <li>
-              <el-badge :value="12">
-                <el-tag style="font-size: 2vh">Tag 1</el-tag>
-              </el-badge>
-            </li>
             <li>
               <el-badge :value="12">
                 <el-tag>Tag 1</el-tag>
@@ -156,6 +147,9 @@ if (props.isMobile) {
 
 <style lang="scss" scoped>
 .articleCard-box {
+  min-width: 873px;
+  max-width: 1200px;
+  min-height: 278px;
   width: 100%;
   height: 25vh;
   display: flex;
@@ -165,6 +159,7 @@ if (props.isMobile) {
     border-bottom-left-radius: 20px;
     height: 25vh;
     width: 40%;
+    min-height: 278px;
     background-color: #fff;
     // 图片加载失败的图标
     display: flex;
@@ -178,8 +173,6 @@ if (props.isMobile) {
     }
   }
   .articleCard-box-left:hover {
-    width: 44.4vh;
-    height: 25vh;
     border-radius: 20px;
     z-index: 99;
     transform: scale(1.05);
@@ -190,23 +183,29 @@ if (props.isMobile) {
     border-top-right-radius: 20px;
     height: 25vh;
     width: 60%;
+    min-height: 278px;
     .articleCard-box-right-top {
       border-top-right-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 4vh;
+      height: 3vh;
+      padding-top: 10px;
+      min-height: 40px;
       .articleCard-box-right-top-title {
+        padding: 5px 0;
         font-size: 1.8rem;
         font-weight: bolder;
       }
     }
     .articleCard-box-right-items {
-      height: 2vh;
+      height: 1.5vh;
       font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-top: 5px;
+      min-height: 22px;
       .top {
         display: flex;
         align-items: center;
@@ -247,8 +246,9 @@ if (props.isMobile) {
       }
     }
     .articleCard-box-right-descriptions {
-      height: 11vh;
-      padding: 1vh;
+      height: 10vh;
+      min-height: 120px;
+      padding: 5px 1vh;
       p {
         overflow: hidden;
         display: -webkit-box;
@@ -260,38 +260,43 @@ if (props.isMobile) {
       }
     }
     .articleCard-box-right-tags {
-      height: 4vh;
+      height: 40px;
+      // TODO
+      min-height: 25px;
+      padding: auto 0;
       border-bottom-right-radius: 20px;
+      display: flex;
+        align-items: center;
+        justify-items: center;
       .articleCard-box-right-tags-icon {
-        position: absolute;
-        float: left;
-        li {
-          display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        height: 40px;
+        width: 65px;
           .MyIconTags {
-            height: 2.5vh;
-            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            height: 2.5rem;
+            min-height: 40px;
             margin-left: 0.9vw;
           }
-        }
       }
       .articleCard-box-right-tags-tag {
         display: flex;
         align-items: center;
         justify-items: center;
-        margin-left: 4vw;
-        height: 4vh;
+        height: 40px;
         border-bottom-right-radius: 20px;
         ul {
-          display: flex;
-          align-items: center;
-          justify-items: center;
           li {
             display: inline-block;
             margin-right: 1.5vw;
             .el-badge {
-              z-index: 5;
+              // z-index: 5;
               .el-tag {
-                font-size: 1.8vh;
+                font-size: 0.9rem;
               }
             }
           }
@@ -440,7 +445,7 @@ if (props.isMobile) {
             display: inline-block;
             margin-right: 20px;
             .el-badge {
-              z-index: 5;
+              // z-index: 5;
               .el-tag {
                 font-size: 1.5vh;
               }
