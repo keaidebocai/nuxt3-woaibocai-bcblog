@@ -60,9 +60,12 @@ const allMenuList = async() => {
 }
 // 初始化数据
 const fectData = () => {
+  console.log('看我看我我是fectData')
   if(localStorage.getItem("likebocai:userInfo") != null) {
     isLogin.value = false
-    userInfo.value = useToken.getUserInfo
+    userInfo.value.avatar = useToken.getUserInfo.avatar
+    userInfo.value.nickName = useToken.getUserInfo.nickName
+    // userInfo.value = useToken.getUserInfo
   } else {
     isLogin.value = true
   }
@@ -71,7 +74,7 @@ onMounted(()=>{
   fectData()
   allCategoryList()
   allMenuList()
-  // setInterval(fectData,1000)
+  // setInterval(fectData,500)
 })
 </script>
 <!-- #545c64 #fff #ffd04b -->

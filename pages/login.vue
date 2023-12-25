@@ -87,7 +87,8 @@ const onSubmit = async () => {
     console.log(data)
     isMyLoading.value = false
     //跳转到主页面
-    router.push("/")
+    await navigateTo('/',{ external: true })
+    // router.push("/")
     // router.go(-1)
 }
 
@@ -139,7 +140,8 @@ onMounted(() => {
 });
 </script>
 <template>
-<div class="myApp">
+<ClientOnly>
+    <div class="myApp">
     <div class="container">
         <div class="container-form container-signup" id="signup-container">
             <form action="#" class="form" id="form1" style="font-size: 18px;">
@@ -170,7 +172,7 @@ onMounted(() => {
                         />
                     </el-form-item>
                 </el-form>
-                <button type="button" class="btn"  @click="onSubmitByRegister" :disabled="isLoading">点击注册</button>
+                <button class="btn"  @click="onSubmitByRegister" :disabled="isLoading">点击注册</button>
             </form>
         </div>
 
@@ -200,7 +202,7 @@ onMounted(() => {
                     </el-form-item>
                 </el-form>
                 <a href="#" class="link">忘记密码?</a>
-                <el-button type="button" class="btn" @click="onSubmit" :disabled="isMyLoading">登录</el-button>
+                <el-button  class="btn" @click="onSubmit" :disabled="isMyLoading">登录</el-button>
             </form>
         </div>
 
@@ -220,6 +222,7 @@ onMounted(() => {
         </div>
     </div>
 </div>
+</ClientOnly>
 </template>
 
 <style lang="scss" scoped>

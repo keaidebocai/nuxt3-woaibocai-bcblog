@@ -154,6 +154,7 @@ clickEffect()
 }
 </script>
 <template>
+<div>
 <el-row style="display: flex;justify-content: center;">
   <el-col :span="17">
     <div class="affix-container">
@@ -165,6 +166,7 @@ clickEffect()
 </el-row>
 <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
 <slot />
+</div>
 </template>
 <style>
 body {

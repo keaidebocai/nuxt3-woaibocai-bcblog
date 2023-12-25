@@ -270,7 +270,7 @@ if (props.isMobile) {
           .MyIconTags {
             height: 2.5vh;
             position: absolute;
-            margin-left: 9px;
+            margin-left: 0.9vw;
           }
         }
       }
@@ -278,7 +278,7 @@ if (props.isMobile) {
         display: flex;
         align-items: center;
         justify-items: center;
-        margin-left: 4vh;
+        margin-left: 4vw;
         height: 4vh;
         border-bottom-right-radius: 20px;
         ul {
@@ -287,7 +287,7 @@ if (props.isMobile) {
           justify-items: center;
           li {
             display: inline-block;
-            margin-right: 20px;
+            margin-right: 1.5vw;
             .el-badge {
               z-index: 5;
               .el-tag {
@@ -315,6 +315,7 @@ if (props.isMobile) {
 .articleCard-box-m {
   width: 100%;
   height: 50vh;
+  padding-bottom: 20px;
   .articleCard-box-left {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

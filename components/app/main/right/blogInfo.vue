@@ -96,21 +96,28 @@ const changAvatarSrc = () => {
 
 <style lang="scss" scoped>
 .appRightMyInfo {
-    height:50vh;
+    min-width: 300px;
+    max-width: 400px;
+    height:400px;
     background-color: rgba(255,255,255,0.6);
     border-radius: 20px;
+    padding: 2vh 0;
     .title {
-        height: 5vh;
+        height: 3vh;
+        padding-top: 10px;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2vh;
+        font-size: 1.8rem;
         // 149,212,117 rgba(128,128,128,0.6)  #e8c9b5 #32325d
         color:  #32325d;
     }
     .avatar {
+        width: 100%;
+        padding-top: 1vh;
+        padding-bottom: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -122,6 +129,10 @@ const changAvatarSrc = () => {
             from { transform: rotate(); }
             to { transform: rotate(360deg); }
         }
+        .el-avatar {
+            width: 40%;
+            height: 100%;
+        }
         .el-avatar:hover {
             -webkit-animation: el-avatar-rotate 1s infinite;
             animation: el-avatar-rotate 1s infinite;
@@ -130,22 +141,22 @@ const changAvatarSrc = () => {
     }
     .name {
         height: 2.5vh;
-        margin-top: 1vh;
-        margin-bottom: 0.5vh;
+        padding-top: 10px;
+        padding-bottom: 0.5vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.3vh;
+        font-size: 2rem;
         font-weight: bold;
         color:  #32325d;
     }
     .description {
-        height: 3vh;
-        margin: 0 4vh;
+        height: 4.5vh;
+        padding: 15px 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.6vh;
+        font-size: 1.1rem;
         color:  #32325d;
         p {
             text-align: center;
@@ -153,20 +164,20 @@ const changAvatarSrc = () => {
     }
     .statistics  {
         height: 6vh;
-        margin: 1vh 2vh 0 2vh;
+        margin: 10px 2vw 0 2vw;
         ul {
             display: flex;
             align-items: center;
             justify-content: center;
             li {
-                width: 20%;
                 height: 6vh;
                 margin: 0 4px;
                 display: inline-block;
                 .data {
                     height: 2vh;
-                    font-size: 2vh;
-                    margin: 0.5vh 0;
+                    min-width: 48px;
+                    font-size: 1.8rem;
+                    margin: 5px 0;
                     color:  #32325d;
                     font-weight: bolder;
                     display: flex;
@@ -175,7 +186,7 @@ const changAvatarSrc = () => {
                 }
                 .info {
                     height: 2vh;
-                    font-size: 2vh;
+                    font-size: 1.5rem;
                     margin: 0.5vh 0;
                     color:  #32325d;
                     display: flex;
