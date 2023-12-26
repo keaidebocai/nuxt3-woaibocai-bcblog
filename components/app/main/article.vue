@@ -319,6 +319,7 @@ if (props.isMobile) {
 
 .articleCard-box-m {
   width: 100%;
+  min-height: 400px;
   height: 50vh;
   padding-bottom: 20px;
   .articleCard-box-left {
@@ -343,116 +344,154 @@ if (props.isMobile) {
     background-color: rgba(255, 255, 255, 0.6);
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    height: 25vh;
+    // height: 25vh;
     width: 100%;
     .articleCard-box-right-top {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 4vh;
+      height: 1.6rem;
+      // TODO
+      padding-top: 5px;
       .articleCard-box-right-top-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: bolder;
       }
     }
     .articleCard-box-right-items {
-      height: 2vh;
+      height: 1.1rem;
       font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-bottom: 5px;
       .top {
         display: flex;
         align-items: center;
         justify-content: center;
-        li {
-          display: inline-block;
-          .header-span {
-            height: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .Mydiv {
-              height: 1.1rem;
-              padding-left: 5px;
+        ul {
+          height: 1.2rem;
+          li {
+            display: inline-block;
+            .header-span {
+              height: 1.2rem;
               display: flex;
               align-items: center;
               justify-content: center;
-            }
-            span {
-              height: 1.3rem;
-              font-size: 1.3rem;
-              padding-left: 10px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .icon {
-              padding-left: 10px;
-              padding-bottom: 3px;
-              height: 1.1rem;
-              width: 1.1rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+              .Mydiv {
+                height: 1.1rem;
+                padding-left: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              span {
+                height: 1.3rem;
+                font-size: 1.3rem;
+                padding-left: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              .icon {
+                padding-left: 10px;
+                padding-bottom: 3px;
+                height: 1.1rem;
+                width: 1.1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
             }
           }
         }
+
       }
     }
     .articleCard-box-right-descriptions {
-      height: 11vh;
-      padding: 1vh;
+      height: 3.3rem;
+      padding: 0 0.5rem 0.5rem 0.5rem;
       p {
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 6;
+        -webkit-line-clamp: 3;
         font-size: 1.1rem;
         align-items: center;
         justify-content: center;
       }
     }
+    // .articleCard-box-right-tags {
+    //   height: 4vh;
+    //   border-bottom-right-radius: 20px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   .articleCard-box-right-tags-icon {
+    //     position: absolute;
+    //     float: left;
+    //     li {
+    //       display: inline-block;
+    //       .MyIconTags {
+    //         height: 2.5vh;
+    //         position: absolute;
+    //         margin-left: 9px;
+    //       }
+    //     }
+    //   }
+    //   .articleCard-box-right-tags-tag {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-items: center;
+    //     height: 4vh;
+    //     border-bottom-right-radius: 20px;
+    //     ul {
+    //       display: flex;
+    //       align-items: center;
+    //       justify-items: center;
+    //       li {
+    //         display: inline-block;
+    //         margin-right: 20px;
+    //         .el-badge {
+    //           // z-index: 5;
+    //           .el-tag {
+    //             font-size: 1.5vh;
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
     .articleCard-box-right-tags {
-      height: 4vh;
+      // height: 40px;
+      // TODO
+      min-height: 25px;
+      margin-top: 5px;
+      padding-bottom: 10px;
       border-bottom-right-radius: 20px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      .articleCard-box-right-tags-icon {
-        position: absolute;
-        float: left;
-        li {
-          display: inline-block;
-          .MyIconTags {
-            height: 2.5vh;
-            position: absolute;
-            margin-left: 9px;
-          }
-        }
-      }
+      justify-items: center;
       .articleCard-box-right-tags-tag {
         display: flex;
         align-items: center;
         justify-items: center;
-        height: 4vh;
+        margin: 0 auto;
+        // height: 40px;
         border-bottom-right-radius: 20px;
         ul {
-          display: flex;
-          align-items: center;
-          justify-items: center;
           li {
             display: inline-block;
-            margin-right: 20px;
+            margin-right: 1.5vw;
             .el-badge {
               // z-index: 5;
               .el-tag {
-                font-size: 1.5vh;
+                font-size: 0.9rem;
               }
             }
           }
         }
       }
+
     }
   }
 }

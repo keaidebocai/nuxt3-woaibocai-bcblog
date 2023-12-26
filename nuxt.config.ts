@@ -16,7 +16,6 @@ export default defineNuxtConfig({
     },
     storage: "localStorage",
   },
-  devtools: { enabled: true },
   app: {
     head: {
       title: "菠菜的小窝",

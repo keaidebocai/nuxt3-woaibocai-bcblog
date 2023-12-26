@@ -79,7 +79,7 @@ onMounted(()=>{
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
-<div style="display: flex;">
+<div  style="display: flex;justify-content: center;align-content: center;">
   <div>
     <client-only>
           <el-menu
@@ -88,7 +88,7 @@ onMounted(()=>{
               mode="horizontal"
               background-color="transparent"
               @select="handleSelect"
-              style="max-width: 1426.25px;min-width: 1052.625px;"
+              style="max-width: 1426.25px;min-width: 1052.625px;width: 87.5vw;"
             >
             <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
             <el-menu-item style="display: flex;" index="/">
@@ -162,8 +162,10 @@ onMounted(()=>{
   display: flex;
   align-items: center;
   justify-content: center;
+  // margin-left: 30px;
   max-width: 203.75px;
   min-width: 150.374px;
+  width:  12.5vw;
 }
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: 0;

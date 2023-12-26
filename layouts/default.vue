@@ -155,15 +155,15 @@ clickEffect()
 </script>
 <template>
 <div>
-<div style="display: flex;justify-content: center;">
-    <div class="affix-container">
-      <el-affix target=".affix-container">
-        <AppHeader />
-      </el-affix>
-    </div>
-</div>
-<el-backtop :right="40" :bottom="40" :visibility-height="1000" />
-<slot />
+  <div style="display: flex;justify-content: center;align-content: center;">
+      <div class="affix-container">
+        <el-affix target=".affix-container">
+          <AppHeader/>
+        </el-affix>
+        <slot />
+      </div>
+  </div>
+  <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
 </div>
 </template>
 <style>
@@ -173,6 +173,6 @@ body {
 </style>
 <style lang="scss" scoped>
 .affix-container {
-  height: 8vh;
+  height: 100vh;
 }
 </style>
