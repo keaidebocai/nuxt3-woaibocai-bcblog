@@ -319,8 +319,8 @@ if (props.isMobile) {
 
 .articleCard-box-m {
   width: 100%;
-  min-height: 400px;
-  height: 50vh;
+  // min-height: 400px;
+  // height: 50vh;
   padding-bottom: 20px;
   .articleCard-box-left {
     border-top-left-radius: 20px;
@@ -421,46 +421,6 @@ if (props.isMobile) {
         justify-content: center;
       }
     }
-    // .articleCard-box-right-tags {
-    //   height: 4vh;
-    //   border-bottom-right-radius: 20px;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   .articleCard-box-right-tags-icon {
-    //     position: absolute;
-    //     float: left;
-    //     li {
-    //       display: inline-block;
-    //       .MyIconTags {
-    //         height: 2.5vh;
-    //         position: absolute;
-    //         margin-left: 9px;
-    //       }
-    //     }
-    //   }
-    //   .articleCard-box-right-tags-tag {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-items: center;
-    //     height: 4vh;
-    //     border-bottom-right-radius: 20px;
-    //     ul {
-    //       display: flex;
-    //       align-items: center;
-    //       justify-items: center;
-    //       li {
-    //         display: inline-block;
-    //         margin-right: 20px;
-    //         .el-badge {
-    //           // z-index: 5;
-    //           .el-tag {
-    //             font-size: 1.5vh;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
     .articleCard-box-right-tags {
       // height: 40px;
       // TODO
