@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+definePageMeta({
+    layout: 'nothing',
+})
 useHead({
   title: "首页",
 });
@@ -7,29 +10,31 @@ const myStrings = ref(["Wecome To BoCai's Kennel", "欢迎来到菠菜的小窝!
 </script>
 
 <template>
-  <AppMainWelcome :myStrings="myStrings" />
-  <!-- <el-row style="display: flex; justify-content: center" :gutter="30">
-    <el-col :span="12">
-      <AppMainMyAlert />
-      <AppMainArticle />
-      <AppButtom />
-    </el-col>
-    <el-col :span="5">
-      <AppMainRightBlogInfo />
-    </el-col>
-  </el-row> -->
-  <div style="height: 100vh;display: flex;justify-content: center;padding: 0 214px;">
-    <div>
-      <AppMainMyAlert />
-      <AppMainArticle />
-      <AppButtom />
+  <div>
+    <div style="display: flex;justify-content: center;align-content: center;">
+        <div class="affix-container">
+          <el-affix target=".affix-container">
+            <AppHeader/>
+          </el-affix>
+          <AppMainWelcome :myStrings="myStrings" />
+          <div style="height: 100vh;display: flex;justify-content: center;padding: 0 214px;">
+            <div>
+              <AppMainMyAlert />
+              <AppMainArticle />
+              <AppButtom />
+            </div>
+            <div style="margin-left: 30px;">
+              <AppMainRightBlogInfo />
+            </div>
+          </div>
+          <!-- <slot /> -->
+        </div>
     </div>
-    <div style="margin-left: 30px;">
-      <AppMainRightBlogInfo />
-    </div>
+    <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
   </div>
-
 </template>
 <style lang="scss" scoped>
-
+.affix-container {
+  height: 100vh;
+}
 </style>

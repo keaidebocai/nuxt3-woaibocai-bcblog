@@ -79,7 +79,7 @@ onMounted(()=>{
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>
-<div  style="display: flex;justify-content: center;align-content: center;">
+<div  style="padding-bottom: 3vh; display: flex;justify-content: center;align-content: center;">
   <div>
     <client-only>
           <el-menu
@@ -97,7 +97,7 @@ onMounted(()=>{
             </el-menu-item>
             <el-sub-menu style="background-color: transparent !important;" index="/nmsl">
               <template #title><h1 style="color: #fff; font-size: 20px;display: flex;"><ElIconList style="width: 20px;" />&nbsp;分类</h1></template>
-                <el-menu-item v-for="category in categorys" :index="category.id">
+                <el-menu-item v-for="category in categorys" :index="`/category/` + category.id">
                   <p style="font-weight: bolder; font-size: 20px;">
                     {{ category.categoryName }}
                   </p>
@@ -158,7 +158,7 @@ onMounted(()=>{
 </template>
 <style lang="scss" scoped>
 .myLogin {
-  height: 8vh;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,8 +180,8 @@ onMounted(()=>{
   padding-left: 20px;
 }
 .blog-title-logo {
-  width: 8vh;
-  height: 8vh;
+  width: 5vh;
+  height: 5vh;
   border-radius: 20px;
 }
 .el-menu--horizontal ul {
@@ -240,7 +240,7 @@ onMounted(()=>{
 }
 * {
   // 菜单栏的宽度
-  --el-menu-horizontal-height: 8vh; 
+  --el-menu-horizontal-height: 5vh; 
   --el-menu-bg-color: transparent;
   --el-menu-hover-bg-color: transparent;
 }

@@ -160,7 +160,19 @@ clickEffect()
         <el-affix target=".affix-container">
           <AppHeader/>
         </el-affix>
-        <slot />
+        <div style="display: flex;justify-content: center;padding: 0 214px;">
+          <div>
+            <AppMainMyAlert />
+            <div class="mysolt">
+                <slot />
+            </div>
+            <AppButtom />
+          </div>
+          <div style="margin-left: 30px;">
+            <AppMainRightBlogInfo />
+          </div>
+        </div>
+        <!-- <slot /> -->
       </div>
   </div>
   <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
@@ -174,5 +186,13 @@ body {
 <style lang="scss" scoped>
 .affix-container {
   height: 100vh;
+}
+.mysolt{
+  min-width: 873px;
+  max-width: 1200px;
+  min-height: 278px;
+  width: 100%;
+  display: flex;
+  padding: 0 0 20px 0;
 }
 </style>

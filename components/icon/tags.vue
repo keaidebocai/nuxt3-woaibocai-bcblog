@@ -1,5 +1,3 @@
-
-import type Color from 'element-plus/es/components/color-picker/src/utils/color';
 <script setup lang="ts">
 
 </script>

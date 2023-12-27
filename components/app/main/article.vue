@@ -6,6 +6,9 @@ const articleClass = ref('articleCard-box')
 if (props.isMobile) {
     articleClass.value = 'articleCard-box-m';
 }
+const tag = () => {
+  navigateTo('/tag')
+}
 </script>
 
 <template>
@@ -120,7 +123,7 @@ if (props.isMobile) {
           <ul>
             <li>
               <el-badge :value="12">
-                <el-tag>Tag 1</el-tag>
+                <el-tag @click="tag">Tag 1</el-tag>
               </el-badge>
             </li>
             <li>

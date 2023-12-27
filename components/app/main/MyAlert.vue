@@ -1,5 +1,14 @@
 <script setup lang="ts">
-const MyStrings = ref(["我的剑也未尝不利!","秦奋六世之余烈,东出灭六国而统一天下!","受命于天,既寿永昌。"]);
+const MyStrings = ref([
+  "大丈夫岂能郁郁久居人下!&emsp;--吕布",
+  "匹夫!死则死尔,何惧之有!&emsp;--张辽",
+  "为人者有大度成大气也!&emsp;--司马懿",
+  "我的剑也未尝不利!&emsp;--袁绍",
+  "袁神歧董!",
+  "出生寒微不是耻辱,能屈能伸方为丈夫!&emsp;--邓艾",
+  "秦奋六世之余烈,东出灭六国而统一天下!",
+  "受命于天,既寿永昌。"
+]);
 // 打字机效果
 import { Typed } from "@duskmoon/vue3-typed-js";
 import type { TypedOptions } from "@duskmoon/vue3-typed-js";
@@ -38,6 +47,7 @@ const options1: TypedOptions = {
   --el-alert-padding: 20px 16px;
   //
   --el-badge-font-size: 1vh;
+  --el-color-info: rgba(0,0,0,0.5);
 }
 :deep(.el-alert__description) {
   margin: 15px 0 0 0;
