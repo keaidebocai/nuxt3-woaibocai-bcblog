@@ -1,5 +1,5 @@
 import { useTokenStore } from "~/store/useToken";
-const URl = "http://127.0.0.1:16280";
+const URl = "http://fpc.woaibocai.top:16280";
 export const useMyFetch = (url, opt) => {
   const store = useTokenStore();
   const router = useRouter();

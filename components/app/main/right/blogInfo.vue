@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// 导包
+import { GetBlogInfo } from "~/api/blog/info";
 // 头像
 const animationPlayState = ref("runing");
 const animationPlayStateByRuningOrPaused = (state: string) => {
@@ -34,6 +36,26 @@ const changAvatarSrc = () => {
     );
   }
 };
+
+// 网站数据
+type myData = {
+  articleCount: number;
+  tagCount: number;
+  categoryCount: number;
+  articleViewCount: number;
+};
+const blogInfo = ref<myData>();
+const getBlogInfo = async () => {
+  const { data } = await GetBlogInfo().catch((err) => {
+    ElMessage.error("我不粘锅的，你的网络出问题了!");
+    throw err;
+  });
+  blogInfo.value = data;
+};
+// 网站数据初始化
+onMounted(() => {
+  getBlogInfo();
+});
 </script>
 
 <template>
@@ -57,20 +79,20 @@ const changAvatarSrc = () => {
     <div class="statistics">
       <ul>
         <li>
-          <div class="data">213</div>
+          <div class="data">{{ blogInfo?.articleCount }}</div>
           <div class="info">文章</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">34</div>
+          <div class="data">{{ blogInfo?.categoryCount }}</div>
           <div class="info">分类</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">79</div>
+          <div class="data">{{ blogInfo?.tagCount }}</div>
           <div class="info">标签</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">57300</div>
-          <div class="info">总浏览</div>
+          <div class="data">{{ blogInfo?.articleViewCount }}</div>
+          <div class="info" style="min-width: 80px">总浏览</div>
         </li>
       </ul>
     </div>
@@ -193,7 +215,7 @@ const changAvatarSrc = () => {
 .appRightMyInfo {
   min-width: 250px;
   max-width: 400px;
-  height: 500px;
+  // height: 500px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 2vh 0;
