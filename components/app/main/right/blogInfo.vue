@@ -79,19 +79,27 @@ onMounted(() => {
     <div class="statistics">
       <ul>
         <li>
-          <div class="data">{{ blogInfo?.articleCount }}</div>
+          <div class="data">
+            {{ blogInfo?.articleCount ? blogInfo?.articleCount : "∞" }}
+          </div>
           <div class="info">文章</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">{{ blogInfo?.categoryCount }}</div>
+          <div class="data">
+            {{ blogInfo?.categoryCount ? blogInfo?.categoryCount : "∞" }}
+          </div>
           <div class="info">分类</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">{{ blogInfo?.tagCount }}</div>
+          <div class="data">
+            {{ blogInfo?.tagCount ? blogInfo?.tagCount : "∞" }}
+          </div>
           <div class="info">标签</div>
         </li>
         <li style="border-left: 1px solid rgba(50, 50, 93, 0.3)">
-          <div class="data">{{ blogInfo?.articleViewCount }}</div>
+          <div class="data">
+            {{ blogInfo?.articleViewCount ? blogInfo?.articleViewCount : "∞" }}
+          </div>
           <div class="info" style="min-width: 80px">总浏览</div>
         </li>
       </ul>
