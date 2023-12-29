@@ -1,24 +1,57 @@
 <script setup lang="ts">
-const items = [{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }];
-// 组件通信 
-const props = defineProps(['isMobile'])
-const articleClass = ref('articleCard-box')
+// import
+import { GetIndexArticle } from "~/api/blog/article";
+// 组件通信
+const props = defineProps(["isMobile", "indexArticle"]);
+const articleClass = ref("articleCard-box");
 if (props.isMobile) {
-    articleClass.value = 'articleCard-box-m';
+  articleClass.value = "articleCard-box-m";
 }
-const tag = () => {
-  navigateTo('/tag')
-}
+type indexArticleType = {
+  total: number;
+  current: number;
+  size: number;
+  data: [
+    {
+      id: string;
+      userName: string;
+      title: string;
+      summary: string;
+      content: string;
+      blogCategoryName: string;
+      categoryId: string;
+      thumbnail: string;
+      isTop: string;
+      viewCount: number;
+      updateTime: string;
+      articleLength: number;
+      readingDuration: number;
+      tags: [
+        {
+          id: string;
+          tagName: string;
+          thisTagHasArticleCount: number;
+        }
+      ];
+    }
+  ];
+};
+const indexArticle = ref<indexArticleType>();
 </script>
 
 <template>
-  <div v-for="item in items" :class="articleClass">
+  <div
+    v-for="article in props.indexArticle?.data"
+    :key="article.id"
+    :class="articleClass"
+  >
     <!-- https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg -->
     <!-- https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg -->
     <el-image
+      @click="navigateTo(`article/${article.id}`)"
       class="articleCard-box-left"
       fit="fill"
-      src="https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg"
+      :src="article.thumbnail"
     >
       <template #error>
         <div class="image-slot">
@@ -30,13 +63,15 @@ const tag = () => {
     <div class="articleCard-box-right">
       <!-- 标题 -->
       <div class="articleCard-box-right-top">
-        <p class="articleCard-box-right-top-title">关于nuxt3路由的解读与记录</p>
+        <p class="articleCard-box-right-top-title">
+          {{ article.title }}
+        </p>
       </div>
       <!-- 时间、浏览量、发布人、分类、字数、阅读时间 -->
       <div class="articleCard-box-right-items">
         <div class="top">
           <ul>
-            <li>
+            <li v-show="article.isTop === '1' ? true : false">
               <div class="header-span">
                 <ElIconStar class="icon" />
                 <div class="Mydiv">置顶</div>
@@ -46,21 +81,24 @@ const tag = () => {
             <li>
               <div class="header-span">
                 <ElIconUser class="icon" />
-                <div class="Mydiv">likebocai</div>
+                <div class="Mydiv">{{ article.userName }}</div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconView class="icon" />
-                <div class="Mydiv">230</div>
+                <div class="Mydiv">{{ article.viewCount }}</div>
                 <span>|</span>
               </div>
             </li>
             <li>
-              <div class="header-span">
+              <div
+                class="header-span"
+                @click="navigateTo(`category/${article.categoryId}`)"
+              >
                 <ElIconCollectionTag class="icon" />
-                <div class="Mydiv">前端</div>
+                <div class="Mydiv">{{ article.blogCategoryName }}</div>
               </div>
             </li>
           </ul>
@@ -73,21 +111,32 @@ const tag = () => {
             <li>
               <div class="header-span">
                 <ElIconDocument class="icon" />
-                <div class="Mydiv">3000 字</div>
+                <div class="Mydiv">{{ article.articleLength }} 字</div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconTimer class="icon" />
-                <div class="Mydiv">8 min</div>
+                <div class="Mydiv">
+                  {{
+                    article.readingDuration === 0 ? 1 : article.readingDuration
+                  }}
+                  min
+                </div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconStopwatch class="icon" />
-                <div class="Mydiv">2023-10-10</div>
+                <div class="Mydiv">
+                  {{
+                    props.isMobile
+                      ? article.updateTime.slice(0, 9)
+                      : article.updateTime.replace("T", " ")
+                  }}
+                </div>
               </div>
             </li>
           </ul>
@@ -95,50 +144,30 @@ const tag = () => {
       </div>
 
       <!-- 文章简述 -->
-      <div class="articleCard-box-right-descriptions">
+      <div
+        class="articleCard-box-right-descriptions"
+        @click="navigateTo(`article/${article.id}`)"
+      >
         <p>
-          1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些1.什么是索引索引（在 MySQL
-          中也叫“键key”）是存储引擎快速找到记录的一种数据结构，通俗来说类似书本的目录，这个比方虽然被用的最多但是也是最恰如其当的，在查询书本中的某个知识点不借助目录的情况下，往往都找的够呛，那么索引相较于数据库的重要性也可见一斑。
-          2.索引的有哪些
+          {{ article.summary }}
         </p>
       </div>
 
       <!-- 标签 -->
       <div class="articleCard-box-right-tags">
         <div v-show="!props.isMobile" class="articleCard-box-right-tags-icon">
-              <IconTags class="MyIconTags" />
+          <IconTags class="MyIconTags" />
         </div>
 
         <div class="articleCard-box-right-tags-tag">
           <ul>
-            <li>
-              <el-badge :value="12">
-                <el-tag @click="tag">Tag 1</el-tag>
-              </el-badge>
-            </li>
-            <li>
-              <el-badge :value="12">
-                <el-tag>Tag 1</el-tag>
-              </el-badge>
-            </li>
-            <li>
-              <el-badge :value="12">
-                <el-tag>Tag 1</el-tag>
-              </el-badge>
-            </li>
-            <li>
-              <el-badge :value="12">
-                <el-tag>Tag 1</el-tag>
+            <li
+              v-for="tag in article.tags"
+              :key="tag.id"
+              @click="navigateTo(`tag/${tag.id}`)"
+            >
+              <el-badge :value="tag.thisTagHasArticleCount">
+                <el-tag @click="tag.id">{{ tag.tagName }}</el-tag>
               </el-badge>
             </li>
           </ul>
@@ -269,22 +298,22 @@ const tag = () => {
       padding: auto 0;
       border-bottom-right-radius: 20px;
       display: flex;
-        align-items: center;
-        justify-items: center;
+      align-items: center;
+      justify-items: center;
       .articleCard-box-right-tags-icon {
         display: flex;
         align-items: center;
         justify-items: center;
         height: 40px;
         width: 65px;
-          .MyIconTags {
-            display: flex;
-            align-items: center;
-            justify-items: center;
-            height: 2.5rem;
-            min-height: 40px;
-            margin-left: 0.9vw;
-          }
+        .MyIconTags {
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          height: 2.5rem;
+          min-height: 40px;
+          margin-left: 0.9vw;
+        }
       }
       .articleCard-box-right-tags-tag {
         display: flex;
@@ -408,7 +437,6 @@ const tag = () => {
             }
           }
         }
-
       }
     }
     .articleCard-box-right-descriptions {
@@ -454,7 +482,6 @@ const tag = () => {
           }
         }
       }
-
     }
   }
 }
