@@ -63,9 +63,9 @@ const indexArticle = ref<indexArticleType>();
     <div class="articleCard-box-right">
       <!-- 标题 -->
       <div class="articleCard-box-right-top">
-        <p class="articleCard-box-right-top-title">
-          {{ article.title }}
-        </p>
+        <h2 class="articleCard-box-right-top-title">
+          <a :href="`article/${article.id}`">{{ article.title }}</a>
+        </h2>
       </div>
       <!-- 时间、浏览量、发布人、分类、字数、阅读时间 -->
       <div class="articleCard-box-right-items">
@@ -93,12 +93,15 @@ const indexArticle = ref<indexArticleType>();
               </div>
             </li>
             <li>
-              <div
-                class="header-span"
-                @click="navigateTo(`category/${article.categoryId}`)"
-              >
+              <div class="header-span">
                 <ElIconCollectionTag class="icon" />
-                <div class="Mydiv">{{ article.blogCategoryName }}</div>
+                <div class="Mydiv">
+                  <h2>
+                    <a :href="`category/${article.categoryId}`">
+                      {{ article.blogCategoryName }}
+                    </a>
+                  </h2>
+                </div>
               </div>
             </li>
           </ul>
@@ -161,13 +164,15 @@ const indexArticle = ref<indexArticleType>();
 
         <div class="articleCard-box-right-tags-tag">
           <ul>
-            <li
-              v-for="tag in article.tags"
-              :key="tag.id"
-              @click="navigateTo(`tag/${tag.id}`)"
-            >
+            <li v-for="tag in article.tags" :key="tag.id">
               <el-badge :value="tag.thisTagHasArticleCount">
-                <el-tag @click="tag.id">{{ tag.tagName }}</el-tag>
+                <el-tag>
+                  <h2>
+                    <a :href="`tag/${tag.id}`">
+                      {{ tag.tagName }}
+                    </a>
+                  </h2>
+                </el-tag>
               </el-badge>
             </li>
           </ul>
@@ -484,5 +489,9 @@ const indexArticle = ref<indexArticleType>();
       }
     }
   }
+}
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>

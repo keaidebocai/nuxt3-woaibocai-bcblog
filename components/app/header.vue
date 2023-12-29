@@ -30,9 +30,7 @@ const router = useRouter();
 const LoginClick = () => {
   router.push("/login");
 };
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+const handleSelect = (key: string, keyPath: string[]) => {};
 // 登出
 const logout = async () => {
   const { data } = await Logout(useToken.getToken).catch((err) => {
@@ -61,7 +59,6 @@ const allMenuList = async () => {
 };
 // 初始化数据
 const fectData = () => {
-  console.log("看我看我我是fectData");
   if (localStorage.getItem("likebocai:userInfo") != null) {
     isLogin.value = false;
     userInfo.value.avatar = useToken.getUserInfo.avatar;

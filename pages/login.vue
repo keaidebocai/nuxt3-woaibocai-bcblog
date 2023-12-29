@@ -68,7 +68,6 @@ const onSubmit = async () => {
     throw err;
   });
   //正式发送登录请求
-  console.log(form.value);
   const data = await Login(form.value)
     .then((res) => {
       isMyLoading.value = true;
@@ -89,7 +88,6 @@ const onSubmit = async () => {
       throw err;
     });
   //保存tokrn信息
-  console.log(data);
   isMyLoading.value = false;
   //跳转到主页面
   await navigateTo("/", { external: true });

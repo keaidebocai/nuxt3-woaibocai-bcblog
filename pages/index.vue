@@ -67,7 +67,6 @@ onMounted(() => {
                 "
               />
             </el-config-provider>
-
             <AppButtom />
           </div>
           <div style="margin-left: 30px">

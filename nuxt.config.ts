@@ -10,6 +10,12 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
   ],
+  vite: {
+    // 打包后清除console和debugger，注意：server下文件的不会删除
+    esbuild: {
+      // drop: ["console", "debugger"],
+    },
+  },
   piniaPersistedstate: {
     cookieOptions: {
       sameSite: "strict",
