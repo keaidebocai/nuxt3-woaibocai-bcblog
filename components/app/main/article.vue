@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import
-import { GetIndexArticle } from "~/api/blog/article";
 // 组件通信
 const props = defineProps(["isMobile", "indexArticle"]);
 const articleClass = ref("articleCard-box");
@@ -348,10 +346,10 @@ const indexArticle = ref<indexArticleType>();
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
   transform: scale(1.03);
-  .articleCard-box-right {
-    position: absolute;
-    right: 0;
-  }
+  // .articleCard-box-right {
+  //   position: absolute;
+  //   right: 0;
+  // }
 }
 
 .articleCard-box-m {

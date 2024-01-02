@@ -16,7 +16,7 @@ import zh from "element-plus/es/locale/lang/zh-cn";
 const indexArticle = ref();
 const page = ref({
   current: 1,
-  size: 5,
+  size: 3,
 });
 // 必须初始化值为 number 0 不然 你使用了一些已被废弃的用法，请参考 el-pagination 的官方文档
 const total = ref(0);

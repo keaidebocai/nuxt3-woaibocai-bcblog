@@ -1,9 +1,14 @@
 <script setup lang="ts">
+onMounted(() => {
+  fectData();
+  allCategoryList();
+  allMenuList();
+  // setInterval(fectData,500)
+});
 import { Logout } from "~/api/login";
 import { GetAllCategory } from "~/api/blog/category";
 import { GetAllMenu } from "~/api/blog/menu";
 import { useTokenStore } from "~/store/useToken";
-
 const menuData = [
   {
     id: "",
@@ -68,12 +73,12 @@ const fectData = () => {
     isLogin.value = true;
   }
 };
-onMounted(() => {
-  fectData();
-  allCategoryList();
-  allMenuList();
-  // setInterval(fectData,500)
-});
+// onMounted(() => {
+//   fectData();
+//   allCategoryList();
+//   allMenuList();
+//   // setInterval(fectData,500)
+// });
 </script>
 <!-- #545c64 #fff #ffd04b -->
 <template>

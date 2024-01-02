@@ -1,4 +1,8 @@
 <script setup lang="ts">
+onMounted(() => {
+  calculateUptime();
+  setInterval(calculateUptime, 1000); // 每秒钟更新一次
+});
 const startTime = new Date("2023-06-08T13:00:00"); // 你站点启动的时间
 const uptime = ref<string>("");
 const nowYear = new Date().getFullYear();
@@ -22,10 +26,7 @@ const imgMargin = ref("3px");
 if (props.isMobile) {
   imgMargin.value = "0px";
 }
-onMounted(() => {
-  calculateUptime();
-  setInterval(calculateUptime, 1000); // 每秒钟更新一次
-});
+
 </script>
 <template>
   <el-row>
