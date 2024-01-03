@@ -52,7 +52,7 @@ onMounted(() => {
           style="display: flex; justify-content: center; align-content: center"
         />
       </el-config-provider>
-      <AppButtom :is-mobile="true" />
+      <AppButtom :is-mobile="true" :my-class="'MyButtomMobile'" />
     </el-col>
   </el-row>
 </template>

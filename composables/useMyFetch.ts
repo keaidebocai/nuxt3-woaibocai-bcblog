@@ -1,5 +1,5 @@
 import { useTokenStore } from "~/store/useToken";
-const URl = "http://fpc.woaibocai.top:16280";
+const MyURl = "http://fpc.woaibocai.top:16280";
 export const useMyFetch = (url, opt) => {
   const store = useTokenStore();
   const router = useRouter();
@@ -22,7 +22,7 @@ export const useMyFetch = (url, opt) => {
   opt.headers = headers;
   return useFetch(url, {
     ...opt,
-    baseURL: URl, // 你的接口地址
+    baseURL: MyURl, // 你的接口地址
     async onResponse({ request, response, options }) {
       return response;
     },
@@ -31,7 +31,7 @@ export const useMyFetch = (url, opt) => {
         refresh_token: store.getToken.refresh_token,
       });
       if (response.status == 401) {
-        useFetch(URl + "/api/user/authorizations", {
+        useFetch(MyURl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -105,7 +105,7 @@ export const useMyOtherFetch = (url, opt) => {
   opt.headers = headers;
   return $fetch(url, {
     ...opt,
-    baseURL: URl, // 你的接口地址
+    baseURL: MyURl, // 你的接口地址
     async onResponse({ request, response, options }) {
       // console.log(response._data);
       // return response;
@@ -113,7 +113,7 @@ export const useMyOtherFetch = (url, opt) => {
         refresh_token: store.getToken.refresh_token,
       });
       if (response._data.code == 401) {
-        useFetch(URl + "/api/user/authorizations", {
+        useFetch(MyURl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 
@@ -158,7 +158,7 @@ export const useMyOtherFetch = (url, opt) => {
       });
       console.log("--------------" + response);
       if (response.status == 401) {
-        useFetch(URl + "/api/user/authorizations", {
+        useFetch(MyURl + "/api/user/authorizations", {
           method: "post",
           // 已知问题是后台无法接受数据 解决
 

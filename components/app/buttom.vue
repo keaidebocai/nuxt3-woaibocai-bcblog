@@ -21,17 +21,17 @@ const calculateUptime = () => {
   uptime.value = `${years}年 ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
 };
 // 组件通信
-const props = defineProps(["isMobile"]);
+const props = defineProps(["isMobile", "myClass"]);
+// const myClass = ref("MyButtom");
 const imgMargin = ref("3px");
 if (props.isMobile) {
   imgMargin.value = "0px";
 }
-
 </script>
 <template>
   <el-row>
     <el-col :spna="12">
-      <div class="MyButtom">
+      <div :class="props.myClass">
         <ul>
           <li>
             <span class="shake"
@@ -113,6 +113,89 @@ if (props.isMobile) {
 
 <style lang="scss" scoped>
 .MyButtom {
+  min-width: 873px;
+  max-width: 1200px;
+
+  width: 100%;
+  height: 22vh;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  border-radius: 20px;
+  background-color: rgba(149, 212, 117, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .upupText {
+    background-image: linear-gradient(red, blue);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  @-webkit-keyframes shake {
+    0% {
+    }
+
+    25% {
+      transform: rotate(3deg);
+    }
+
+    50% {
+      -webkit-transform: translate(0px, 15px);
+    }
+    75% {
+      transform: rotate(-3deg);
+    }
+
+    100% {
+    }
+  }
+
+  @keyframes shake {
+    0% {
+    }
+
+    25% {
+      transform: rotate(3deg);
+    }
+
+    50% {
+      -webkit-transform: translate(0px, 15px);
+    }
+    75% {
+      transform: rotate(-3deg);
+    }
+
+    100% {
+    }
+  }
+  .shake {
+    -webkit-animation: shake 1s infinite;
+    animation: shake 1s infinite;
+  }
+  .shake:hover {
+    -webkit-animation: shake 0.5s infinite;
+    animation: shake 0.5s infinite;
+  }
+  span {
+    height: 2.5vh;
+    font-size: 1.8vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    a {
+      color: rgba(0, 0, 0, 0.4);
+      font-weight: bolder;
+      text-align: center;
+    }
+    img {
+      height: 1.5vh;
+      margin-bottom: v-bind(imgMargin);
+      border-radius: 25%;
+    }
+  }
+}
+.MyButtomMobile {
   width: 100%;
   height: 22vh;
   margin-top: 5vh;

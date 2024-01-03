@@ -83,8 +83,9 @@ const fectData = () => {
           mode="horizontal"
           background-color="transparent"
           @select="handleSelect"
-          style="max-width: 1426.25px; min-width: 1052.625px; width: 87.5vw"
+          style="min-width: 1052.625px; width: 92vw"
         >
+          <!-- max-width: 1426.25px; -->
           <!-- <el-menu-item index="/" class="blog-title-logo"></el-menu-item> -->
           <el-menu-item style="display: flex" index="/">
             <img

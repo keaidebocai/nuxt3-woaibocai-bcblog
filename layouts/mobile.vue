@@ -14,7 +14,9 @@ const searchData = ref("");
             <ElIconFold v-show="!showIcon" style="width: 6vw" />
             <ElIconExpand v-show="showIcon" style="width: 6vw" />
           </div>
-          <div class="mobile-menu-title">菠菜的小窝</div>
+          <div class="mobile-menu-title">
+            <h1><a href="/">菠菜的小窝</a></h1>
+          </div>
           <div class="mobile-menu-right" @click="showSearch = !showSearch">
             <ElIconSearch style="width: 6vw" />
           </div>
@@ -68,6 +70,7 @@ body {
   display: flex;
   background-color: rgba(255, 255, 255, 0.3);
   color: rgba($color: #000000, $alpha: 0.6);
+  margin-bottom: 10px;
   .mobile-menu-left {
     display: flex;
     align-items: center;
@@ -83,6 +86,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    h1 {
+      a {
+        font-size: 3vh;
+        color: rgba($color: #000000, $alpha: 0.6);
+        text-decoration: none;
+      }
+    }
   }
   .mobile-menu-right {
     display: flex;

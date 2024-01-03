@@ -11,3 +11,5 @@
 
 ### log
 > 首页接入数据 并适配移动端 --2023-12-29-16:00
+> 捏麻麻地，从一开始我就滥用UseFetch和$Fetch导致现在几乎成spa了，SSR要用UseAyscnData 
+> 热数据用UseFetch和$Fetch 需要SEO的用UseAyscnData --2024-01-3-14:43

@@ -26,7 +26,7 @@ const fetchData = async () => {
   indexArticle.value = data;
   total.value = data.total;
 };
-
+const myClass = ref("MyButtom");
 // onMounted(() => {
 //   fetchData();
 // });
@@ -70,7 +70,7 @@ const fetchData = async () => {
                 "
               />
             </el-config-provider>
-            <AppButtom />
+            <AppButtom :myClass="myClass" />
           </div>
           <div style="margin-left: 30px">
             <AppMainRightBlogInfo />

@@ -6,4 +6,10 @@ const GetIndexArticle = (current: number, size: number) => {
     query: { current, size },
   });
 };
-export { GetIndexArticle };
+// 根据 url 获取文章
+const GetArticleByUrl = (url: string) => {
+  return useMyOtherFetch(MY_URL + `getArticleByUrl/${url}`, {
+    method: "get",
+  });
+};
+export { GetIndexArticle, GetArticleByUrl };

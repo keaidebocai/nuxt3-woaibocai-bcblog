@@ -225,6 +225,7 @@ const getBlogInfo = async () => {
 
 <style lang="scss" scoped>
 .appRightMyInfo {
+  margin-bottom: 20px;
   min-width: 250px;
   max-width: 400px;
   // height: 500px;
