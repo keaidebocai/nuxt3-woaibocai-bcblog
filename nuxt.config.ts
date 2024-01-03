@@ -45,5 +45,6 @@ export default defineNuxtConfig({
     "~/assets/sass/Normalize.scss",
     "~/assets/sass/myBackgroundImage.scss",
     "~/assets/fonts/fonts.scss",
+    "~/assets/sass/components.scss",
   ],
 });
