@@ -86,7 +86,7 @@ onMounted(() => {
     <Meta name="description" :content="description" />
     <Meta name="keywords" :content="keywords" />
   </Head> -->
-  <AppArticleInfo />
+  <AppArticleInfo :articleData="articleData" :isMoblie="false" />
   <div
     style="
       height: 100vh;

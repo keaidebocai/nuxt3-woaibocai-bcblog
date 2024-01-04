@@ -1,16 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps(["articleData", "isMoblie"]);
+console.log(props.articleData);
+const article = props.articleData;
+const isMoblie = props.isMoblie;
+</script>
 
 <template>
   <div class="articleInfo">
     <div class="articleInfo-body">
       <div class="articleInfo-body-title">
-        <h1>关于jdk8在CentOs7.6上的安装与配置</h1>
+        <h1>{{ article.title }}</h1>
       </div>
       <!-- 时间、浏览量、发布人、分类、字数、阅读时间 -->
       <div class="articleCard-box-right-items">
         <div class="top">
           <ul>
-            <li>
+            <li v-show="article.isTop == 1 ? true : false">
               <div class="header-span">
                 <ElIconStar class="icon" />
                 <div class="Mydiv">置顶</div>
@@ -20,14 +25,14 @@
             <li>
               <div class="header-span">
                 <ElIconUser class="icon" />
-                <div class="Mydiv">article.userName</div>
+                <div class="Mydiv">{{ article.userName }}</div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconView class="icon" />
-                <div class="Mydiv">article.viewCount</div>
+                <div class="Mydiv">{{ article.viewCount }}</div>
                 <span>|</span>
               </div>
             </li>
@@ -36,7 +41,9 @@
                 <ElIconCollectionTag class="icon" />
                 <div class="Mydiv">
                   <h2>
-                    <a :href="`category/`"> article.blogCategoryName </a>
+                    <a :href="`category/${article.categoryId}`">
+                      {{ article.blogCategoryName }}
+                    </a>
                   </h2>
                 </div>
               </div>
@@ -51,21 +58,27 @@
             <li>
               <div class="header-span">
                 <ElIconDocument class="icon" />
-                <div class="Mydiv">article.articleLength 字</div>
+                <div class="Mydiv">{{ article.articleLength }} 字</div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconTimer class="icon" />
-                <div class="Mydiv">article.readingDuration min</div>
+                <div class="Mydiv">{{ article.readingDuration }} min</div>
                 <span>|</span>
               </div>
             </li>
             <li>
               <div class="header-span">
                 <ElIconStopwatch class="icon" />
-                <div class="Mydiv">: article.updateTime.replace("T", " ")</div>
+                <div class="Mydiv">
+                  {{
+                    isMoblie
+                      ? article.updateTime.slice(0, 10)
+                      : article.updateTime.replace("T", " ")
+                  }}
+                </div>
               </div>
             </li>
           </ul>
