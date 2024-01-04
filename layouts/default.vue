@@ -182,7 +182,8 @@ if (typeof window !== "undefined") {
     <div style="display: flex; justify-content: center; align-content: center">
       <div class="affix-container">
         <el-affix target=".affix-container">
-          <AppHeader />
+          <!-- <AppHeader /> -->
+          <AppMyHeader />
         </el-affix>
         <slot />
       </div>

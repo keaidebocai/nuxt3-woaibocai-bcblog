@@ -1,7 +1,5 @@
 <script setup lang="ts">
-useHead({
-  title: "test",
-});
+const showLogin = ref(false);
 </script>
 
 <template>
@@ -28,7 +26,7 @@ useHead({
       </div>
       <div class="myHeader-nav-right">
         <ul class="myHeader-nav-right-menu">
-          <li>
+          <li class="myHeader-nav-right-menu-ul-li">
             <div class="myHeader-nav-right-menu-img">
               <img src="~/assets/icon/search.png" width="32px" />
             </div>
@@ -36,8 +34,13 @@ useHead({
               <h2>搜索</h2>
             </div>
           </li>
-          <li>
-            <a href="/" target="_blank" title="首页">
+          <li class="myHeader-nav-right-menu-ul-li">
+            <a
+              class="myHeader-nav-right-menu-ul-li-a"
+              href="/"
+              target="_blank"
+              title="首页"
+            >
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/home.png" width="34px" />
               </div>
@@ -46,18 +49,50 @@ useHead({
               </div>
             </a>
           </li>
-          <li>
-            <a href="/category" target="_blank" title="文章分类">
+          <li class="myHeader-nav-right-menu-ul-li">
+            <a class="myHeader-nav-right-menu-ul-li-a" title="文章分类">
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/category.png" width="32px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
-                <h2>文章分类</h2>
+                <h2>分类</h2>
               </div>
+
+              <ul class="myHeader-nav-right-menu-sub-ul">
+                <li class="myHeader-nav-right-menu-sub-li">
+                  <div>
+                    <img src="~/assets/icon/home.png" width="34px" />
+                    <h2>首页</h2>
+                  </div>
+                </li>
+                <li class="myHeader-nav-right-menu-sub-li">
+                  <div>
+                    <img src="~/assets/icon/category.png" width="34px" />
+                    <h2>分类</h2>
+                  </div>
+                </li>
+                <li class="myHeader-nav-right-menu-sub-li">
+                  <div>
+                    <img src="~/assets/icon/friends.png" width="34px" />
+                    <h2>友情链接</h2>
+                  </div>
+                </li>
+                <li class="myHeader-nav-right-menu-sub-li">
+                  <div>
+                    <img src="~/assets/icon/travelling.png" width="34px" />
+                    <h2>开往</h2>
+                  </div>
+                </li>
+              </ul>
             </a>
           </li>
-          <li>
-            <a href="/friends" target="_blank" title="友情链接">
+          <li class="myHeader-nav-right-menu-ul-li">
+            <a
+              class="myHeader-nav-right-menu-ul-li-a"
+              href="/friends"
+              target="_blank"
+              title="友情链接"
+            >
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/friends.png" width="32px" />
               </div>
@@ -66,8 +101,9 @@ useHead({
               </div>
             </a>
           </li>
-          <li>
+          <li class="myHeader-nav-right-menu-ul-li">
             <a
+              class="myHeader-nav-right-menu-ul-li-a"
               href="https://www.travellings.cn/go.html"
               target="_blank"
               title="随机去一个好看的博客"
@@ -84,8 +120,13 @@ useHead({
               </div>
             </a>
           </li>
-          <li>
-            <a href="/about" target="_blank" title="关于">
+          <li class="myHeader-nav-right-menu-ul-li">
+            <a
+              class="myHeader-nav-right-menu-ul-li-a"
+              href="/about"
+              target="_blank"
+              title="关于"
+            >
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/about.png" width="32px" />
               </div>
@@ -94,8 +135,17 @@ useHead({
               </div>
             </a>
           </li>
-          <li style="margin-right: 30px">
-            <a href="/login" target="_blank" title="登录">
+          <li
+            v-show="showLogin"
+            class="myHeader-nav-right-menu-ul-li"
+            style="margin-right: 30px"
+          >
+            <a
+              class="myHeader-nav-right-menu-ul-li-a"
+              href="/login"
+              target="_blank"
+              title="登录"
+            >
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/login.png" width="32px" />
               </div>
@@ -105,6 +155,21 @@ useHead({
             </a>
           </li>
         </ul>
+        <div v-show="!showLogin" class="myHeader-nav-right-loginInfo">
+          <div class="imgStyle">
+            <img
+              src="https://cdn.woaibocai.top/bcblog/public/src/avatar-1.jpg"
+              width="32px"
+            />
+          </div>
+          <div class="myh2">
+            <h2>Hi! 菠菜的小窝</h2>
+            <ul>
+              <li>个人中心</li>
+              <li>退出登录</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
   </div>

@@ -1,21 +1,26 @@
+// myHeader.vue
 .myHeader {
     width: 100%;
     height: 60px;
     min-width: 620px;
     .myHeader-nav {
       height: 60px;
-      width: 100vw;
+      width: 100%;
+      min-width: 1000px;
       display: flex;
+      position: relative;
       .myHeader-nav-letf {
         width: 320px;
         min-width: 320px;
         display: flex;
         align-items: center;
+        // position: absolute;
+        // left: 0;
         .myHeader-nav-letf-logo {
           a {
             font-size: 0;
             img {
-              margin-left: 40px;
+              margin-left: 50px;
               margin-right: 10px;
               border-radius: 5px;
             }
@@ -30,22 +35,33 @@
           }
         }
       }
-      
       .myHeader-nav-right {
         // width: 400px;
         height: 60px;
-        // min-width: 300px;
+        // min-width: 600px;
+        display:flex;
+        // position: absolute;
+        // right: 0;
         margin-left: auto;
         .myHeader-nav-right-menu {
             height: 60px;
-            display:inline-flex;
+            display:flex;
             align-items: center;
-            min-width: 610px;
-            li {
+            min-width: 680px;
+            max-width: 100%;
+            .myHeader-nav-right-menu-ul-li:hover {
+              background-position: left bottom;
+              background-size: 100% 4px;
+              background-color: rgba(0,0,0,0.05);
+            }
+            .myHeader-nav-right-menu-ul-li {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 0 5px;
+                background: linear-gradient(to right,rgba(135,206,235),rgba(135,206,235)) no-repeat right bottom;
+                background-size: 0 4px;
+                transition: background-size 0.8s;
                 .myHeader-nav-right-menu-img{
                     height: 60px;
                     display: flex;
@@ -67,7 +83,7 @@
                         color: #fff;
                     }
                 }
-                a {
+                .myHeader-nav-right-menu-ul-li-a {
                     display: flex;
                     align-items: center;
                     color: #fff;
@@ -88,13 +104,138 @@
                             display: flex;
                             align-items: center;
                             font-size: 20px;
-                        margin-left: 5px;
+                            margin-left: 5px;
                             margin-top: 5px;
                         }
                     }
+                    .myHeader-nav-right-menu-sub-ul{
+                      display: none;
+                    }
+                    .myHeader-nav-right-menu-sub-ul:before{
+                      position: absolute;
+                      content: "";
+                      left: 50px;
+                      top: -15px;
+                      border-width: 8px;
+                      border-style: dashed dashed solid dashed;
+                      border-color: transparent transparent rgba(0,0,0,0.1) transparent;
+                    }
+                }
+                a:hover .myHeader-nav-right-menu-sub-ul{
+                    display: block;
+                    position: absolute;
+                    top: 60px;
+                    border-radius: 5px;
+                    background-color: rgba(0,0,0,0.1);
+                    width: 150px;
+                    // 缓慢渐入动画
+                    @keyframes intoSub {
+                      from { opacity: 0; }
+                      to { opacity: 1; }
+                    }
+                    .myHeader-nav-right-menu-sub-li:hover  {
+                      color: green;
+                      background-color: rgba(0,0,0,0.15);
+                    }
+                    animation: intoSub 1s ease-in-out;
+                    .myHeader-nav-right-menu-sub-li {
+                        height: 34px;
+                        background-size: 0 0;
+                        display: flex;
+                        align-items: center;
+                        div {
+                          height: 34px;
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          margin-left: 15px;
+                          img {
+                            width: 26px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                          }
+                            h2 {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              font-size: 18px;
+                              margin-top: 10px;
+                              margin-left: 5px;
+                            }
+                        }
+                    }
+                  
                 }
             }
+
         }
+        .myHeader-nav-right-loginInfo {
+          height: 60px;
+          width: 120px;
+          margin-right: 50px;
+          justify-content: center;
+          .imgStyle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
+            width: 120px;
+            margin-top: 5px;
+            img {
+              border-radius: 50%;
+              width: 48px;
+              height: 48px;
+            }
+          }
+          .myh2{
+            height: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h2 {
+              color: rgba(255,255,255,0.5);
+            }
+            ul {
+              display: none;
+            }
+            ul:before{
+              position: absolute;
+              content: "";
+              left: 50%;
+              top: -13px;
+              border-width: 8px;
+              border-style: dashed dashed solid dashed;
+              border-color: transparent transparent #fff transparent;
+            }
+          }
+        }
+        .myHeader-nav-right-loginInfo:hover {
+          .myh2 {
+            ul {
+              display: block;
+              position: absolute;
+              top: 75px;
+              border-radius: 5px;
+              height: 60px;
+              width: 90px;
+              background-color: #fff;
+              li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50%;
+                font-size: 16px;
+              }
+              li:hover {
+                font-weight: bold;
+                color: green;
+                background-color: rgba(0,0,0,0.1);
+              }
+            }
+          }
+        }
+
       }
     }
   }
