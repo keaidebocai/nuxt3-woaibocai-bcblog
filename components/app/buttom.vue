@@ -195,6 +195,17 @@ if (props.isMobile) {
     }
   }
 }
+@media screen and (max-width: 1281px) {
+  .MyButtom {
+    min-width: 600px;
+    max-width: 600px;
+  }
+}
+@media screen and (max-width: 1441px) {
+  .MyButtom {
+    max-width: 873px;
+  }
+}
 .MyButtomMobile {
   width: 100%;
   height: 22vh;

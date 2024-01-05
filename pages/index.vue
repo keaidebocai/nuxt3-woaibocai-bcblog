@@ -85,6 +85,7 @@ const myClass = ref("MyButtom");
 </template>
 <style lang="scss" scoped>
 .affix-container {
+  width: 100%;
   height: 100vh;
 }
 * {

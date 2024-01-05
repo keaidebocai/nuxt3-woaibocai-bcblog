@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const props = defineProps(["articleData", "isMoblie"]);
-console.log(props.articleData);
 const article = props.articleData;
 const isMoblie = props.isMoblie;
 </script>
@@ -108,7 +107,7 @@ const isMoblie = props.isMoblie;
       }
     }
     .articleCard-box-right-items {
-      width: 100%;
+      width: 100vw;
       height: 1.5vh;
       font-size: 1.1rem;
       display: flex;

@@ -1,6 +1,6 @@
 import { useFetch } from "nuxt/app";
 // import { useMyFetch } from "~/composables/useMyFetch";
-const URL = "/api/user/";
+const URL = "http://localhost:16280/api/user/";
 type formData = {
   userName: string;
   password: string;

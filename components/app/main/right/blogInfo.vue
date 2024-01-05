@@ -384,4 +384,12 @@ const getBlogInfo = async () => {
     }
   }
 }
+@media screen and (max-width: 1281px),
+  (max-width: 1441px),
+  (max-width: 1601px),
+  (max-width: 2441px) {
+  .appRightMyInfo {
+    max-width: 320px;
+  }
+}
 </style>

@@ -75,7 +75,6 @@ const onSubmit = async () => {
         useToken.saveToken(res.data);
         getUserInfo();
         ElMessage.success("登陆成功!");
-        ElMessage.success("遇事不绝？CTRL + R !");
         return res.data;
       } else {
         ElMessage.error(res.message);
@@ -84,15 +83,15 @@ const onSubmit = async () => {
       }
     })
     .catch((err) => {
-      ElMessage.error("我不粘锅的，你的网络出问题了!");
+      isMyLoading.value = false;
+      // ElMessage.error("登录信息有误!");
       throw err;
     });
   //保存tokrn信息
   isMyLoading.value = false;
   //跳转到主页面
-  await navigateTo("/", { external: true });
+  navigateTo("/", { external: true });
   // router.push("/")
-  // router.go(-1)
 };
 
 //注册

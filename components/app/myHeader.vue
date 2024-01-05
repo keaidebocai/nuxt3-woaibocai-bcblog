@@ -1,5 +1,37 @@
 <script setup lang="ts">
+import { useTokenStore } from "~/store/useToken";
+import { Logout } from "~/api/login";
 const showLogin = ref(false);
+const userInfoData = {
+  avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
+  nickName: "",
+};
+const userInfo = ref(userInfoData);
+const useToken = useTokenStore();
+const route = useRoute();
+// 登出
+const logout = async () => {
+  await Logout(useToken.getToken);
+  ElMessage.success("退出成功!");
+  useToken.removeToken();
+  useToken.removeUserInfo();
+  showLogin.value = true;
+  // navigateTo(`${route.fullPath}`, { external: true });
+};
+// 初始化数据
+const fectData = () => {
+  if (localStorage.getItem("likebocai:userInfo") != null) {
+    showLogin.value = false;
+    userInfo.value.avatar = useToken.getUserInfo.avatar;
+    userInfo.value.nickName = useToken.getUserInfo.nickName;
+    // userInfo.value = useToken.getUserInfo
+  } else {
+    showLogin.value = true;
+  }
+};
+onMounted(() => {
+  fectData();
+});
 </script>
 
 <template>
@@ -143,7 +175,6 @@ const showLogin = ref(false);
             <a
               class="myHeader-nav-right-menu-ul-li-a"
               href="/login"
-              target="_blank"
               title="登录"
             >
               <div class="myHeader-nav-right-menu-img">
@@ -163,10 +194,10 @@ const showLogin = ref(false);
             />
           </div>
           <div class="myh2">
-            <h2>Hi! 菠菜的小窝</h2>
+            <h2>Hi! {{ userInfo.nickName }}</h2>
             <ul>
               <li>个人中心</li>
-              <li>退出登录</li>
+              <li @click="logout">退出登录</li>
             </ul>
           </div>
         </div>

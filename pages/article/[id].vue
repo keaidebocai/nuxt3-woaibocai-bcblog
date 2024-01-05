@@ -41,7 +41,6 @@ const onHtmlChanged = () => {
 
       if (headingId) {
         const targetHeadDom = document.getElementById(headingId);
-        console.log(targetHeadDom);
         if (targetHeadDom) {
           const scrollLength =
             (targetHeadDom as HTMLHeadElement).offsetTop + 414 - 10;
@@ -87,15 +86,8 @@ onMounted(() => {
     <Meta name="keywords" :content="keywords" />
   </Head> -->
   <AppArticleInfo :articleData="articleData" :isMoblie="false" />
-  <div
-    style="
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 0 214px;
-    "
-  >
-    <div>
+  <div style="display: flex; justify-content: center">
+    <div class="article-main">
       <AppMainMyAlert />
       <MdPreview
         previewTheme="mk-cute"
@@ -106,7 +98,7 @@ onMounted(() => {
       />
       <AppButtom :my-class="'MyButtom'" />
     </div>
-    <div style="margin-left: 30px">
+    <div class="right" style="margin-left: 30px">
       <AppMainRightBlogInfo />
       <el-affix position="top" :offset="0">
         <MarkDownCataLog :editorId="editorId" />
@@ -127,5 +119,20 @@ onMounted(() => {
   border: none;
   height: auto;
   border-radius: 20px;
+}
+@media screen and (max-width: 1601px) {
+  .md-editor-previewOnly {
+    max-width: 873px;
+  }
+}
+@media screen and (max-width: 1281px) {
+  .md-editor-previewOnly {
+    max-width: 600px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .right {
+    display: none;
+  }
 }
 </style>
