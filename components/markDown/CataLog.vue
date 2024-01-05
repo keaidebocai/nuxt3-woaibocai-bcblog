@@ -8,10 +8,14 @@ const onClick = (e: MouseEvent, t: TocItem) => {
   const newPath = `${location.pathname}#${t.text}`;
   navigateTo({ path: newPath }, { external: true });
 };
-onMounted(() => {
+// onMounted(() => {
+//   const scrollElement = document.documentElement;
+//   myScrollElement.value = scrollElement;
+// });
+if (typeof window !== "undefined") {
   const scrollElement = document.documentElement;
   myScrollElement.value = scrollElement;
-});
+}
 </script>
 
 <template>

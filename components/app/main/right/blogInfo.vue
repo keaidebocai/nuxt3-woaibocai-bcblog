@@ -1,8 +1,4 @@
 <script setup lang="ts">
-// 网站数据初始化
-onMounted(() => {
-  getBlogInfo();
-});
 // 导包
 import { GetBlogInfo } from "~/api/blog/info";
 // 头像
@@ -56,10 +52,13 @@ const getBlogInfo = async () => {
   });
   blogInfo.value = data;
 };
-// // 网站数据初始化
+// 网站数据初始化
 // onMounted(() => {
 //   getBlogInfo();
 // });
+if (typeof window !== "undefined") {
+  getBlogInfo();
+}
 </script>
 
 <template>

@@ -32,7 +32,7 @@ const options: TypedOptions = {
 
 <style lang="scss" scoped>
 .MyWelcome {
-  height: 92vh;
+  height: calc(100vh - 60px);
   width: 100%;
   display: flex;
   align-items: center;

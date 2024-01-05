@@ -26,9 +26,12 @@ const fetchData = async () => {
   total.value = data.total;
 };
 
-onMounted(() => {
+// onMounted(() => {
+//   fetchData();
+// });
+if (typeof window !== "undefined") {
   fetchData();
-});
+}
 </script>
 
 <template>

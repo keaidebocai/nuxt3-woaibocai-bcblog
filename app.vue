@@ -182,20 +182,20 @@ if (typeof window !== "undefined") {
   clickEffect();
 }
 const show = ref(true);
-// const open1 = () => {
-//   if (show.value) {
-//     ElNotification({
-//       title: "欢迎来到菠菜的小窝",
-//       message: "年轻人你记住，不管记住什么，你一定要记住！",
-//       offset: 50,
-//       duration: 0,
-//       icon: ElIconBell,
-//     });
-//   }
-// };
-// onMounted(() => {
-//   open1();
-// });
+const open1 = () => {
+  if (show.value) {
+    ElNotification({
+      title: "欢迎来到菠菜的小窝",
+      message: "年轻人你记住，不管记住什么，你一定要记住！",
+      offset: 60,
+      duration: 0,
+      icon: ElIconBell,
+    });
+  }
+};
+onMounted(() => {
+  open1();
+});
 </script>
 
 <template>

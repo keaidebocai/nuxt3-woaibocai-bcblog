@@ -2,6 +2,10 @@
 const props = defineProps(["articleData", "isMoblie"]);
 const article = props.articleData;
 const isMoblie = props.isMoblie;
+const titleFontSize = ref("4rem");
+if (isMoblie) {
+  titleFontSize.value = "2rem";
+}
 </script>
 
 <template>
@@ -102,7 +106,7 @@ const isMoblie = props.isMoblie;
       justify-content: center;
       margin-bottom: 30px;
       h1 {
-        font-size: 4rem;
+        font-size: v-bind(titleFontSize);
         color: rgba(50, 50, 93, 0.6);
       }
     }

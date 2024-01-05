@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-onMounted(() => {
-  fetchData();
-});
 definePageMeta({
   layout: "nothing",
 });
@@ -19,7 +16,7 @@ const page = ref({
   current: 1,
   size: 3,
 });
-// 必须初始化值为 number 0 不然 你使用了一些已被废弃的用法，请参考 el-pagination 的官方文档
+// 必须初始化值为 number 0 elementplus 不然 "你使用了一些已被废弃的用法，请参考 el-pagination 的官方文档"
 const total = ref(0);
 const fetchData = async () => {
   const { data } = await GetIndexArticle(page.value.current, page.value.size);
@@ -30,6 +27,9 @@ const myClass = ref("MyButtom");
 // onMounted(() => {
 //   fetchData();
 // });
+if (typeof window !== "undefined") {
+  fetchData();
+}
 </script>
 
 <template>

@@ -46,7 +46,7 @@ editorId.value = articleData.url;
 <template>
   <el-row>
     <el-col :span="22">
-      <AppArticleInfo />
+      <AppArticleInfo :articleData="articleData" :isMoblie="true" />
       <AppMainMyAlert />
       <MdPreview
         previewTheme="mk-cute"
