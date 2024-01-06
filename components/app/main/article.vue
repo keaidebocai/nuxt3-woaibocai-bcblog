@@ -17,7 +17,7 @@ type indexArticleType = {
       summary: string;
       content: string;
       blogCategoryName: string;
-      categoryId: string;
+      categoryUrl: string;
       thumbnail: string;
       isTop: number;
       viewCount: number;
@@ -28,6 +28,7 @@ type indexArticleType = {
         {
           id: string;
           tagName: string;
+          tagUrl: string;
           thisTagHasArticleCount: number;
         }
       ];
@@ -95,7 +96,7 @@ const indexArticle = ref<indexArticleType>();
                 <ElIconCollectionTag class="icon" />
                 <div class="Mydiv">
                   <h2>
-                    <a :href="`category/${article.categoryId}`">
+                    <a :href="`/category/${article.categoryUrl}`">
                       {{ article.blogCategoryName }}
                     </a>
                   </h2>
@@ -162,11 +163,11 @@ const indexArticle = ref<indexArticleType>();
 
         <div class="articleCard-box-right-tags-tag">
           <ul>
-            <li v-for="tag in article.tags" :key="tag.id">
+            <li v-for="tag in article.tags" :key="tag.tagUrl">
               <el-badge :value="tag.thisTagHasArticleCount">
                 <el-tag>
                   <h2>
-                    <a :href="`tag/${tag.id}`">
+                    <a :href="`/tag/${tag.tagUrl}`">
                       {{ tag.tagName }}
                     </a>
                   </h2>

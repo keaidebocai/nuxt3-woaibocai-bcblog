@@ -44,7 +44,7 @@ if (isMoblie) {
                 <ElIconCollectionTag class="icon" />
                 <div class="Mydiv">
                   <h2>
-                    <a :href="`category/${article.categoryId}`">
+                    <a :href="`/category/${article.categoryUrl}`">
                       {{ article.blogCategoryName }}
                     </a>
                   </h2>
