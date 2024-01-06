@@ -93,7 +93,7 @@ if (isMoblie) {
 
 <style lang="scss" scoped>
 .articleInfo {
-  height: 45vh;
+  height: calc(50vh - 60px);
   width: 100%;
   display: flex;
   align-items: center;
@@ -110,6 +110,7 @@ if (isMoblie) {
         color: rgba(50, 50, 93, 0.6);
       }
     }
+    // 这个是从 article 里cv的不用管class的命名
     .articleCard-box-right-items {
       width: 100vw;
       height: 1.5vh;

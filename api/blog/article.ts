@@ -29,4 +29,23 @@ const GetArticlePageBytagUrl = (
   );
 };
 
-export { GetIndexArticle, GetArticleByUrl, GetArticlePageBytagUrl };
+// 根据tagUrl分页
+const GetArticlePageBycategoryUrl = (
+  categoryUrl: string,
+  current: number,
+  size: number
+) => {
+  return useMyOtherFetch(
+    MY_URL + `articlePageByCategoryUrl/${categoryUrl}/${current}/${size}`,
+    {
+      method: "get",
+      query: { categoryUrl, current, size },
+    }
+  );
+};
+export {
+  GetIndexArticle,
+  GetArticleByUrl,
+  GetArticlePageBytagUrl,
+  GetArticlePageBycategoryUrl,
+};

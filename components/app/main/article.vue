@@ -47,7 +47,7 @@ const indexArticle = ref<indexArticleType>();
     <!-- https://img2.wallspic.com/previews/8/3/5/6/7/176538/176538-tu_biao-shu_ma_yi_shu-yi_shu-bing_chuan_de_mao-xie_po-x750.jpg -->
     <!-- https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg -->
     <el-image
-      @click="navigateTo(`article/${article.url}`)"
+      @click="navigateTo(`/article/${article.url}`)"
       class="articleCard-box-left"
       fit="fill"
       :src="article.thumbnail"
@@ -63,7 +63,7 @@ const indexArticle = ref<indexArticleType>();
       <!-- 标题 -->
       <div class="articleCard-box-right-top">
         <h2 class="articleCard-box-right-top-title">
-          <a :href="`article/${article.url}`">{{ article.title }}</a>
+          <a :href="`/article/${article.url}`">{{ article.title }}</a>
         </h2>
       </div>
       <!-- 时间、浏览量、发布人、分类、字数、阅读时间 -->
@@ -148,7 +148,7 @@ const indexArticle = ref<indexArticleType>();
       <!-- 文章简述 -->
       <div
         class="articleCard-box-right-descriptions"
-        @click="navigateTo(`article/${article.url}`)"
+        @click="navigateTo(`/article/${article.url}`)"
       >
         <p>
           {{ article.summary }}

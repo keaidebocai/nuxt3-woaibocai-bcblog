@@ -70,21 +70,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <div class="articleMain">
-    <MdPreview
-      previewTheme="mk-cute"
-      :modelValue="text"
-      :editorId="editorId"
-      @onGetCatalog="onGetCatalog"
-      @onHtmlChanged="onHtmlChanged"
-    />
-    <MarkDownCataLog :editorId="editorId" />
-  </div> -->
-  <!-- <Head>
-    <Title>{{ title }}</Title>
-    <Meta name="description" :content="description" />
-    <Meta name="keywords" :content="keywords" />
-  </Head> -->
   <AppArticleInfo :articleData="articleData" :isMoblie="false" />
   <div style="display: flex; justify-content: center">
     <div class="article-main">
