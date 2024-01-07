@@ -136,6 +136,10 @@
                     .myHeader-nav-right-menu-sub-li:hover  {
                       color: green;
                       background-color: rgba(0,0,0,0.15);
+                      a {
+                        text-decoration: none;
+                        color: green;
+                      }
                     }
                     animation: intoSub 1s ease-in-out;
                     .myHeader-nav-right-menu-sub-li {
@@ -162,6 +166,10 @@
                               font-size: 18px;
                               margin-top: 10px;
                               margin-left: 5px;
+                              a {
+                                text-decoration: none;
+                                color: #fff;
+                              }
                             }
                         }
                     }

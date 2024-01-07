@@ -8,6 +8,7 @@ const userInfoData = {
 };
 const userInfo = ref(userInfoData);
 const useToken = useTokenStore();
+const MyUrl = useRuntimeConfig().public.BASE_URL;
 const route = useRoute();
 // 登出
 const logout = async () => {
@@ -29,11 +30,19 @@ const fectData = () => {
     showLogin.value = true;
   }
 };
-// onMounted(() => {
-//   fectData();
-// });
+const { data } = await useAsyncData("muHeader", () =>
+  $fetch(MyUrl + "/blog/header/getAllCategoryNameAndUrl")
+);
+const categoryData = ref([
+  {
+    categoryName: "",
+    categoryUrl: "",
+    categoryIconUrl: "",
+  },
+]);
 if (typeof window !== "undefined") {
   fectData();
+  categoryData.value = data.value.data;
 }
 </script>
 
@@ -87,13 +96,20 @@ if (typeof window !== "undefined") {
               </div>
 
               <ul class="myHeader-nav-right-menu-sub-ul">
-                <li class="myHeader-nav-right-menu-sub-li">
-                  <div>
-                    <img src="~/assets/icon/home.png" width="34px" />
-                    <h2>首页</h2>
+                <li
+                  v-for="category in categoryData"
+                  class="myHeader-nav-right-menu-sub-li"
+                >
+                  <div @click="navigateTo(`/category/${category.categoryUrl}`)">
+                    <img :src="category.categoryIconUrl" width="34px" />
+                    <h2>
+                      <a :href="`/category/${category.categoryUrl}`">{{
+                        category.categoryName
+                      }}</a>
+                    </h2>
                   </div>
                 </li>
-                <li class="myHeader-nav-right-menu-sub-li">
+                <!-- <li class="myHeader-nav-right-menu-sub-li">
                   <div>
                     <img src="~/assets/icon/category.png" width="34px" />
                     <h2>分类</h2>
@@ -110,7 +126,7 @@ if (typeof window !== "undefined") {
                     <img src="~/assets/icon/travelling.png" width="34px" />
                     <h2>开往</h2>
                   </div>
-                </li>
+                </li> -->
               </ul>
             </a>
           </li>

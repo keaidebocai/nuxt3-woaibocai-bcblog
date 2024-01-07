@@ -87,6 +87,10 @@ if (isMoblie) {
           </ul>
         </div>
       </div>
+
+      <div class="articleInfo-body-summary">
+        <h3>{{ article.summary }}</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -110,6 +114,25 @@ if (isMoblie) {
         color: rgba(50, 50, 93, 0.6);
       }
     }
+
+    .articleInfo-body-summary {
+      width: 100%;
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        width: 60vw;
+        text-align: center;
+        font-size: 1.1rem;
+        color: rgba(50, 50, 93, 0.6);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+      }
+    }
+
     // 这个是从 article 里cv的不用管class的命名
     .articleCard-box-right-items {
       width: 100vw;
