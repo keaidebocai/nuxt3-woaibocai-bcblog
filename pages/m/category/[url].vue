@@ -33,7 +33,7 @@ const fetchData = async () => {
   tag.value.tagName = data.category.categoryName;
   tag.value.remark = data.category.description;
   description.value = data.category.description;
-  title.value = data.category.categoryName;
+  title.value = data.category.categoryName + " - 分类";
 };
 useHead({
   title: title,

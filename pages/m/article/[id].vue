@@ -36,7 +36,7 @@ const { data } = await useAsyncData(`${url}`, () =>
   $fetch(MyUrl + `/article/getArticleByUrl/${url}`)
 );
 const articleData = data.value.data;
-title.value = articleData.title;
+title.value = articleData.title + " - 文章";
 description.value = articleData.summary;
 keywords.value = articleData.keywords;
 text.value = articleData.content;

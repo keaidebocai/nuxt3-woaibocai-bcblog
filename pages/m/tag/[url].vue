@@ -34,7 +34,7 @@ const fetchData = async () => {
   tag.value.remark = data.tag.remark;
   tag.value.tagName = data.tag.tagName;
   description.value = data.tag.remark;
-  title.value = tag.value.tagName;
+  title.value = tag.value.tagName + " - 标签";
 };
 useHead({
   title: title,

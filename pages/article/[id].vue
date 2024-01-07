@@ -58,7 +58,7 @@ const { data } = await useAsyncData(`${url}`, () =>
   $fetch(MyUrl + `/article/getArticleByUrl/${url}`)
 );
 const articleData = data.value.data;
-title.value = articleData.title;
+title.value = articleData.title + " - 文章";
 description.value = articleData.summary;
 keywords.value = articleData.keywords;
 text.value = articleData.content;
@@ -85,6 +85,22 @@ onMounted(() => {
     </div>
     <div class="right" style="margin-left: 30px">
       <AppMainRightBlogInfo />
+      <div class="tagCloud-box">
+        <div class="tagCloud-box-title">
+          <img
+            src="https://cdn.woaibocai.top/bcblog/assets/icon/tag.png"
+            alt="标签"
+          />
+          <h2>标签云</h2>
+          (点点标签~)
+        </div>
+        <AppMainRightTagCloud
+          width="320"
+          height="320"
+          radius="120"
+          style="position: relative; left: 20px; top: -40px"
+        />
+      </div>
       <el-affix position="top" :offset="0">
         <MarkDownCataLog :editorId="editorId" />
       </el-affix>
@@ -104,6 +120,30 @@ onMounted(() => {
   border: none;
   height: auto;
   border-radius: 20px;
+}
+.tagCloud-box {
+  min-width: 250px;
+  max-width: 400px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  .tagCloud-box-title {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    padding-top: 10px;
+    color: #32325d;
+    img {
+      width: "32px";
+      height: "32px";
+      margin-right: 10px;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
 }
 @media screen and (max-width: 1601px) {
   .md-editor-previewOnly {
