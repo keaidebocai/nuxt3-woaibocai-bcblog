@@ -91,12 +91,6 @@ if (typeof window !== "undefined") {
                 style="position: relative; left: 20px; top: -40px"
               />
             </div>
-            <!-- <AppMainRightTagCloud
-              :tags="tags"
-              width="320"
-              height="320"
-              radius="80"
-            /> -->
           </div>
         </div>
         <!-- <slot /> -->
