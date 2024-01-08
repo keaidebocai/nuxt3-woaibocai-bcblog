@@ -38,6 +38,7 @@ const categoryData = ref([
     categoryName: "",
     categoryUrl: "",
     categoryIconUrl: "",
+    count: 0,
   },
 ]);
 if (typeof window !== "undefined") {
@@ -106,6 +107,18 @@ if (typeof window !== "undefined") {
                       <a :href="`/category/${category.categoryUrl}`">{{
                         category.categoryName
                       }}</a>
+                      <p
+                        style="
+                          color: rgba(0, 0, 0, 0.6);
+                          background-color: rgba(255, 255, 255, 0.5);
+                          font-size: 1rem;
+                          border-radius: 50%;
+                          position: absolute;
+                          right: 5px;
+                        "
+                      >
+                        {{ category.count }}
+                      </p>
                     </h2>
                   </div>
                 </li>
