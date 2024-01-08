@@ -1,4 +1,6 @@
 <script lang="ts" setup></script>
 
-<template></template>
+<template>
+  <AppMainComment />
+</template>
 <style lang="scss" scoped></style>

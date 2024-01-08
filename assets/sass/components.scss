@@ -250,3 +250,99 @@
       }
     }
   }
+
+// comment.vue
+.comment-box {
+  width: 600px;
+  height: 1000px;
+  background-color: #fff;
+  border-radius: 20px;
+  .comment-box-info {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    .comment-box-info-span {
+      font-size: 1.5rem;
+      margin-left: 15px;
+      margin-top: 10px;
+    }
+  }
+  .comment-box-main {
+    height: 300px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: aquamarine;
+    img {
+      position: relative;
+      left: 0;
+      top: 0;
+      width: 48px;
+      border-radius: 5px;
+    }
+    .comment-box-main-rght {
+      position: relative;
+      left: 53px;
+      top: -51px;
+      width: calc(100% - 48px - 5px);
+      height: 200px;
+      background-color: #fff;
+      .comment-box-main-rght-userInfo {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        .myself {
+          width: 35px;
+          height: 20px;
+          background-color: rgba(0, 255, 0, 0.2);
+          color: rgba(0, 180, 0, 0.6);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          border: 1px solid rgba(0, 180, 0, 0.3);;
+          h2 {
+            font-size: 14px;
+          }
+        }
+        .comment-box-main-rght-userInfo-userName {
+          a {
+            font-size: 18px;
+            text-decoration: none;
+            color: blue;
+          }
+        }
+        .comment-box-main-rght-userInfo-date {
+          // 先留着
+          margin-left: 10px;
+        }
+        .comment-box-main-rght-userInfo-icon {
+          height: 30px;
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          .bang {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+            span {
+              margin-top: 6px;
+              font-size: 16px;
+              color: #1096db;
+            }
+          }
+          img {
+            width: 16px;
+            margin-right: 3px;
+          }
+        }
+      }
+      .comment-box-main-rght-userInfo-content {
+        .md-editor-preview-wrapper {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+}
