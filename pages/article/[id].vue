@@ -81,6 +81,7 @@ onMounted(() => {
         @onGetCatalog="onGetCatalog"
         @onHtmlChanged="onHtmlChanged"
       />
+      <AppMainComment />
       <AppButtom :my-class="'MyButtom'" />
     </div>
     <div class="right" style="margin-left: 30px">

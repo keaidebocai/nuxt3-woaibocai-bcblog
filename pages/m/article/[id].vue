@@ -53,6 +53,7 @@ editorId.value = articleData.url;
         :modelValue="text"
         @onGetCatalog="onGetCatalog"
       />
+      <AppMainComment />
       <AppButtom :is-mobile="true" :my-class="'MyButtomMobile'" />
     </el-col>
   </el-row>

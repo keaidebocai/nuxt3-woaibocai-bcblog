@@ -253,10 +253,12 @@
 
 // comment.vue
 .comment-box {
-  width: 600px;
-  height: 1000px;
+  // width: 600px;
+  // height: 1000px;
   background-color: #fff;
   border-radius: 20px;
+  margin-top: 20px;
+  padding-bottom: 20px;
   .comment-box-info {
     width: 100%;
     height: 40px;
@@ -270,23 +272,24 @@
     }
   }
   .comment-box-main {
-    height: 300px;
     border-radius: 10px;
-    padding: 15px;
-    background-color: aquamarine;
+    padding: 10px 10px 0 10px;
+    display: flex;
     img {
       position: relative;
       left: 0;
       top: 0;
       width: 48px;
+      height: 48px;
       border-radius: 5px;
     }
     .comment-box-main-rght {
-      position: relative;
-      left: 53px;
-      top: -51px;
+      // position: relative;
+      // left: 53px;
+      // top: -51px;
+      margin-left: 5px;
       width: calc(100% - 48px - 5px);
-      height: 200px;
+      // height: 200px;
       background-color: #fff;
       .comment-box-main-rght-userInfo {
         height: 30px;
@@ -334,15 +337,140 @@
           }
           img {
             width: 16px;
+            height: 16px;
             margin-right: 3px;
           }
         }
       }
       .comment-box-main-rght-userInfo-content {
         .md-editor-preview-wrapper {
+          margin-bottom: 5px;
           background-color: rgba(0, 0, 0, 0.05);
+          border-radius: 5px;
+          padding: 0 5px;
+        }
+      }
+      hr {
+        margin: 5px 0; border-top: 1px dashed rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  .comment-sub-box-main {
+    display: flex;
+    border-radius: 10px;
+    img {
+      position: relative;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+    }
+    .comment-sub-box-main-rght {
+      // position: relative;
+      // left: 53px;
+      // top: -51px;
+      margin-left: 5px;
+      width: calc(100% - 48px - 5px);
+      background-color: #fff;
+      .comment-sub-box-main-rght-userInfo {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        .myself-sub {
+          width: 35px;
+          height: 20px;
+          background-color: rgba(0, 255, 0, 0.2);
+          color: rgba(0, 180, 0, 0.6);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          border: 1px solid rgba(0, 180, 0, 0.3);;
+          h2 {
+            font-size: 14px;
+          }
+        }
+        .comment-sub-box-main-rght-userInfo-userName {
+          a {
+            font-size: 18px;
+            text-decoration: none;
+            color: blue;
+          }
+        }
+        .comment-sub-box-main-rght-userInfo-date {
+          // 先留着
+          margin-left: 10px;
+        }
+        .comment-sub-box-main-rght-userInfo-icon {
+          height: 30px;
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          .bang-sub {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+            span {
+              margin-top: 6px;
+              font-size: 16px;
+              color: #1096db;
+            }
+          }
+          img {
+            width: 16px;
+            height: 16px;
+            margin-right: 3px;
+          }
+        }
+      }
+      .comment-sub-box-main-rght-userInfo-to {
+        display: flex;
+        .to {
+          color: rgba(0, 0, 0, 0.6);
+        }
+        .user:hover {
+          color: blue;
+        }
+      }
+      .comment-sub-box-main-rght-userInfo-content {
+        .md-editor-preview-wrapper {
+          margin-bottom: 5px;
+          background-color: rgba(0, 0, 0, 0.05);
+          border-radius: 5px;
+          padding: 0 5px;
         }
       }
     }
+  }
+  .loadSub {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      color: #fff;
+    }
+  }
+  hr {
+    margin: 5px 0; border-top: 1px dashed rgba(0, 0, 0, 0.5);
+  }
+  .github-theme pre code {
+    padding: 5px 8px;
+  }
+}
+.loadSub {
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    color: #fff;
   }
 }
