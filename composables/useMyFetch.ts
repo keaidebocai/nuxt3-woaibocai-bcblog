@@ -83,7 +83,7 @@ export const useMyFetch = (url, opt) => {
   });
 };
 
-export const useMyOtherFetch = (url, opt) => {
+export const useMyOtherFetch = <T>(url, opt) => {
   const store = useTokenStore();
   const router = useRouter();
   let headers = {
