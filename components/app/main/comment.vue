@@ -73,13 +73,13 @@ const thandleSub = () => {
           <div style="display: none" class="myself"><h2>博主</h2></div>
           <div class="comment-box-main-rght-userInfo-icon">
             <div class="bang">
-              <a href="#">
+              <a title="点赞">
                 <img src="~/assets/icon/bang0.png" alt="已点赞" />
               </a>
               <span>1</span>
             </div>
             <div class="bang">
-              <a href="#">
+              <a title="评论">
                 <img src="~/assets/icon/comment.png" alt="评论" />
               </a>
               <span>1</span>
@@ -113,16 +113,15 @@ const thandleSub = () => {
                 </div> -->
                 <div class="comment-sub-box-main-rght-userInfo-icon">
                   <div class="bang-sub">
-                    <a href="#">
+                    <a title="点赞">
                       <img src="~/assets/icon/bang0.png" alt="已点赞" />
                     </a>
                     <span>1</span>
                   </div>
                   <div class="bang-sub">
-                    <a href="#">
+                    <a title="评论">
                       <img src="~/assets/icon/comment.png" alt="评论" />
                     </a>
-                    <span>1</span>
                   </div>
                 </div>
               </div>

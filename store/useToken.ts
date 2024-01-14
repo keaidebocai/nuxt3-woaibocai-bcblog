@@ -8,6 +8,7 @@ interface UserInfo {
   nickName: string;
   avatar: string;
   sex: string;
+  userId: string;
 }
 export const useTokenStore = defineStore("useToken", () => {
   // //ref 相当于state

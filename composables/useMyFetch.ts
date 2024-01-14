@@ -9,6 +9,7 @@ export const useMyFetch = (url, opt) => {
   if (store.getToken.token) {
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
+      114514: store.getUserInfo.userId,
     });
   }
   // ssr服务器向api服务器传递客户端真实ip
@@ -65,7 +66,6 @@ export const useMyFetch = (url, opt) => {
             }
             if (response._data.code === 200) {
               store.saveToken(response._data.data);
-              console.log(response._data.data);
               return response;
             }
           },
@@ -92,6 +92,7 @@ export const useMyOtherFetch = (url, opt) => {
   if (store.getToken.token) {
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
+      114514: store.getUserInfo.userId,
     });
   }
   // ssr服务器向api服务器传递客户端真实ip
