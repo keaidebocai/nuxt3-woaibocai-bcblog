@@ -2,7 +2,36 @@
 import { MdPreview } from "md-editor-v3";
 import "md-editor-v3/lib/preview.css";
 
-import { GetPageCommentByArticle } from "~/api/blog/comment";
+import { GetPageCommentByArticle, ReplyOneComment } from "~/api/blog/comment";
+
+import { MdEditor } from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
+import type { ToolbarNames } from "md-editor-v3";
+const props = defineProps(["articleId"]);
+const text = ref();
+const toolbars: ToolbarNames[] = [
+  "bold",
+  "underline",
+  "italic",
+  "strikeThrough",
+  "-",
+  "title",
+  "sub",
+  "sup",
+  "quote",
+  "unorderedList",
+  "orderedList",
+  "task",
+  "-",
+  "codeRow",
+  "code",
+  "link",
+  "image",
+  "table",
+  "mermaid",
+  "katex",
+  "pageFullscreen",
+];
 type TwoCommentType = {
   id: string;
   sendId: string;
@@ -39,6 +68,11 @@ type CommentType = {
     comment: [data: OneCommentType];
   };
 };
+type ResponesdData<T> = {
+  code: number;
+  message: string;
+  data: T;
+};
 const commentData = ref<CommentType>();
 
 const mynum = ref(1);
@@ -66,7 +100,7 @@ const handleSub = () => {
 };
 
 const tmynum = ref(1);
-const tthisCommentTotal = ref(2);
+const tthisCommentTotal = ref(1);
 // 显示 加载 0 还是 收起 1
 const tlookButton = ref(0);
 const thandleSub = () => {
@@ -101,23 +135,67 @@ const getOneCommentData = async () => {
   );
   commentData.value = responesd;
   for (const one of commentData.value.data.comment) {
+    tthisCommentTotal.value += 1;
+    console.log(tthisCommentTotal.value);
     one.isShow = false;
-    for (const two of one.oneCommentVoList) {
+    for (const two of one?.oneCommentVoList) {
       two.isShow = false;
     }
   }
-  tthisCommentTotal.value = commentData.value.data.comment.length;
+};
+type ReplyOneCommentType = {
+  replyCommentId: string;
+  sendCommentUserId: string;
+  replyCommentUserId: string;
+  content: string;
+  address: string;
+  articleId: string;
+  parentId: string;
+};
+// 回复一级评论
+const replyOneComment = async (
+  replyCommentId: string,
+  replyCommentUserId: string,
+  content: string,
+  parentId: string,
+  index: number
+) => {
+  const data: ReplyOneCommentType = {
+    replyCommentId: replyCommentId,
+    sendCommentUserId: "",
+    replyCommentUserId: replyCommentUserId,
+    content: content,
+    address: "",
+    articleId: props.articleId,
+    parentId: parentId,
+  };
+  await ReplyOneComment(data)
+    .then((res: ResponesdData<TwoCommentType>) => {
+      console.log(res);
+      const twoComment = ref();
+      twoComment.value = res.data;
+      commentData.value.data.comment[index].isShow = false;
+      commentData.value?.data.comment[index]?.oneCommentVoList.push(
+        twoComment.value
+      );
+      commentData.value.data.total += 1;
+      text.value = null;
+    })
+    .catch((err) => {
+      // if (res.code == 204) {
+      //   ElMessage.error(res.message);
+      //   ElMessage.error(res.data);
+      // }
+      text.value = null;
+      throw new Error(err);
+    });
+  console.log(replyCommentId);
+  console.log(replyCommentUserId);
+  console.log(content);
+  console.log(props.articleId);
+  console.log(parentId);
+};
 
-  console.log(responesd);
-};
-const itemsShow = (index: number) => {
-  console.log(index);
-};
-const itemsShow1 = (address, index, tindex) => {
-  console.log(address);
-  console.log(index);
-  console.log(tindex);
-};
 getOneCommentData();
 </script>
 
@@ -158,7 +236,7 @@ getOneCommentData();
                   alt="评论"
                 />
               </a>
-              <span>{{ comment.oneCommentVoList.length }}</span>
+              <span>{{ comment.oneCommentVoList?.length }}</span>
             </div>
           </div>
         </div>
@@ -174,15 +252,29 @@ getOneCommentData();
           v-show="comment.isShow"
           class="comment-box-main-rght-userInfo-sendComment"
         >
-          <textarea rows="5" placeholder="登录才能让菠菜知道你是谁！" />
+          <MdEditor v-model="text" :toolbars="toolbars" />
           <div class="comment-box-main-rght-userInfo-sendComment-button">
-            <button class="send" style="background-color: #03a2f0">发送</button>
+            <button
+              class="send"
+              style="background-color: #03a2f0"
+              @click="
+                replyOneComment(
+                  comment.id,
+                  comment.sendId,
+                  text,
+                  comment.id,
+                  index
+                )
+              "
+            >
+              发送
+            </button>
             <button class="letLook">预览</button>
             <button @click="comment.isShow = false" class="seeyou">取消</button>
           </div>
         </div>
         <div
-          v-for="(oneComment, tindex) in comment.oneCommentVoList"
+          v-for="(oneComment, tindex) in comment?.oneCommentVoList"
           :key="tindex"
         >
           <hr />

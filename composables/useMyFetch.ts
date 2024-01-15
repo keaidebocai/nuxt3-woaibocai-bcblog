@@ -7,6 +7,8 @@ export const useMyFetch = (url, opt) => {
     ...opt.headers,
   };
   if (store.getToken.token) {
+    console.log("1" + store.getToken.token);
+    console.log("1" + store.getUserInfo.userId);
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
       114514: store.getUserInfo.userId,
@@ -90,9 +92,11 @@ export const useMyOtherFetch = <T>(url, opt) => {
     ...opt.headers,
   };
   if (store.getToken.token) {
+    console.log(store.getToken.token);
+    console.log(store.getUserInfo.userId);
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
-      114514: store.getUserInfo.userId,
+      "114514": store.getUserInfo.userId,
     });
   }
   // ssr服务器向api服务器传递客户端真实ip

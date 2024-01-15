@@ -54,6 +54,7 @@ const onHtmlChanged = () => {
     }
   }
 };
+const articleId = ref();
 const { data } = await useAsyncData(`${url}`, () =>
   $fetch(MyUrl + `/article/getArticleByUrl/${url}`)
 );
@@ -63,6 +64,7 @@ description.value = articleData.summary;
 keywords.value = articleData.keywords;
 text.value = articleData.content;
 editorId.value = articleData.url;
+articleId.value = articleData.id;
 onMounted(() => {
   const scrollElement = document;
   myScrollElement.value = scrollElement.documentElement;
@@ -81,7 +83,7 @@ onMounted(() => {
         @onGetCatalog="onGetCatalog"
         @onHtmlChanged="onHtmlChanged"
       />
-      <LazyAppMainComment />
+      <LazyAppMainComment :article-id="articleId" />
       <AppButtom :my-class="'MyButtom'" />
     </div>
     <div class="right" style="margin-left: 30px">

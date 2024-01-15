@@ -1,47 +1,54 @@
+import { useTokenStore } from "~/store/useToken";
+
 const MY_URL = "/api/blog/comment/";
 // 分页
-type OnCommentType = {
+type TwoCommentType = {
+  id: string;
+  sendId: string;
+  sendUserAvater: string;
+  sendUserNickName: string;
+  replyId: string;
+  replyUserAvater: string;
+  replyUserNickName: string;
+  createTime: string;
+  content: string;
+  parentId: string;
+  likeCount: number;
+  address: string;
+  isShow: boolean;
+  replyCommentId: string;
+};
+type OneCommentType = {
+  id: string;
+  sendId: string;
+  sendUserAvater: string;
+  sandUserNickName: string;
+  createTime: string;
+  content: string;
+  likeCount: number;
+  address: string;
+  isShow: boolean;
+  oneCommentVoList: [data: TwoCommentType];
+};
+type CommentType = {
   code: number;
   message: string;
   data: {
     total: number;
-    comment: [
-      {
-        id: string;
-        sendId: string;
-        sendUserAvater: string;
-        sandUserNickName: string;
-        createTime: string;
-        content: string;
-        likeCount: number;
-        address: string;
-        oneCommentVoList: [
-          {
-            id: string;
-            sendId: string;
-            sendUserAvater: string;
-            sendUserNickName: string;
-            replyId: string;
-            replyUserAvater: string;
-            replyUserNickName: string;
-            createTime: string;
-            content: string;
-            parentId: string;
-            likeCount: number;
-            address: string;
-            replyCommentId: string;
-          }
-        ];
-      }
-    ];
+    comment: [data: OneCommentType];
   };
+};
+type ResponedType<T> = {
+  code: number;
+  message: string;
+  data: T;
 };
 const GetPageCommentByArticle = (
   articleId: string,
   current: number,
   size: number
 ) => {
-  return useMyOtherFetch<OnCommentType>(
+  return useMyOtherFetch<CommentType>(
     MY_URL + `${articleId}/${current}/${size}`,
     {
       method: "get",
@@ -49,4 +56,27 @@ const GetPageCommentByArticle = (
     }
   );
 };
-export { GetPageCommentByArticle };
+type ReplyOneCommentType = {
+  replyCommentId: string;
+  sendCommentUserId: string;
+  replyCommentUserId: string;
+  content: string;
+  address: string;
+  articleId: string;
+  parentId: string;
+};
+const ReplyOneComment = (data: ReplyOneCommentType) => {
+  const store = useTokenStore();
+  //
+  return useMyOtherFetch<ResponedType<TwoCommentType>>(
+    MY_URL + "auth/replyOneComment",
+    {
+      method: "post",
+      body: data,
+      Headers: {
+        "114514": store.getUserInfo.userId,
+      },
+    }
+  );
+};
+export { GetPageCommentByArticle, ReplyOneComment };
