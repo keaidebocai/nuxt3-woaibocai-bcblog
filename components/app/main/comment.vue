@@ -246,7 +246,10 @@ const sendOneComment = async (content: string) => {
       throw new Error();
     });
 };
-
+const asd = (files, callback) => {
+  // 切记这是个数组
+  callback(["https://asdasda.com"]);
+};
 getOneCommentData();
 </script>
 
@@ -260,6 +263,7 @@ getOneCommentData();
       <MdEditor
         v-model="text"
         :toolbars="toolbars"
+        @onUploadImg="asd"
         placeholder="入住菠菜的小窝说些什么吧~&#10;本评论区支持MarkDown语法，可插入图片、代码块、视频等……&#10;图片语法(不受保护的图片): ![图片文字](图片的链接地址)&#10;具体将鼠标悬浮工具栏查看"
       />
       <div class="sendOneComment-box-button">
