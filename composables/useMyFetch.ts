@@ -7,8 +7,6 @@ export const useMyFetch = (url, opt) => {
     ...opt.headers,
   };
   if (store.getToken.token) {
-    console.log("1" + store.getToken.token);
-    console.log("1" + store.getUserInfo.userId);
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
       114514: store.getUserInfo.userId,
@@ -54,7 +52,7 @@ export const useMyFetch = (url, opt) => {
                     type: "success",
                     message: "请刷新页面 / Ctrl + R",
                   });
-                  router.push("login");
+                  navigateTo("/login", { external: true });
                   return;
                 })
                 .catch(() => {
@@ -62,7 +60,7 @@ export const useMyFetch = (url, opt) => {
                     type: "success",
                     message: "回到小窝喽",
                   });
-                  router.push("/");
+                  navigateTo("/", { external: true });
                 });
               console.log("你需要重新登录");
             }
@@ -137,7 +135,7 @@ export const useMyOtherFetch = <T>(url, opt) => {
                     type: "success",
                     message: "快快加入我们！",
                   });
-                  router.push("login");
+                  navigateTo("/login", { external: true });
                   return;
                 })
                 .catch(() => {
@@ -145,7 +143,7 @@ export const useMyOtherFetch = <T>(url, opt) => {
                     type: "success",
                     message: "回到小窝喽",
                   });
-                  router.push("/");
+                  navigateTo("/", { external: true });
                 });
               console.log("你需要重新登录");
             }
@@ -182,7 +180,7 @@ export const useMyOtherFetch = <T>(url, opt) => {
                     type: "success",
                     message: "快快加入我们！",
                   });
-                  router.push("login");
+                  navigateTo("/login", { external: true });
                   return;
                 })
                 .catch(() => {
@@ -190,7 +188,7 @@ export const useMyOtherFetch = <T>(url, opt) => {
                     type: "success",
                     message: "回到小窝喽",
                   });
-                  router.push("/");
+                  navigateTo("/", { external: true });
                 });
               console.log("你需要重新登录");
             }

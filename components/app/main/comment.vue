@@ -2,13 +2,17 @@
 import { MdPreview } from "md-editor-v3";
 import "md-editor-v3/lib/preview.css";
 
-import { GetPageCommentByArticle, ReplyOneComment } from "~/api/blog/comment";
+import {
+  GetPageCommentByArticle,
+  ReplyOneComment,
+  SendOneComment,
+} from "~/api/blog/comment";
 
 import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import type { ToolbarNames } from "md-editor-v3";
 const props = defineProps(["articleId"]);
-const text = ref();
+const text = ref("");
 const toolbars: ToolbarNames[] = [
   "bold",
   "underline",
@@ -74,33 +78,8 @@ type ResponesdData<T> = {
   data: T;
 };
 const commentData = ref<CommentType>();
-
-const mynum = ref(1);
-const thisCommentTotal = ref(2);
-// 显示 加载 0 还是 收起 1
-const lookButton = ref(0);
-const handleSub = () => {
-  if (lookButton.value == 1) {
-    console.log("现在按钮是收起，初始化值将子评论变为1");
-    mynum.value = 1;
-    lookButton.value = 0;
-    return;
-  }
-  if (mynum.value <= thisCommentTotal.value) {
-    mynum.value += 1;
-    if (mynum.value >= thisCommentTotal.value) {
-      mynum.value = thisCommentTotal.value;
-      console.log("评论已耗尽！");
-      lookButton.value = 1;
-      return;
-    }
-    console.log("现在加1页现在共" + mynum.value);
-    return;
-  }
-};
-
-const tmynum = ref(1);
-const tthisCommentTotal = ref(1);
+const tmynum = ref(10);
+const tthisCommentTotal = ref(11);
 // 显示 加载 0 还是 收起 1
 const tlookButton = ref(0);
 const thandleSub = () => {
@@ -129,11 +108,15 @@ const getOneCommentData = async () => {
   // 3be273791def4569895bf12cbe94a944
   // 2bd8ecc2bfd24912a7405c3a05f818f0
   const responesd: CommentType = await GetPageCommentByArticle(
-    "2bd8ecc2bfd24912a7405c3a05f818f0",
+    props.articleId,
     1,
-    2
+    10
   );
   commentData.value = responesd;
+  if (!commentData.value.data.comment) {
+    commentData.value.data.total == -1;
+    return;
+  }
   for (const one of commentData.value.data.comment) {
     tthisCommentTotal.value += 1;
     console.log(tthisCommentTotal.value);
@@ -169,37 +152,123 @@ const replyOneComment = async (
     articleId: props.articleId,
     parentId: parentId,
   };
+  await ReplyOneComment(data).then((res: ResponesdData<TwoCommentType>) => {
+    console.log(res);
+    const twoComment = ref();
+    twoComment.value = res.data;
+    commentData.value.data.comment[index].isShow = false;
+    commentData.value.data.comment[index].oneCommentVoList.push(
+      twoComment.value
+    );
+    commentData.value.data.total += 1;
+    text.value = "";
+  });
+  // .catch((err) => {
+  //   // if (res.code == 204) {
+  //   //   ElMessage.error(res.message);
+  //   //   ElMessage.error(res.data);
+  //   // }
+  //   text.value = "";
+  //   throw new Error(err);
+  // });
+};
+const replyTwoComment = async (
+  replyCommentId: string,
+  replyCommentUserId: string,
+  content: string,
+  parentId: string,
+  index: number,
+  tindex: number
+) => {
+  const data: ReplyOneCommentType = {
+    replyCommentId: replyCommentId,
+    sendCommentUserId: "",
+    replyCommentUserId: replyCommentUserId,
+    content: content,
+    address: "",
+    articleId: props.articleId,
+    parentId: parentId,
+  };
   await ReplyOneComment(data)
     .then((res: ResponesdData<TwoCommentType>) => {
-      console.log(res);
       const twoComment = ref();
       twoComment.value = res.data;
-      commentData.value.data.comment[index].isShow = false;
-      commentData.value?.data.comment[index]?.oneCommentVoList.push(
+      commentData.value.data.comment[index].oneCommentVoList[tindex].isShow =
+        false;
+      commentData.value.data.comment[index]?.oneCommentVoList.push(
         twoComment.value
       );
       commentData.value.data.total += 1;
-      text.value = null;
+      text.value = "";
     })
     .catch((err) => {
       // if (res.code == 204) {
       //   ElMessage.error(res.message);
       //   ElMessage.error(res.data);
       // }
-      text.value = null;
+      text.value = "";
       throw new Error(err);
     });
-  console.log(replyCommentId);
-  console.log(replyCommentUserId);
-  console.log(content);
-  console.log(props.articleId);
-  console.log(parentId);
+};
+
+// 发送 一级标题
+type SendOneCommentType = {
+  articleId: string;
+  content: string;
+  userId: string;
+  address: string;
+};
+const sendOneComment = async (content: string) => {
+  const data: SendOneCommentType = {
+    articleId: props.articleId,
+    content: text.value,
+    userId: "",
+    address: "",
+  };
+  await SendOneComment(data)
+    .then((res: ResponesdData<OneCommentType>) => {
+      if (res.code == 204) {
+        ElMessage.info(res.message);
+        ElMessage.info(res.data);
+      }
+      const oneComment = ref();
+      oneComment.value = res.data;
+      oneComment.value.oneCommentVoList = [];
+      console.log(commentData);
+      commentData.value.data.comment.push(oneComment.value);
+      commentData.value.data.total += 1;
+      text.value = "";
+      ElMessage.success("发送成功！");
+    })
+    .catch((err) => {
+      text.value = "";
+      ElMessage.error("发送失败，可以先尝试登陆或等待……");
+      throw new Error();
+    });
 };
 
 getOneCommentData();
 </script>
 
 <template>
+  <!-- 发表一级评论 -->
+  <div class="sendOneComment">
+    <div class="sendOneComment-box">
+      <div class="sendOneComment-box-title">
+        <h2>快来登录发表你的见解叭~</h2>
+      </div>
+      <MdEditor
+        v-model="text"
+        :toolbars="toolbars"
+        placeholder="入住菠菜的小窝说些什么吧~&#10;本评论区支持MarkDown语法，可插入图片、代码块、视频等……&#10;图片语法(不受保护的图片): ![图片文字](图片的链接地址)&#10;具体将鼠标悬浮工具栏查看"
+      />
+      <div class="sendOneComment-box-button">
+        <button class="send" @click="sendOneComment(text)">发送</button>
+        <button class="clear" @click="text = ''">清空</button>
+      </div>
+    </div>
+  </div>
+  <!-- 评论数据 -->
   <div class="comment-box" v-show="commentData?.data.total > 0">
     <div class="comment-box-info">
       <span class="comment-box-info-span"
@@ -208,7 +277,7 @@ getOneCommentData();
     </div>
 
     <div
-      v-for="(comment, index) in commentData?.data.comment.slice(0, tmynum)"
+      v-for="(comment, index) in commentData?.data.comment"
       :key="index"
       class="comment-box-main"
     >
@@ -245,7 +314,9 @@ getOneCommentData();
           <MdPreview previewTheme="github" :modelValue="comment.content" />
         </div>
         <span>{{
-          comment.createTime.replace("T", " ") + " · " + comment.address
+          comment.createTime.replace("T", " ").slice(0, 19) +
+          " · " +
+          comment.address
         }}</span>
         <!-- 回复板块在这里！ -->
         <div
@@ -317,7 +388,7 @@ getOneCommentData();
               <div class="comment-sub-box-main-rght-userInfo-to">
                 <span class="to">回复</span>
                 <span class="user">{{
-                  "@ " + oneComment.sendUserNickName + " :"
+                  "@ " + oneComment.replyUserNickName + " :"
                 }}</span>
               </div>
               <div class="comment-sub-box-main-rght-userInfo-content">
@@ -327,7 +398,7 @@ getOneCommentData();
                 />
               </div>
               <span>{{
-                oneComment.createTime.replace("T", " ") +
+                oneComment.createTime.replace("T", " ").slice(0, 19) +
                 " · " +
                 oneComment.address
               }}</span>
@@ -336,11 +407,24 @@ getOneCommentData();
                 v-show="oneComment.isShow"
                 class="comment-sub-box-main-rght-userInfo-sendComment"
               >
-                <textarea rows="5" placeholder="登录才能让菠菜知道你是谁！" />
+                <MdEditor v-model="text" :toolbars="toolbars" />
                 <div
                   class="comment-sub-box-main-rght-userInfo-sendComment-button"
                 >
-                  <button class="send" style="background-color: #03a2f0">
+                  <button
+                    class="send"
+                    style="background-color: #03a2f0"
+                    @click="
+                      replyTwoComment(
+                        oneComment.id,
+                        oneComment.sendId,
+                        text,
+                        comment.id,
+                        index,
+                        tindex
+                      )
+                    "
+                  >
                     发送
                   </button>
                   <button class="letLook">预览</button>

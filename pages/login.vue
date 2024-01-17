@@ -73,8 +73,8 @@ const onSubmit = async () => {
       isMyLoading.value = true;
       if (res.code === 200) {
         useToken.saveToken(res.data);
-        getUserInfo();
         ElMessage.success("登陆成功!");
+        getUserInfo();
         return res.data;
       } else {
         ElMessage.error(res.message);

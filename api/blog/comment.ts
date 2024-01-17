@@ -79,4 +79,20 @@ const ReplyOneComment = (data: ReplyOneCommentType) => {
     }
   );
 };
-export { GetPageCommentByArticle, ReplyOneComment };
+// 发送一级评论
+type SendOneCommentType = {
+  articleId: string;
+  content: string;
+  userId: string;
+  address: string;
+};
+const SendOneComment = (data: SendOneCommentType) => {
+  return useMyOtherFetch<ResponedType<OneCommentType>>(
+    MY_URL + "auth/sendOneComment",
+    {
+      method: "post",
+      body: data,
+    }
+  );
+};
+export { GetPageCommentByArticle, ReplyOneComment, SendOneComment };
