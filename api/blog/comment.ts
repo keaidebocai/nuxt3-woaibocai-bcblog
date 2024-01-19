@@ -95,4 +95,24 @@ const SendOneComment = (data: SendOneCommentType) => {
     }
   );
 };
-export { GetPageCommentByArticle, ReplyOneComment, SendOneComment };
+
+// 批量上传图片
+
+const UserOnUploadImage = (data: FormData) => {
+  return useMyOtherFetch<ResponedType<string[]>>(
+    MY_URL + "auth/uploadImageByComment",
+    {
+      method: "post",
+      body: data,
+      // headers: {
+      //   "Content-Type": "multipart/form-data",
+      // },
+    }
+  );
+};
+export {
+  GetPageCommentByArticle,
+  ReplyOneComment,
+  SendOneComment,
+  UserOnUploadImage,
+};

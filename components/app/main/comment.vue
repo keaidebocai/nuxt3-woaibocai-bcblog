@@ -6,6 +6,7 @@ import {
   GetPageCommentByArticle,
   ReplyOneComment,
   SendOneComment,
+  UserOnUploadImage,
 } from "~/api/blog/comment";
 
 import { MdEditor } from "md-editor-v3";
@@ -246,9 +247,18 @@ const sendOneComment = async (content: string) => {
       throw new Error();
     });
 };
-const asd = (files, callback) => {
+const onUploadImg = async (
+  files: File[],
+  callback: (result: string[]) => void
+) => {
+  const form = new FormData();
+  files.map((file: File) => {
+    // files 这个必须和后端所要求的字段名 一摸一样
+    form.append("files", file);
+  });
+  const res = await UserOnUploadImage(form);
   // 切记这是个数组
-  callback(["https://asdasda.com"]);
+  callback(res.data);
 };
 getOneCommentData();
 </script>
@@ -263,8 +273,8 @@ getOneCommentData();
       <MdEditor
         v-model="text"
         :toolbars="toolbars"
-        @onUploadImg="asd"
-        placeholder="入住菠菜的小窝说些什么吧~&#10;本评论区支持MarkDown语法，可插入图片、代码块、视频等……&#10;图片语法(不受保护的图片): ![图片文字](图片的链接地址)&#10;具体将鼠标悬浮工具栏查看"
+        @onUploadImg="onUploadImg"
+        placeholder="入住菠菜的小窝说些什么吧~&#10;本评论区支持MarkDown语法，可插入图片、代码块、视频等……&#10;图片语法(不受保护的图片): ![图片文字](图片的链接地址)&#10;右上角图片上传图标也可直接上传(支持png、jpg、git每张图不超1M即可)&#10;不符合上传要求的则返回![](undefined)&#10;具体将鼠标悬浮工具栏查看"
       />
       <div class="sendOneComment-box-button">
         <button class="send" @click="sendOneComment(text)">发送</button>
