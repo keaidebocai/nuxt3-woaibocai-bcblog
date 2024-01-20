@@ -51,6 +51,7 @@ type TwoCommentType = {
   likeCount: number;
   address: string;
   isShow: boolean;
+  isLike: boolean;
   replyCommentId: string;
 };
 type OneCommentType = {
@@ -63,6 +64,7 @@ type OneCommentType = {
   likeCount: number;
   address: string;
   isShow: boolean;
+  isLike: boolean;
   oneCommentVoList: [data: TwoCommentType];
 };
 type CommentType = {
@@ -122,8 +124,10 @@ const getOneCommentData = async () => {
     tthisCommentTotal.value += 1;
     console.log(tthisCommentTotal.value);
     one.isShow = false;
+    one.isLike = false;
     for (const two of one?.oneCommentVoList) {
       two.isShow = false;
+      two.isLike = false;
     }
   }
 };
@@ -260,6 +264,31 @@ const onUploadImg = async (
   // 切记这是个数组
   callback(res.data);
 };
+const oneIsLike = (index: number) => {
+  if (!commentData.value.data.comment[index].isLike) {
+    commentData.value.data.comment[index].likeCount += 1;
+    commentData.value.data.comment[index].isLike = true;
+    console.log("你点赞了");
+    return;
+  }
+  commentData.value.data.comment[index].likeCount -= 1;
+  commentData.value.data.comment[index].isLike = false;
+  console.log("你取消了点赞");
+};
+const twoIsLike = (index: number, tindex: number) => {
+  if (!commentData.value.data.comment[index].oneCommentVoList[tindex].isLike) {
+    commentData.value.data.comment[index].oneCommentVoList[
+      tindex
+    ].likeCount += 1;
+    commentData.value.data.comment[index].oneCommentVoList[tindex].isLike =
+      true;
+    console.log("你点赞了");
+    return;
+  }
+  commentData.value.data.comment[index].oneCommentVoList[tindex].likeCount -= 1;
+  commentData.value.data.comment[index].oneCommentVoList[tindex].isLike = false;
+  console.log("你取消了点赞");
+};
 getOneCommentData();
 </script>
 
@@ -305,9 +334,18 @@ getOneCommentData();
             <h2>博主</h2>
           </div>
           <div class="comment-box-main-rght-userInfo-icon">
-            <div class="bang">
+            <div class="bang" @click="oneIsLike(index)">
               <a title="点赞">
-                <img src="~/assets/icon/bang0.png" alt="已点赞" />
+                <img
+                  v-show="!comment.isLike"
+                  src="~/assets/icon/bang0.png"
+                  alt="未点赞"
+                />
+                <img
+                  v-show="comment.isLike"
+                  src="~/assets/icon/bang.png"
+                  alt="已点赞"
+                />
               </a>
               <span>{{ comment.likeCount }}</span>
             </div>
@@ -382,9 +420,18 @@ getOneCommentData();
                   <span>2024-01-08 12:00:00 · 陕西西安</span>
                 </div> -->
                 <div class="comment-sub-box-main-rght-userInfo-icon">
-                  <div class="bang-sub">
+                  <div class="bang-sub" @click="twoIsLike(index, tindex)">
                     <a title="点赞">
-                      <img src="~/assets/icon/bang0.png" alt="已点赞" />
+                      <img
+                        v-show="!oneComment.isLike"
+                        src="~/assets/icon/bang0.png"
+                        alt="未点赞"
+                      />
+                      <img
+                        v-show="oneComment.isLike"
+                        src="~/assets/icon/bang.png"
+                        alt="已点赞"
+                      />
                     </a>
                     <span>{{ oneComment.likeCount }}</span>
                   </div>
