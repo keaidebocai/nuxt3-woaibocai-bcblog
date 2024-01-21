@@ -114,7 +114,6 @@ const getOneCommentData = async () => {
       nowTotal.value += 1;
     }
   }
-  console.log(nowTotal);
 };
 type ReplyOneCommentType = {
   replyCommentId: string;
@@ -333,7 +332,6 @@ const pullMore = async () => {
       // 推上总列表里 concat 无法用很奇怪
     }
   });
-  console.log(nowTotal);
 };
 
 getOneCommentData();
