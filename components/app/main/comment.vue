@@ -7,6 +7,8 @@ import {
   ReplyOneComment,
   SendOneComment,
   UserOnUploadImage,
+  LikeThisComment,
+  QuitLikeThisComment,
 } from "~/api/blog/comment";
 
 import { MdEditor } from "md-editor-v3";
@@ -65,14 +67,14 @@ type OneCommentType = {
   address: string;
   isShow: boolean;
   isLike: boolean;
-  oneCommentVoList: [data: TwoCommentType];
+  oneCommentVoList: [TwoCommentType];
 };
 type CommentType = {
   code: number;
   message: string;
   data: {
     total: number;
-    comment: [data: OneCommentType];
+    comment: [OneCommentType];
   };
 };
 type ResponesdData<T> = {
@@ -81,39 +83,18 @@ type ResponesdData<T> = {
   data: T;
 };
 const commentData = ref<CommentType>();
-const tmynum = ref(10);
-const tthisCommentTotal = ref(11);
-// 显示 加载 0 还是 收起 1
-const tlookButton = ref(0);
-const thandleSub = () => {
-  if (tlookButton.value == 1) {
-    console.log("现在按钮是收起，初始化值将子评论变为1");
-    tmynum.value = 1;
-    tlookButton.value = 0;
-    return;
-  }
-  if (tmynum.value <= tthisCommentTotal.value) {
-    tmynum.value += 1;
-    if (tmynum.value >= tthisCommentTotal.value) {
-      tmynum.value = tthisCommentTotal.value;
-      console.log("评论已耗尽！");
-      tlookButton.value = 1;
-      return;
-    }
-    console.log("现在加1页现在共" + tmynum.value);
-    return;
-  }
-  tmynum.value = tthisCommentTotal.value;
-  console.log("评论已耗尽！");
-  tlookButton.value = 1;
-};
+const page = ref({
+  current: 1,
+  size: 5,
+});
+const nowTotal = ref(0);
 const getOneCommentData = async () => {
   // 3be273791def4569895bf12cbe94a944
   // 2bd8ecc2bfd24912a7405c3a05f818f0
   const responesd: CommentType = await GetPageCommentByArticle(
     props.articleId,
     1,
-    10
+    5
   );
   commentData.value = responesd;
   if (!commentData.value.data.comment) {
@@ -121,15 +102,19 @@ const getOneCommentData = async () => {
     return;
   }
   for (const one of commentData.value.data.comment) {
-    tthisCommentTotal.value += 1;
-    console.log(tthisCommentTotal.value);
     one.isShow = false;
     one.isLike = false;
-    for (const two of one?.oneCommentVoList) {
-      two.isShow = false;
-      two.isLike = false;
+    if (one.oneCommentVoList) {
+      nowTotal.value += one.oneCommentVoList.length + 1;
+      for (const two of one?.oneCommentVoList) {
+        two.isShow = false;
+        two.isLike = false;
+      }
+    } else {
+      nowTotal.value += 1;
     }
   }
+  console.log(nowTotal);
 };
 type ReplyOneCommentType = {
   replyCommentId: string;
@@ -158,7 +143,6 @@ const replyOneComment = async (
     parentId: parentId,
   };
   await ReplyOneComment(data).then((res: ResponesdData<TwoCommentType>) => {
-    console.log(res);
     const twoComment = ref();
     twoComment.value = res.data;
     commentData.value.data.comment[index].isShow = false;
@@ -239,7 +223,6 @@ const sendOneComment = async (content: string) => {
       const oneComment = ref();
       oneComment.value = res.data;
       oneComment.value.oneCommentVoList = [];
-      console.log(commentData);
       commentData.value.data.comment.push(oneComment.value);
       commentData.value.data.total += 1;
       text.value = "";
@@ -264,31 +247,95 @@ const onUploadImg = async (
   // 切记这是个数组
   callback(res.data);
 };
-const oneIsLike = (index: number) => {
+const oneIsLike = async (index: number) => {
   if (!commentData.value.data.comment[index].isLike) {
-    commentData.value.data.comment[index].likeCount += 1;
-    commentData.value.data.comment[index].isLike = true;
-    console.log("你点赞了");
+    const res = await LikeThisComment(commentData.value.data.comment[index].id);
+    if (res.code == 200) {
+      commentData.value.data.comment[index].likeCount = res.data;
+      commentData.value.data.comment[index].isLike = true;
+      ElMessage.success(res.message);
+      return;
+    }
+    ElMessage.error("操作失败！");
     return;
   }
-  commentData.value.data.comment[index].likeCount -= 1;
-  commentData.value.data.comment[index].isLike = false;
-  console.log("你取消了点赞");
+  const res = await QuitLikeThisComment(
+    commentData.value.data.comment[index].id
+  );
+  if (res.code == 200) {
+    commentData.value.data.comment[index].likeCount = res.data;
+    commentData.value.data.comment[index].isLike = false;
+    ElMessage.success(res.message);
+    return;
+  }
+  ElMessage.error("操作失败！");
 };
-const twoIsLike = (index: number, tindex: number) => {
+const twoIsLike = async (index: number, tindex: number) => {
   if (!commentData.value.data.comment[index].oneCommentVoList[tindex].isLike) {
-    commentData.value.data.comment[index].oneCommentVoList[
-      tindex
-    ].likeCount += 1;
-    commentData.value.data.comment[index].oneCommentVoList[tindex].isLike =
-      true;
-    console.log("你点赞了");
+    const res = await LikeThisComment(
+      commentData.value.data.comment[index].oneCommentVoList[tindex].id
+    );
+    if (res.code == 200) {
+      commentData.value.data.comment[index].oneCommentVoList[tindex].likeCount =
+        res.data;
+      commentData.value.data.comment[index].oneCommentVoList[tindex].isLike =
+        true;
+      ElMessage.success(res.message);
+      return;
+    }
+    ElMessage.success("操作失败！");
     return;
   }
-  commentData.value.data.comment[index].oneCommentVoList[tindex].likeCount -= 1;
-  commentData.value.data.comment[index].oneCommentVoList[tindex].isLike = false;
-  console.log("你取消了点赞");
+  const res = await QuitLikeThisComment(
+    commentData.value.data.comment[index].oneCommentVoList[tindex].id
+  );
+  if (res.code == 200) {
+    commentData.value.data.comment[index].oneCommentVoList[tindex].likeCount =
+      res.data;
+    commentData.value.data.comment[index].oneCommentVoList[tindex].isLike =
+      false;
+    ElMessage.success(res.message);
+    return;
+  }
+  ElMessage.error("操作失败！");
 };
+
+// 加载更多
+const pullMore = async () => {
+  if (commentData.value.data.total <= nowTotal.value) {
+    ElMessage.info("真没评论了，要不你再写两条？");
+    return;
+  }
+  await GetPageCommentByArticle(
+    props.articleId,
+    ++page.value.current,
+    page.value.size
+  ).then((res: CommentType) => {
+    if (res.code == 200) {
+      const moreComment = ref<OneCommentType[]>();
+      moreComment.value = res.data.comment;
+      // 初始化 点赞 回复 模块的显示
+      for (const one of moreComment.value) {
+        one.isLike = false;
+        one.isShow = false;
+        if (one.oneCommentVoList) {
+          nowTotal.value += one.oneCommentVoList.length + 1;
+          for (const two of one.oneCommentVoList) {
+            two.isLike = false;
+            two.isShow = false;
+          }
+        } else {
+          nowTotal.value += 1;
+        }
+        commentData.value.data.comment.push(one);
+      }
+
+      // 推上总列表里 concat 无法用很奇怪
+    }
+  });
+  console.log(nowTotal);
+};
+
 getOneCommentData();
 </script>
 
@@ -504,9 +551,9 @@ getOneCommentData();
       </div>
     </div>
   </div>
-  <div v-show="commentData?.data.total > 0" class="loadSub" @click="thandleSub">
-    <h3 v-show="tthisCommentTotal > 0">
-      {{ tlookButton == 0 ? "加载更多" : "收起" }}
+  <div v-show="commentData?.data.total > 0" class="loadSub">
+    <h3 @click="pullMore">
+      {{ commentData?.data.total > nowTotal ? "加载更多" : "没有了" }}
     </h3>
   </div>
 </template>

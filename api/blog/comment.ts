@@ -110,9 +110,25 @@ const UserOnUploadImage = (data: FormData) => {
     }
   );
 };
+
+// 点赞
+const LikeThisComment = (commentId: string) => {
+  return useMyOtherFetch<string>(MY_URL + `like/${commentId}`, {
+    method: "get",
+  });
+};
+
+// 取消点赞
+const QuitLikeThisComment = (commentId: string) => {
+  return useMyOtherFetch<string>(MY_URL + `quitLike/${commentId}`, {
+    method: "get",
+  });
+};
 export {
   GetPageCommentByArticle,
   ReplyOneComment,
   SendOneComment,
   UserOnUploadImage,
+  LikeThisComment,
+  QuitLikeThisComment,
 };
