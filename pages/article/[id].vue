@@ -69,6 +69,8 @@ onMounted(() => {
   const scrollElement = document;
   myScrollElement.value = scrollElement.documentElement;
 });
+const articleCommentPlaceholder =
+  "入住菠菜的小窝说些什么吧~\n本评论区支持MarkDown语法，可插入图片、代码块、视频等……\n图片语法(不受保护的图片): ![图片文字](图片的链接地址)\n右上角图片上传图标也可直接上传(支持png、jpg、git每张图不超1M即可)\n不符合上传要求的则返回![](undefined)\n具体将鼠标悬浮工具栏查看";
 </script>
 
 <template>
@@ -83,7 +85,10 @@ onMounted(() => {
         @onGetCatalog="onGetCatalog"
         @onHtmlChanged="onHtmlChanged"
       />
-      <LazyAppMainComment :article-id="articleId" />
+      <LazyAppMainComment
+        :article-id="articleId"
+        :comment-type="articleCommentPlaceholder"
+      />
       <AppButtom :my-class="'MyButtom'" />
     </div>
     <div class="right" style="margin-left: 30px">

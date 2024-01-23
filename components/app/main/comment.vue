@@ -14,7 +14,7 @@ import {
 import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import type { ToolbarNames } from "md-editor-v3";
-const props = defineProps(["articleId"]);
+const props = defineProps(["articleId", "commentType"]);
 const text = ref("");
 const toolbars: ToolbarNames[] = [
   "bold",
@@ -348,7 +348,7 @@ getOneCommentData();
         v-model="text"
         :toolbars="toolbars"
         @onUploadImg="onUploadImg"
-        placeholder="入住菠菜的小窝说些什么吧~&#10;本评论区支持MarkDown语法，可插入图片、代码块、视频等……&#10;图片语法(不受保护的图片): ![图片文字](图片的链接地址)&#10;右上角图片上传图标也可直接上传(支持png、jpg、git每张图不超1M即可)&#10;不符合上传要求的则返回![](undefined)&#10;具体将鼠标悬浮工具栏查看"
+        :placeholder="props.commentType"
       />
       <div class="sendOneComment-box-button">
         <button class="send" @click="sendOneComment(text)">发送</button>
