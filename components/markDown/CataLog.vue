@@ -20,6 +20,13 @@ if (typeof window !== "undefined") {
 
 <template>
   <div class="myCataLog">
+    <div class="title">
+      <img
+        src="https://cdn.woaibocai.top/bcblog/assets/icon/directory.png"
+        alt="目录"
+      />
+      <h2>目录</h2>
+    </div>
     <MdCatalog
       :editorId="props.editorId"
       :scrollElement="myScrollElement"
@@ -37,13 +44,29 @@ if (typeof window !== "undefined") {
   // height: 500px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
-  padding: 2vh 0;
+  padding: 1rem 0;
+  .title {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    img {
+      height: 32px;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: rgba(50, 50, 93, 0.8);
+    }
+  }
 }
 :deep(.md-editor-catalog) {
   padding: 5px 15px;
 }
 :deep(.md-editor-catalog-link) {
-  font-size: 1rem;
+  span {
+    font-size: 1.2rem;
+  }
 }
 @media screen and (max-width: 1281px),
   (max-width: 1441px),

@@ -6,6 +6,8 @@ definePageMeta({
 useHead({
   title: "友情链接",
 });
+import { MdPreview } from "md-editor-v3";
+import "md-editor-v3/lib/preview.css";
 type ResponedType<T> = {
   code: number;
   message: string;
@@ -25,7 +27,38 @@ const getLinkData = async () => {
 const myClass = ref("MyButtom");
 const friendsCommentPlaceholder =
   "申请要求:\n1.贵站名称\n2.贵站头像地址(也可直接右上图标点击上传)\n3.贵站地址\n4.贵站简介\n5.最好开头https协议\n6.贵站友链已添加本站\n互联网交友，一起玩呗\n本站评论支持MarkDown语法欢迎表演!";
+const MyUrl = "http://localhost:16280/api/blog";
+const { data } = await useAsyncData("friends", () =>
+  $fetch(MyUrl + `/article/getArticleByUrl/friends`)
+);
+const articleData = data.value.data;
+const catalogList = ref([]);
+const onGetCatalog = (list) => {
+  catalogList.value = list;
+};
+const onHtmlChanged = () => {
+  // Check if `document` is available
+  if (process.browser) {
+    const { hash } = location;
 
+    if (/^#/.test(hash)) {
+      const headingId = decodeURIComponent(hash.replace("#", ""));
+
+      if (headingId) {
+        const targetHeadDom = document.getElementById(headingId);
+        if (targetHeadDom) {
+          const scrollLength =
+            (targetHeadDom as HTMLHeadElement).offsetTop + 414 - 10;
+
+          window.scrollTo({
+            top: scrollLength,
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  }
+};
 getLinkData();
 </script>
 
@@ -42,6 +75,14 @@ getLinkData();
         </div>
         <div style="height: 50vh; display: flex; justify-content: center">
           <div>
+            <MdPreview
+              previewTheme="mk-cute"
+              :modelValue="articleData.content"
+              :editorId="articleData.url"
+              @onGetCatalog="onGetCatalog"
+              @onHtmlChanged="onHtmlChanged"
+              class="friendsMd"
+            />
             <div class="container">
               <div class="item item-1" v-for="link in links?.data">
                 <img class="avatar" :src="link.logo" />
@@ -82,6 +123,9 @@ getLinkData();
                 style="position: relative; left: 20px; top: -40px"
               />
             </div>
+            <el-affix position="top" :offset="0">
+              <MarkDownCataLog :editorId="articleData.url" />
+            </el-affix>
           </div>
         </div>
         <!-- <slot /> -->
@@ -212,5 +256,10 @@ getLinkData();
       font-size: 1.5rem;
     }
   }
+}
+.friendsMd {
+  border-radius: 25px;
+  padding: 10px 0;
+  margin-bottom: 30px;
 }
 </style>
