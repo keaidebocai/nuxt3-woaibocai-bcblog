@@ -147,19 +147,15 @@ if (typeof window !== "undefined") {
       <!-- https://www.travellings.cn/assets/logo.svg -->
       <ul>
         <li>
-          <el-link
-            :underline="false"
-            href="https://www.travellings.cn/go.html"
-            target="_blank"
-          >
+          <el-link :underline="false" href="/friends" target="_blank">
             <div class="li-icon">
               <img
-                src="https://www.travellings.cn/assets/travelling.png"
-                alt="开往-友链接力"
-                width="32"
+                src="https://cdn.woaibocai.top/bcblog/assets/icon/friends.png"
+                alt="友情链接"
+                width="30"
               />
             </div>
-            <div class="li-span">travelling</div>
+            <div class="li-span">友情链接</div>
           </el-link>
         </li>
         <li>
@@ -186,19 +182,15 @@ if (typeof window !== "undefined") {
     <div class="little-link">
       <ul>
         <li>
-          <el-link
-            :underline="false"
-            href="https://www.travellings.cn/go.html"
-            target="_blank"
-          >
+          <el-link :underline="false" href="/about" target="_blank">
             <div class="li-icon">
               <img
-                src="https://www.travellings.cn/assets/travelling.png"
-                alt="开往-友链接力"
-                width="32"
+                src="https://cdn.woaibocai.top/bcblog/assets/icon/about.png"
+                alt="关于"
+                width="30"
               />
             </div>
-            <div class="li-span">travelling</div>
+            <div class="li-span">关于</div>
           </el-link>
         </li>
         <li>

@@ -1,13 +1,32 @@
 <script setup lang="ts">
+import { GetAllLink } from "~/api/blog/link";
 definePageMeta({
   layout: "nothing",
 });
 useHead({
   title: "友情链接",
 });
+type ResponedType<T> = {
+  code: number;
+  message: string;
+  data: T;
+};
+type LinkVo = {
+  linkName: string;
+  logo: string;
+  description: string;
+  address: string;
+};
+const links = ref<ResponedType<LinkVo[]>>();
+const getLinkData = async () => {
+  const linkData: ResponedType<LinkVo[]> = await GetAllLink();
+  links.value = linkData;
+};
 const myClass = ref("MyButtom");
 const friendsCommentPlaceholder =
   "申请要求:\n1.贵站名称\n2.贵站头像地址(也可直接右上图标点击上传)\n3.贵站地址\n4.贵站简介\n5.最好开头https协议\n6.贵站友链已添加本站\n互联网交友，一起玩呗\n本站评论支持MarkDown语法欢迎表演!";
+
+getLinkData();
 </script>
 
 <template>
@@ -24,21 +43,17 @@ const friendsCommentPlaceholder =
         <div style="height: 50vh; display: flex; justify-content: center">
           <div>
             <div class="container">
-              <div class="item item-1" v-for="i in 19">
-                <img
-                  class="avatar"
-                  src="https://qiniu.woaibocai.top/static/img/tou.png"
-                />
+              <div class="item item-1" v-for="link in links?.data">
+                <img class="avatar" :src="link.logo" />
                 <div class="info-box">
-                  <h1 class="title">菠菜的小窝</h1>
+                  <h1 class="title">{{ link.linkName }}</h1>
                   <p class="describe">
-                    这里是菠菜在互联网上的小窝!这里是菠菜在互联网上的小窝!这里是菠菜在互联网上的小窝!这里是菠菜在互联网上的小窝!
-                    这里是菠菜在互联网上的小窝! 这里是菠菜在互联网上的小窝!
+                    {{ link.description }}
                   </p>
                   <div class="a-box">
-                    <a href="http://localhost:3000"
-                      >https://www.likebocai.com</a
-                    >
+                    <a :href="link.address" target="_blank">{{
+                      link.address
+                    }}</a>
                   </div>
                 </div>
               </div>
