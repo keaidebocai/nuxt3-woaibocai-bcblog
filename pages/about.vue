@@ -77,7 +77,7 @@ getAbout();
               class="aboutMd"
             />
             <LazyAppMainComment
-              :article-id="'likebocaifriends114514'"
+              :article-id="'likebocaiabout114514'"
               :comment-type="friendsCommentPlaceholder"
             />
             <AppButtom :myClass="myClass" />
