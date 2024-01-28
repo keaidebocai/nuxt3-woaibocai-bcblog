@@ -12,6 +12,7 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.7",
     "@nuxt/devtools": "latest",
+    "@nuxtjs/sitemap": "^5.0.5",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "element-plus": "^2.4.3",
     "nuxt": "^3.8.2",

@@ -1,5 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  sitemap: {
+    sources: ["/api/__sitemap__/urls"],
+  },
+  site: {
+    url: "https://www.likebocai.com",
+  },
   runtimeConfig: {
     public: {
       BASE_URL: "http://localhost:16280/api",
@@ -9,6 +15,7 @@ export default defineNuxtConfig({
     "@element-plus/nuxt",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
+    "@nuxtjs/sitemap",
   ],
   vite: {
     // 打包后清除console和debugger，注意：server下文件的不会删除
