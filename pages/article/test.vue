@@ -1,8 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const dialogVisible = ref(false);
+</script>
 
 <template>
-  <div class="container">
-    <div class="item item-1">1</div>
+  <!-- <div class="container">
+    <div class="item item-1" onclick="dog.showModal()">1</div>
     <div class="item item-2">2</div>
     <div class="item item-3">3</div>
     <div class="item item-4">4</div>
@@ -18,7 +20,25 @@
     <div class="item item-3">3</div>
     <div class="item item-4">4</div>
     <div class="item item-5">5</div>
-  </div>
+  </div> -->
+  <el-button text @click="dialogVisible = true"> 打开弹窗 </el-button>
+  <LazyClientOnly>
+    <el-dialog
+      v-model="dialogVisible"
+      title="我是标题奥！"
+      width="30%"
+      modal
+      lock-scroll
+      draggable
+    >
+      <span>It's a draggable Dialog</span>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+        </span>
+      </template>
+    </el-dialog>
+  </LazyClientOnly>
 </template>
 <style lang="scss" scoped>
 .container {
