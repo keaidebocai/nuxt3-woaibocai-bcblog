@@ -45,6 +45,7 @@ if (typeof window !== "undefined") {
   fectData();
   categoryData.value = data.value.data;
 }
+const dialogVisible = ref(false);
 </script>
 
 <template>
@@ -74,7 +75,7 @@ if (typeof window !== "undefined") {
               <img src="~/assets/icon/search.png" width="32px" />
             </div>
             <div class="myHeader-nav-right-menu-title">
-              <h2>搜索</h2>
+              <h2 @click="dialogVisible = true">搜索</h2>
             </div>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
@@ -229,6 +230,21 @@ if (typeof window !== "undefined") {
       </div>
     </nav>
   </div>
+  <el-dialog v-model="dialogVisible" title="登陆注册" width="600" draggable>
+    <span>It's a draggable Dialog</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.el-dialog) {
+  --el-font-size-large: 20px;
+}
+</style>
