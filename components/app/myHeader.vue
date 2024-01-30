@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTokenStore } from "~/store/useToken";
 import { Logout } from "~/api/login";
+import { User, Lock } from "@element-plus/icons-vue";
 const showLogin = ref(false);
 const userInfoData = {
   avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
@@ -46,6 +47,11 @@ if (typeof window !== "undefined") {
   categoryData.value = data.value.data;
 }
 const dialogVisible = ref(false);
+const formLabelAlign = reactive({
+  name: "",
+  region: "",
+  type: "",
+});
 </script>
 
 <template>
@@ -230,21 +236,98 @@ const dialogVisible = ref(false);
       </div>
     </nav>
   </div>
-  <el-dialog v-model="dialogVisible" title="登陆注册" width="600" draggable>
-    <span>It's a draggable Dialog</span>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
-          Confirm
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
-</template>
 
+  <ClientOnly>
+    <el-dialog v-model="dialogVisible" title="登陆注册" width="600" draggable>
+      <div>
+        <el-tabs type="border-card">
+          <el-tab-pane label="登录">
+            <div class="mycenter">
+              <el-form
+                label-position="right"
+                label-width="65px"
+                :model="formLabelAlign"
+                style="max-width: 300px"
+              >
+                <el-form-item label="用户名:">
+                  <el-input
+                    v-model="formLabelAlign.name"
+                    :prefix-icon="User"
+                    clearable
+                    :maxlength="18"
+                    placeholder="用户名/邮箱"
+                  />
+                </el-form-item>
+                <el-form-item label="密码:">
+                  <el-input
+                    v-model="formLabelAlign.region"
+                    :prefix-icon="Lock"
+                    show-password
+                    :maxlength="18"
+                    placeholder="请输入密码"
+                  />
+                </el-form-item>
+                <div style="height: 42px" class="mycenter">
+                  <el-button
+                    type="primary"
+                    style="
+                      height: 40px;
+                      width: 150px;
+                      border-radius: 20px;
+                      margin-left: 60px;
+                    "
+                    >登录</el-button
+                  >
+                </div>
+              </el-form>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane :lazy="true" label="注册">注册</el-tab-pane>
+          <el-tab-pane :lazy="true" label="忘记密码">忘记密码</el-tab-pane>
+        </el-tabs>
+      </div>
+      <template #footer>
+        <span>
+          <el-button @click="dialogVisible = false">取消</el-button>
+        </span>
+      </template>
+    </el-dialog>
+  </ClientOnly>
+</template>
+<style>
+.el-dialog__title {
+  font-size: 25px;
+}
+.el-tabs__item {
+  font-size: 18px;
+}
+.el-tabs__nav-scroll {
+  display: flex;
+  justify-content: center;
+}
+.el-form-item__label {
+  font-size: 16px;
+  height: 32px;
+  width: 40px;
+}
+.el-input__inner {
+  width: 100%;
+  font-size: 16px;
+  height: 40px;
+}
+.el-input {
+  --el-input-border-radius: 20px;
+}
+.el-form-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
 <style lang="scss" scoped>
-:deep(.el-dialog) {
-  --el-font-size-large: 20px;
+.mycenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
