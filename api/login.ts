@@ -5,9 +5,13 @@ type formData = {
   userName: string;
   password: string;
 };
-
+type ResponedType<T> = {
+  code: number;
+  message: string;
+  data: T;
+};
 const Login = (data: formData) => {
-  return $fetch("http://localhost:16280/api/user/login", {
+  return $fetch<ResponedType<string>>("http://localhost:16280/api/user/login", {
     method: "post",
     body: data,
   });
@@ -27,14 +31,37 @@ const Logout = (data: Token) => {
 type RegisterData = {
   userName: string;
   password: string;
+  nickName: string;
   email: string;
+  code: string;
 };
 const Register = (data: RegisterData) => {
-  console.log(data);
   return useMyOtherFetch(URL + "register", {
     method: "post",
     body: data,
   });
 };
-
-export { Login, Logout, Register };
+const RegisterCode = (email: string) => {
+  return useMyOtherFetch(URL + `registerEmail/${email}`, {
+    method: "get",
+  });
+};
+type ForgotData = {
+  userName: string;
+  password: string;
+  email: string;
+  code: string;
+};
+const Forgot = (data: ForgotData) => {
+  return useMyOtherFetch(URL + "forgot", {
+    method: "post",
+    body: data,
+  });
+};
+// forgotEmail/{email}
+const ForgotEmailCode = (email: string, userName: string) => {
+  return useMyOtherFetch(URL + `forgotEmail/${email}/${userName}`, {
+    method: "get",
+  });
+};
+export { Login, Logout, Register, RegisterCode, Forgot, ForgotEmailCode };

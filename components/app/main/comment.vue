@@ -145,11 +145,18 @@ const replyOneComment = async (
     const twoComment = ref();
     twoComment.value = res.data;
     commentData.value.data.comment[index].isShow = false;
-    commentData.value.data.comment[index].oneCommentVoList.push(
-      twoComment.value
-    );
+    if (!commentData.value.data.comment[index].oneCommentVoList) {
+      commentData.value.data.comment[index].oneCommentVoList[0].push(
+        twoComment.value
+      );
+    } else {
+      commentData.value.data.comment[index].oneCommentVoList.push(
+        twoComment.value
+      );
+    }
     commentData.value.data.total += 1;
     text.value = "";
+    // location.reload();
   });
   // .catch((err) => {
   //   // if (res.code == 204) {
@@ -448,11 +455,7 @@ getOneCommentData();
           <hr />
           <!-- 子评论 -->
           <div class="comment-sub-box-main">
-            <img
-              :src="oneComment.replyUserAvater"
-              alt="用户头像"
-              width="48px"
-            />
+            <img :src="oneComment.sendUserAvater" alt="用户头像" width="48px" />
             <div class="comment-sub-box-main-rght">
               <div class="comment-sub-box-main-rght-userInfo">
                 <div class="comment-sub-box-main-rght-userInfo-userName">

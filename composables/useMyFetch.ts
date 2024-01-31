@@ -42,27 +42,36 @@ export const useMyFetch = (url, opt) => {
             console.log(response._data.code);
             if (response._data.code === 208) {
               //   router.push("/login");
-              ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
-                confirmButtonText: "去登录",
-                cancelButtonText: "返回首页",
-                type: "warning",
-              })
-                .then(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "请刷新页面 / Ctrl + R",
-                  });
-                  navigateTo("/login", { external: true });
-                  return;
-                })
-                .catch(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "回到小窝喽",
-                  });
-                  navigateTo("/", { external: true });
-                });
-              console.log("你需要重新登录");
+              // ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
+              //   confirmButtonText: "去登录",
+              //   cancelButtonText: "返回首页",
+              //   type: "warning",
+              // })
+              //   .then(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "请刷新页面 / Ctrl + R",
+              //     });
+              //     navigateTo("/login", { external: true });
+              //     return;
+              //   })
+              //   .catch(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "回到小窝喽",
+              //     });
+              //     navigateTo("/", { external: true });
+              //   });
+              // console.log("你需要重新登录");
+              store.removeToken();
+              store.removeUserInfo();
+              ElMessageBox.confirm(
+                "你可以尝试登陆...",
+                "期待你的加入!导航栏右上角即可登录!"
+              ).then(() => {
+                location.reload();
+                return;
+              });
             }
             if (response._data.code === 200) {
               store.saveToken(response._data.data);
@@ -125,27 +134,36 @@ export const useMyOtherFetch = <T>(url, opt) => {
           onResponse({ response }) {
             if (response._data.code === 208) {
               //   router.push("/login");
-              ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
-                confirmButtonText: "去登录",
-                cancelButtonText: "返回首页",
-                type: "warning",
-              })
-                .then(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "快快加入我们！",
-                  });
-                  navigateTo("/login", { external: true });
-                  return;
-                })
-                .catch(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "回到小窝喽",
-                  });
-                  navigateTo("/", { external: true });
-                });
-              console.log("你需要重新登录");
+              // ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
+              //   confirmButtonText: "去登录",
+              //   cancelButtonText: "返回首页",
+              //   type: "warning",
+              // })
+              //   .then(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "快快加入我们！",
+              //     });
+              //     navigateTo("/login", { external: true });
+              //     return;
+              //   })
+              //   .catch(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "回到小窝喽",
+              //     });
+              //     navigateTo("/", { external: true });
+              //   });
+              // console.log("你需要重新登录");
+              store.removeToken();
+              store.removeUserInfo();
+              ElMessageBox.confirm(
+                "你可以尝试登陆...",
+                "期待你的加入!导航栏右上角即可登录!"
+              ).then(() => {
+                location.reload();
+                return;
+              });
             }
             if (response._data.code === 200) {
               store.saveToken(response._data.data);
@@ -170,27 +188,36 @@ export const useMyOtherFetch = <T>(url, opt) => {
           onResponse({ response }) {
             if (response._data.code === 208) {
               //   router.push("/login");
-              ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
-                confirmButtonText: "去登录",
-                cancelButtonText: "返回首页",
-                type: "warning",
-              })
-                .then(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "快快加入我们！",
-                  });
-                  navigateTo("/login", { external: true });
-                  return;
-                })
-                .catch(() => {
-                  ElMessage({
-                    type: "success",
-                    message: "回到小窝喽",
-                  });
-                  navigateTo("/", { external: true });
-                });
-              console.log("你需要重新登录");
+              // ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
+              //   confirmButtonText: "去登录",
+              //   cancelButtonText: "返回首页",
+              //   type: "warning",
+              // })
+              //   .then(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "快快加入我们！",
+              //     });
+              //     navigateTo("/login", { external: true });
+              //     return;
+              //   })
+              //   .catch(() => {
+              //     ElMessage({
+              //       type: "success",
+              //       message: "回到小窝喽",
+              //     });
+              //     navigateTo("/", { external: true });
+              //   });
+              // console.log("你需要重新登录");
+              store.removeToken();
+              store.removeUserInfo();
+              ElMessageBox.confirm(
+                "你可以尝试登陆...",
+                "期待你的加入!导航栏右上角即可登录!"
+              ).then(() => {
+                location.reload();
+                return;
+              });
             }
             if (response._data.code === 200) {
               store.saveToken(response._data.data);

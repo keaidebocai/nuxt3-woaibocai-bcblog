@@ -1,6 +1,6 @@
-const getUserInfo = () => {
-  return useMyFetch("/api/user/auth/getUserInfo", {
+const GetUserInfo = () => {
+  return useMyOtherFetch("/api/user/auth/getUserInfo", {
     method: "get",
   });
 };
-export { getUserInfo };
+export { GetUserInfo };
