@@ -54,4 +54,9 @@ export default defineNuxtConfig({
     "~/assets/fonts/fonts.scss",
     "~/assets/sass/components.scss",
   ],
+  nitro: {
+    prerender: {
+      routes: ["/rss.xml"],
+    },
+  },
 });
