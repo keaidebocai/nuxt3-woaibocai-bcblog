@@ -1,11 +1,7 @@
-<script setup lang="ts">
-definePageMeta({
-  layout: "nothing",
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <AppMyHeader />
+  <div></div>
 </template>
 
 <style lang="scss" scoped></style>

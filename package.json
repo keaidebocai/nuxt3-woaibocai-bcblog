@@ -14,6 +14,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/sitemap": "^5.0.5",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@types/rss": "^0.0.32",
     "element-plus": "^2.4.3",
     "nuxt": "^3.8.2",
     "sass": "^1.69.5",
@@ -32,6 +33,7 @@
     "@pinia/nuxt": "^0.5.1",
     "md-editor-v3": "^4.9.0",
     "pinia": "^2.1.7",
-    "pinia-plugin-persistedstate": "^3.2.0"
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "rss": "^1.2.2"
   }
 }

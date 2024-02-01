@@ -440,6 +440,9 @@ const forgot = async (formEl: FormInstance | undefined) => {
   }
   isLoading.value = false;
 };
+
+// 个人中心
+const userDialogVisible = ref(false);
 </script>
 
 <template>
@@ -617,7 +620,7 @@ const forgot = async (formEl: FormInstance | undefined) => {
           <div class="myh2">
             <h2>Hi! {{ userInfo.nickName }}</h2>
             <ul>
-              <li>个人中心</li>
+              <li @click="userDialogVisible = !userDialogVisible">个人中心</li>
               <li @click="logout">退出登录</li>
             </ul>
           </div>
@@ -838,6 +841,15 @@ const forgot = async (formEl: FormInstance | undefined) => {
           <el-button @click="dialogVisible = false">取消</el-button>
         </span>
       </template> -->
+    </el-dialog>
+  </ClientOnly>
+  <ClientOnly>
+    <el-dialog
+      v-model="userDialogVisible"
+      title="个人中心"
+      width="600"
+      draggable
+    >
     </el-dialog>
   </ClientOnly>
 </template>
