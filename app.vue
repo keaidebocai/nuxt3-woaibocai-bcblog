@@ -187,7 +187,7 @@ const open1 = () => {
     ElNotification({
       title: "欢迎来到菠菜的小窝",
       message: "年轻人你记住，不管记住什么，你一定要记住！",
-      offset: 60,
+      offset: 120,
       duration: 0,
       icon: ElIconBell,
     });

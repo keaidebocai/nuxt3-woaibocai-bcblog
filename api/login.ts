@@ -22,7 +22,7 @@ type Token = {
   refresh_token: string;
 };
 const Logout = (data: Token) => {
-  return useFetch(URL + "logout", {
+  return useFetch(URL + "auth/logout", {
     method: "post",
     body: data,
   });

@@ -8,12 +8,16 @@ import {
   Forgot,
   ForgotEmailCode,
 } from "~/api/login";
-import { GetUserInfo } from "~/api/user";
+import { GetUserInfo, UpdateUserInfo } from "~/api/user";
 import { User, Lock, Message, Key, Orange } from "@element-plus/icons-vue";
+import type { UploadInstance, UploadProps } from "element-plus";
+const uploadavatar = ref<UploadInstance>();
 const showLogin = ref(false);
 const userInfoData = {
   avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
   nickName: "",
+  sex: "",
+  userId: "",
 };
 const userInfo = reactive(userInfoData);
 const useToken = useTokenStore();
@@ -38,6 +42,9 @@ const getUserInfo = async () => {
         showLogin.value = false;
         userInfo.avatar = useToken.getUserInfo.avatar;
         userInfo.nickName = useToken.getUserInfo.nickName;
+        userInfo.sex = useToken.getUserInfo.sex;
+        userInfo.userId = useToken.getUserInfo.userId;
+        console.log(userInfo);
         ElMessage.success("获取信息成功！");
       }
       return res;
@@ -49,6 +56,8 @@ const fectData = () => {
     showLogin.value = false;
     userInfo.avatar = useToken.getUserInfo.avatar;
     userInfo.nickName = useToken.getUserInfo.nickName;
+    userInfo.sex = useToken.getUserInfo.sex;
+    userInfo.userId = useToken.getUserInfo.userId;
     // userInfo.value = useToken.getUserInfo
   } else {
     showLogin.value = true;
@@ -425,7 +434,6 @@ const forgot = async (formEl: FormInstance | undefined) => {
         activeName.value = "0";
         console.log(registerRuleForm);
         ForgotRuleForm.userName = "";
-        ForgotRuleForm.nickName = "";
         ForgotRuleForm.password = "";
         ForgotRuleForm.checkPass = "";
         ForgotRuleForm.email = "";
@@ -442,7 +450,60 @@ const forgot = async (formEl: FormInstance | undefined) => {
 };
 
 // 个人中心
+const updateUserINfo = reactive({
+  avatar: userInfo.avatar,
+  nickName: userInfo.nickName,
+  sex: userInfo.sex,
+  userId: userInfo.userId,
+});
 const userDialogVisible = ref(false);
+// 头像上传的
+const handleAvatarSuccess: UploadProps["onSuccess"] = (
+  response,
+  uploadFile
+) => {
+  // imageUrl.value = URL.createObjectURL(uploadFile.raw!);
+  // console.log(URL.createObjectURL(uploadFile.raw!));
+  // userInfo.avatar = URL.createObjectURL(uploadFile.raw!);
+  if (response) {
+    if (response.code == 200) {
+      userInfo.avatar = response.data;
+    } else {
+      ElMessage.error("网络出错!");
+    }
+  }
+  console.log(userInfo.avatar);
+  console.log(response);
+};
+const beforeAvatarUpload = (rawFile) => {
+  if (!rawFile.type.includes("image")) {
+    ElMessage.error("请上传文件格式为图片!");
+    return false;
+  } else if (rawFile.size / 1024 / 1024 > 1) {
+    ElMessage.error("抱歉图片大小不能超过1M");
+    return false;
+  }
+  return true;
+};
+const updateUserinfo = async () => {
+  await UpdateUserInfo(userInfo).then((res: ResponedType<string>) => {
+    if (res.code == 200) {
+      userInfo.nickName = updateUserINfo.nickName;
+      userInfo.avatar = updateUserINfo.avatar;
+      userInfo.sex = updateUserINfo.sex;
+      ElMessage.success("成功!");
+      userDialogVisible.value = false;
+      return;
+    }
+    ElMessage.error(res.message);
+  });
+};
+const userDialogVisibleButton = () => {
+  updateUserINfo.nickName = userInfo.nickName
+  updateUserINfo.avatar = userInfo.avatar
+  updateUserINfo.sex = userInfo.sex
+  userDialogVisible.value = true;
+}
 </script>
 
 <template>
@@ -452,7 +513,7 @@ const userDialogVisible = ref(false);
         <h1 class="myHeader-nav-letf-logo">
           <a href="http://www.likebocai.com" title="菠菜的小窝">
             <img
-              src="https://qiniu.woaibocai.top/static/img/tou.png"
+              src="https://cdn.likebocai.com/bcblog/public/src/tou.png"
               alt="菠菜的小窝,BoCai's Kennel网站log"
               title="菠菜的小窝"
               width="60px"
@@ -469,7 +530,10 @@ const userDialogVisible = ref(false);
         <ul class="myHeader-nav-right-menu">
           <li class="myHeader-nav-right-menu-ul-li">
             <div class="myHeader-nav-right-menu-img">
-              <img src="~/assets/icon/search.png" width="32px" />
+              <img
+                src="https://cdn.likebocai.com/bcblog/assets/icon/search.png"
+                width="32px"
+              />
             </div>
             <div class="myHeader-nav-right-menu-title">
               <h2>搜索</h2>
@@ -478,7 +542,10 @@ const userDialogVisible = ref(false);
           <li class="myHeader-nav-right-menu-ul-li">
             <a class="myHeader-nav-right-menu-ul-li-a" href="/" title="首页">
               <div class="myHeader-nav-right-menu-img">
-                <img src="~/assets/icon/home.png" width="34px" />
+                <img
+                  src="https://cdn.likebocai.com/bcblog/assets/icon/home.png"
+                  width="34px"
+                />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>首页</h2>
@@ -488,7 +555,10 @@ const userDialogVisible = ref(false);
           <li class="myHeader-nav-right-menu-ul-li">
             <a class="myHeader-nav-right-menu-ul-li-a" title="文章分类">
               <div class="myHeader-nav-right-menu-img">
-                <img src="~/assets/icon/category.png" width="32px" />
+                <img
+                  src="https://cdn.likebocai.com/bcblog/assets/icon/category.png"
+                  width="32px"
+                />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>分类</h2>
@@ -549,10 +619,32 @@ const userDialogVisible = ref(false);
               title="友情链接"
             >
               <div class="myHeader-nav-right-menu-img">
-                <img src="~/assets/icon/friends.png" width="32px" />
+                <img
+                  src="https://cdn.likebocai.com/bcblog/assets/icon/friends.png"
+                  width="32px"
+                />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>友情链接</h2>
+              </div>
+            </a>
+          </li>
+          <li class="myHeader-nav-right-menu-ul-li">
+            <a
+              class="myHeader-nav-right-menu-ul-li-a"
+              href="/rss.xml"
+              target="_blank"
+              title="菠菜的小窝-RSS"
+            >
+              <div class="myHeader-nav-right-menu-img">
+                <img
+                  src="https://cdn.likebocai.com/bcblog/assets/icon/RSS.png"
+                  title="菠菜的小窝-RSS"
+                  width="30px"
+                />
+              </div>
+              <div class="myHeader-nav-right-menu-title">
+                <h2>RSS</h2>
               </div>
             </a>
           </li>
@@ -620,7 +712,7 @@ const userDialogVisible = ref(false);
           <div class="myh2">
             <h2>Hi! {{ userInfo.nickName }}</h2>
             <ul>
-              <li @click="userDialogVisible = !userDialogVisible">个人中心</li>
+              <li @click="userDialogVisibleButton">个人中心</li>
               <li @click="logout">退出登录</li>
             </ul>
           </div>
@@ -850,6 +942,82 @@ const userDialogVisible = ref(false);
       width="600"
       draggable
     >
+      <div class="commonCenter">
+        <el-upload
+          ref="uploadavatar"
+          class="upload-demo"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload"
+          :headers="{
+            Authorization: `Bearer ${useToken.getToken.token}`,
+            114514: useToken.getUserInfo.userId,
+          }"
+          action="http://localhost:16280/api/user/auth/userLoadAvatar"
+        >
+          <template #trigger>
+            <el-avatar :size="120" :src="updateUserINfo.avatar" @error="true">
+              <img
+                src="https://cdn.likebocai.com/bcblog/public/src/avatar-2.jpg"
+              />
+            </el-avatar>
+          </template>
+          <template #tip>
+            <div class="commonCenter userinfo-avater">
+              <h2>(点击头像以更换)</h2>
+            </div>
+          </template>
+        </el-upload>
+      </div>
+      <!-- <div class="commonCenter userinfo-avater">
+        <h2>(点击头像以更换)</h2>
+      </div> -->
+      <div class="mycenter">
+        <el-form
+          label-position="right"
+          label-width="80px"
+          :model="loginRuleForm"
+          :loading="isLoading"
+          style="max-width: 300px"
+        >
+          <el-form-item label="昵称:">
+            <el-input
+              v-model="updateUserINfo.nickName"
+              :prefix-icon="Orange"
+              clearable
+              :maxlength="18"
+              :placeholder="userInfo.nickName"
+            />
+          </el-form-item>
+          <el-form-item label="可选性别:" prop="password">
+            <el-radio-group v-model="updateUserINfo.sex">
+              <el-radio :label="'0'">男</el-radio>
+              <el-radio :label="'1'">女</el-radio>
+              <el-radio :label="'2'">沃尔玛购物袋</el-radio>
+              <el-radio :label="'3'">阿帕奇武装直升机</el-radio>
+              <el-radio :label="'4'">这里没有我的性别</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <div style="height: 42px" class="mycenter">
+            <el-popconfirm
+              width="220"
+              confirm-button-text="那当然!"
+              cancel-button-text="No!"
+              title="确定要修改个人信息吗?"
+              @confirm="updateUserinfo"
+            >
+              <template #reference>
+                <el-button
+                  type="primary"
+                  class="loginButton"
+                  :disabled="isLoading"
+                >
+                  确认修改
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </div>
+        </el-form>
+      </div>
     </el-dialog>
   </ClientOnly>
 </template>
@@ -900,10 +1068,22 @@ const userDialogVisible = ref(false);
   margin-top: 30px;
   margin-bottom: 5px;
 }
+.commonCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .loginButton {
   height: 40px;
   width: 150px;
   border-radius: 10px;
   margin-left: 80px;
+}
+.userinfo-avater {
+  height: 30px;
+  color: rgba($color: #000000, $alpha: 0.5);
+  h2 {
+    font-size: 14px;
+  }
 }
 </style>

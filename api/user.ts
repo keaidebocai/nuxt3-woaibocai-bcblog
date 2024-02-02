@@ -3,4 +3,17 @@ const GetUserInfo = () => {
     method: "get",
   });
 };
-export { GetUserInfo };
+// updateUserInfo
+type UserInfo = {
+  avatar: string;
+  nickName: string;
+  sex: string;
+  userId: string;
+};
+const UpdateUserInfo = (data: UserInfo) => {
+  return useMyOtherFetch("/api/user/auth/updateUserInfo", {
+    method: "post",
+    body: data,
+  });
+};
+export { GetUserInfo, UpdateUserInfo };

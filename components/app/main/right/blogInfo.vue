@@ -20,7 +20,7 @@ const mouseenterAnimation = () => {
   setTimeout(myFuntion, 1000);
 };
 const avatarSrc = ref(
-  "https://cdn.woaibocai.top/bcblog/public/src/avatar-1.jpg"
+  "https://cdn.likebocai.com/bcblog/public/src/avatar-1.jpg"
 );
 // 点击头像，从而改变头像
 const changAvatarSrc = () => {
@@ -150,7 +150,7 @@ if (typeof window !== "undefined") {
           <el-link :underline="false" href="/friends" target="_blank">
             <div class="li-icon">
               <img
-                src="https://cdn.woaibocai.top/bcblog/assets/icon/friends.png"
+                src="https://cdn.likebocai.com/bcblog/assets/icon/friends.png"
                 alt="友情链接"
                 width="30"
               />
@@ -161,18 +161,18 @@ if (typeof window !== "undefined") {
         <li>
           <el-link
             :underline="false"
-            href="https://www.likebocai.com/bcgpt"
+            href="https://www.likebocai.com/rss.xml"
             target="_blank"
           >
             <div class="li-icon">
               <img
-                src="https://cdn.woaibocai.top/bcblog/public/svg/bcgpt.svg"
-                alt="菠菜的小窝"
-                width="32"
+                src="https://cdn.likebocai.com/bcblog/assets/icon/RSS.png"
+                alt="菠菜的小窝-RSS"
+                width="30"
               />
             </div>
             <div class="li-span">
-              BCGPT
+              RSS
               <p v-show="false">(停)</p>
             </div>
           </el-link>
@@ -185,7 +185,7 @@ if (typeof window !== "undefined") {
           <el-link :underline="false" href="/about" target="_blank">
             <div class="li-icon">
               <img
-                src="https://cdn.woaibocai.top/bcblog/assets/icon/about.png"
+                src="https://cdn.likebocai.com/bcblog/assets/icon/about.png"
                 alt="关于"
                 width="30"
               />

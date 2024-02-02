@@ -14,7 +14,7 @@ const myStrings = ref(["Wecome To BoCai's Kennel", "欢迎来到菠菜的小窝!
 const indexArticle = ref();
 const page = ref({
   current: 1,
-  size: 3,
+  size: 5,
 });
 // 必须初始化值为 number 0 elementplus 不然 "你使用了一些已被废弃的用法，请参考 el-pagination 的官方文档"
 const total = ref(0);

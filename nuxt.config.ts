@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   vite: {
     // 打包后清除console和debugger，注意：server下文件的不会删除
     esbuild: {
-      // drop: ["console", "debugger"],
+      drop: ["console", "debugger"],
     },
   },
   piniaPersistedstate: {
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/x-icon",
-          href: "https://cdn.woaibocai.top/bcblog/public/favicon.ico",
+          href: "https://cdn.likebocai.com/bcblog/public/favicon.ico",
         },
       ],
     },
