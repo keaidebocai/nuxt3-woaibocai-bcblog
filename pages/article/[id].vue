@@ -2,34 +2,18 @@
 // import
 import { MdPreview } from "md-editor-v3";
 import "md-editor-v3/lib/preview.css";
-const MyUrl = "http://localhost:16280/api/blog";
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
 const route = useRoute();
 const url = route.params.id;
 const text = ref();
 const catalogList = ref([]);
 const editorId = ref("");
-const title = ref();
+const title = ref("");
 const description = ref();
 const keywords = ref();
 const onGetCatalog = (list) => {
   catalogList.value = list;
 };
-useHead({
-  title: title,
-  meta: [
-    {
-      hid: "description",
-      name: "description",
-      content: description,
-    },
-    {
-      hid: "keywords",
-      name: "keywords",
-      content: keywords,
-    },
-  ],
-});
-
 const myScrollElement = ref();
 const onHtmlChanged = () => {
   // Check if `document` is available
@@ -56,7 +40,7 @@ const onHtmlChanged = () => {
 };
 const articleId = ref();
 const { data } = await useAsyncData(`${url}`, () =>
-  $fetch(MyUrl + `/article/getArticleByUrl/${url}`)
+  $fetch(MyUrl + `/blog/article/getArticleByUrl/${url}`, { method: "get" })
 );
 const articleData = data.value.data;
 title.value = articleData.title + " - 文章";
@@ -68,6 +52,21 @@ articleId.value = articleData.id;
 onMounted(() => {
   const scrollElement = document;
   myScrollElement.value = scrollElement.documentElement;
+});
+useHead({
+  title: title,
+  meta: [
+    {
+      hid: "description",
+      name: "description",
+      content: description,
+    },
+    {
+      hid: "keywords",
+      name: "keywords",
+      content: keywords,
+    },
+  ],
 });
 const articleCommentPlaceholder =
   "入住菠菜的小窝说些什么吧~\n本评论区支持MarkDown语法，可插入图片、代码块、视频等……\n图片语法(不受保护的图片): ![图片文字](图片的链接地址)\n右上角图片上传图标也可直接上传(支持png、jpg、git每张图不超1M即可)\n不符合上传要求的则返回![](undefined)\n具体将鼠标悬浮工具栏查看";

@@ -34,7 +34,7 @@ interface Tag {
   tagUrl: string;
 }
 const tags = ref();
-const MyUrl = useRuntimeConfig().public.BASE_URL;
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
 const { data } = await useAsyncData("tagCloud-tags", () =>
   $fetch(MyUrl + "/blog/info/tagCloud")
 );

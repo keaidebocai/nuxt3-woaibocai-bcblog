@@ -8,7 +8,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      BASE_URL: "http://localhost:16280/api",
+      BASE_URL: "https://www.likebocai.com/api",
+      HTTP_URL: "http://www.likebocai.com:16280/api",
     },
   },
   modules: [
@@ -54,9 +55,9 @@ export default defineNuxtConfig({
     "~/assets/fonts/fonts.scss",
     "~/assets/sass/components.scss",
   ],
-  nitro: {
-    prerender: {
-      routes: ["/rss.xml"],
-    },
-  },
+  //   nitro: {
+  //     prerender: {
+  //       routes: ["/rss.xml"],
+  //     },
+  //   },
 });

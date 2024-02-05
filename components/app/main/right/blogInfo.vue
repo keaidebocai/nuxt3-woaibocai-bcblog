@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// 导包
-import { GetBlogInfo } from "~/api/blog/info";
 // 头像
 const animationPlayState = ref("runing");
 const animationPlayStateByRuningOrPaused = (state: string) => {
@@ -44,21 +42,10 @@ type myData = {
   categoryCount: number;
   articleViewCount: number;
 };
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
 const blogInfo = ref<myData>();
-const getBlogInfo = async () => {
-  const { data } = await GetBlogInfo().catch((err) => {
-    ElMessage.error("我不粘锅的，你的网络出问题了!");
-    throw err;
-  });
-  blogInfo.value = data;
-};
-// 网站数据初始化
-// onMounted(() => {
-//   getBlogInfo();
-// });
-if (typeof window !== "undefined") {
-  getBlogInfo();
-}
+const { data: blogInfoData } = await useFetch(MyUrl + `/blog/info/blogInfo`);
+blogInfo.value = blogInfoData.value.data;
 </script>
 
 <template>

@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   });
 
   // 从后端接口获取
-  const MY_URL = useRuntimeConfig().public.BASE_URL;
+  const MY_URL = useRuntimeConfig().public.HTTP_URL;
   type BlogData = {
     title: string;
     url: string;

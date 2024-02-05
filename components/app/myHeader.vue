@@ -14,14 +14,14 @@ import type { UploadInstance, UploadProps } from "element-plus";
 const uploadavatar = ref<UploadInstance>();
 const showLogin = ref(false);
 const userInfoData = {
-  avatar: "https://qiniu.woaibocai.top/static/img/tou.png",
+  avatar: "https://cdn.likebocai.com/bcblog/public/src/tou.png",
   nickName: "",
   sex: "",
   userId: "",
 };
 const userInfo = reactive(userInfoData);
 const useToken = useTokenStore();
-const MyUrl = useRuntimeConfig().public.BASE_URL;
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
 // 标签页的东西
 const activeName = ref("0");
 // 登出
@@ -499,11 +499,11 @@ const updateUserinfo = async () => {
   });
 };
 const userDialogVisibleButton = () => {
-  updateUserINfo.nickName = userInfo.nickName
-  updateUserINfo.avatar = userInfo.avatar
-  updateUserINfo.sex = userInfo.sex
+  updateUserINfo.nickName = userInfo.nickName;
+  updateUserINfo.avatar = userInfo.avatar;
+  updateUserINfo.sex = userInfo.sex;
   userDialogVisible.value = true;
-}
+};
 </script>
 
 <template>
@@ -511,7 +511,7 @@ const userDialogVisibleButton = () => {
     <nav class="myHeader-nav">
       <div class="myHeader-nav-letf">
         <h1 class="myHeader-nav-letf-logo">
-          <a href="http://www.likebocai.com" title="菠菜的小窝">
+          <a href="https://www.likebocai.com" title="菠菜的小窝">
             <img
               src="https://cdn.likebocai.com/bcblog/public/src/tou.png"
               alt="菠菜的小窝,BoCai's Kennel网站log"
@@ -523,7 +523,9 @@ const userDialogVisibleButton = () => {
           </a>
         </h1>
         <h1 class="myHeader-nav-letf-title">
-          <a href="http://www.likebocai.com" title="菠菜的小窝"> 菠菜的小窝 </a>
+          <a href="https://www.likebocai.com" title="菠菜的小窝">
+            菠菜的小窝
+          </a>
         </h1>
       </div>
       <div class="myHeader-nav-right">
@@ -952,7 +954,7 @@ const userDialogVisibleButton = () => {
             Authorization: `Bearer ${useToken.getToken.token}`,
             114514: useToken.getUserInfo.userId,
           }"
-          action="http://localhost:16280/api/user/auth/userLoadAvatar"
+          action="https://www.likebocai.com/api/user/auth/userLoadAvatar"
         >
           <template #trigger>
             <el-avatar :size="120" :src="updateUserINfo.avatar" @error="true">

@@ -220,25 +220,24 @@ const sendOneComment = async (content: string) => {
     userId: "",
     address: "",
   };
-  await SendOneComment(data)
-    .then((res: ResponesdData<OneCommentType>) => {
-      if (res.code == 204) {
-        ElMessage.info(res.message);
-        ElMessage.info(res.data);
-      }
-      const oneComment = ref();
-      oneComment.value = res.data;
-      oneComment.value.oneCommentVoList = [];
-      commentData.value.data.comment.push(oneComment.value);
-      commentData.value.data.total += 1;
-      text.value = "";
-      ElMessage.success("发送成功！");
-    })
-    .catch((err) => {
-      text.value = "";
-      ElMessage.error("发送失败，可以先尝试登陆或等待……");
-      throw new Error();
-    });
+  await SendOneComment(data).then((res: ResponesdData<OneCommentType>) => {
+    if (res.code == 204) {
+      ElMessage.info(res.message);
+      ElMessage.info(res.data);
+    }
+    const oneComment = ref();
+    oneComment.value = res.data;
+    oneComment.value.oneCommentVoList = [];
+    commentData.value.data.comment.push(oneComment.value);
+    commentData.value.data.total += 1;
+    text.value = "";
+    ElMessage.success("发送成功！");
+  });
+  // .catch((err) => {
+  //   text.value = "";
+  //   ElMessage.error("发送失败，可以先尝试登陆或等待……");
+  //   throw new Error();
+  // });
 };
 const onUploadImg = async (
   files: File[],

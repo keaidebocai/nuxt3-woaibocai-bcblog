@@ -1,5 +1,5 @@
 import { useTokenStore } from "~/store/useToken";
-const MyURl = "http://fpc.woaibocai.top:16280";
+const MyURl = "https://www.likebocai.com";
 export const useMyFetch = (url, opt) => {
   const store = useTokenStore();
   const router = useRouter();
@@ -99,8 +99,6 @@ export const useMyOtherFetch = <T>(url, opt) => {
     ...opt.headers,
   };
   if (store.getToken.token) {
-    console.log(store.getToken.token);
-    console.log(store.getUserInfo.userId);
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
       "114514": store.getUserInfo.userId,
