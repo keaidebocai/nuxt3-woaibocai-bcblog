@@ -31,23 +31,17 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
       <div :class="props.myClass">
         <ul>
           <li>
-            <span class="shake"
-              >Copyright © 2023-{{ nowYear }} By Likebocai. All Rights
-              Reserved&nbsp;୧(๑•̀⌄•́๑)૭</span
-            >
+            <span class="shake">Copyright © 2023-{{ nowYear }} By Likebocai. All Rights
+              Reserved&nbsp;୧(๑•̀⌄•́๑)૭</span>
           </li>
           <li>
             <span>
-              <a href="https://beian.miit.gov.cn/" target="_blank"
-                >陕ICP备2022006198号-2</a
-              >
+              <a href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2022006198号-2</a>
             </span>
           </li>
           <li>
             <span>
-              <a href="https://beian.miit.gov.cn/" target="_blank"
-                >陕ICP备2022006198号-2</a
-              >
+              <a href="https://beian.miit.gov.cn/" target="_blank">陕ICP备2022006198号-2</a>
             </span>
           </li>
           <li v-show="!props.isMobile">
@@ -57,7 +51,7 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
                 Likebocai
               </a>
               &ensp;|&ensp; Design By&ensp;
-              <img src="https://cdn.woaibocai.top/bcblog/public/favicon.ico" />
+              <img src="https://cdn.likebocai.com/bcblog/public/favicon.ico" />
               <a href="https://www.likebocai.com" target="_blank">
                 菠菜的小窝
               </a>
@@ -78,9 +72,7 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
                 </li>
                 <li>
                   Design By&ensp;
-                  <img
-                    src="https://cdn.woaibocai.top/bcblog/public/favicon.ico"
-                  />
+                  <img src="https://cdn.likebocai.com/bcblog/public/favicon.ico" />
                   <a href="https://www.likebocai.com" target="_blank">
                     菠菜的小窝
                   </a>
@@ -122,14 +114,15 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
   display: flex;
   align-items: center;
   justify-content: center;
+
   .upupText {
     background-image: linear-gradient(red, blue);
     -webkit-background-clip: text;
     color: transparent;
   }
+
   @-webkit-keyframes shake {
-    0% {
-    }
+    0% {}
 
     25% {
       transform: rotate(3deg);
@@ -138,17 +131,16 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     50% {
       -webkit-transform: translate(0px, 15px);
     }
+
     75% {
       transform: rotate(-3deg);
     }
 
-    100% {
-    }
+    100% {}
   }
 
   @keyframes shake {
-    0% {
-    }
+    0% {}
 
     25% {
       transform: rotate(3deg);
@@ -157,21 +149,24 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     50% {
       -webkit-transform: translate(0px, 15px);
     }
+
     75% {
       transform: rotate(-3deg);
     }
 
-    100% {
-    }
+    100% {}
   }
+
   .shake {
     -webkit-animation: shake 1s infinite;
     animation: shake 1s infinite;
   }
+
   .shake:hover {
     -webkit-animation: shake 0.5s infinite;
     animation: shake 0.5s infinite;
   }
+
   span {
     height: 2.5vh;
     font-size: 1.8vh;
@@ -180,11 +175,13 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     align-items: center;
     justify-content: center;
     text-align: center;
+
     a {
       color: rgba(0, 0, 0, 0.4);
       font-weight: bolder;
       text-align: center;
     }
+
     img {
       height: 1.5vh;
       margin-bottom: v-bind(imgMargin);
@@ -192,17 +189,20 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     }
   }
 }
+
 @media screen and (max-width: 1281px) {
   .MyButtom {
     min-width: 600px;
     max-width: 600px;
   }
 }
+
 @media screen and (max-width: 1441px) {
   .MyButtom {
     max-width: 873px;
   }
 }
+
 .MyButtomMobile {
   width: 100%;
   height: 22vh;
@@ -213,14 +213,15 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
   display: flex;
   align-items: center;
   justify-content: center;
+
   .upupText {
     background-image: linear-gradient(red, blue);
     -webkit-background-clip: text;
     color: transparent;
   }
+
   @-webkit-keyframes shake {
-    0% {
-    }
+    0% {}
 
     25% {
       transform: rotate(3deg);
@@ -229,17 +230,16 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     50% {
       -webkit-transform: translate(0px, 15px);
     }
+
     75% {
       transform: rotate(-3deg);
     }
 
-    100% {
-    }
+    100% {}
   }
 
   @keyframes shake {
-    0% {
-    }
+    0% {}
 
     25% {
       transform: rotate(3deg);
@@ -248,21 +248,24 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     50% {
       -webkit-transform: translate(0px, 15px);
     }
+
     75% {
       transform: rotate(-3deg);
     }
 
-    100% {
-    }
+    100% {}
   }
+
   .shake {
     -webkit-animation: shake 1s infinite;
     animation: shake 1s infinite;
   }
+
   .shake:hover {
     -webkit-animation: shake 0.5s infinite;
     animation: shake 0.5s infinite;
   }
+
   span {
     height: 2.5vh;
     font-size: 1.8vh;
@@ -271,11 +274,13 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     align-items: center;
     justify-content: center;
     text-align: center;
+
     a {
       color: rgba(0, 0, 0, 0.4);
       font-weight: bolder;
       text-align: center;
     }
+
     img {
       height: 1.5vh;
       margin-bottom: v-bind(imgMargin);
@@ -283,8 +288,8 @@ setInterval(calculateUptime, 1000); // 每秒钟更新一次
     }
   }
 }
+
 .MyButtom:hover {
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3);
   transform: scale(1.03);
-}
-</style>
+}</style>

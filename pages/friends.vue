@@ -81,14 +81,8 @@ getData();
         </div>
         <div style="height: 50vh; display: flex; justify-content: center">
           <div>
-            <MdPreview
-              previewTheme="mk-cute"
-              :modelValue="articleData.content"
-              :editorId="articleData.url"
-              @onGetCatalog="onGetCatalog"
-              @onHtmlChanged="onHtmlChanged"
-              class="friendsMd"
-            />
+            <MdPreview previewTheme="mk-cute" :modelValue="articleData.content" :editorId="articleData.url"
+              @onGetCatalog="onGetCatalog" @onHtmlChanged="onHtmlChanged" class="friendsMd" />
             <div class="container">
               <div class="item item-1" v-for="link in links?.data">
                 <img class="avatar" :src="link.logo" />
@@ -105,29 +99,19 @@ getData();
                 </div>
               </div>
             </div>
-            <LazyAppMainComment
-              :article-id="'likebocaifriends114514'"
-              :comment-type="friendsCommentPlaceholder"
-            />
+            <LazyAppMainComment :article-id="'likebocaifriends114514'" :comment-type="friendsCommentPlaceholder" />
             <AppButtom :myClass="myClass" />
           </div>
           <div style="margin-left: 30px">
             <AppMainRightBlogInfo />
             <div class="tagCloud-box">
               <div class="tagCloud-box-title">
-                <img
-                  src="https://cdn.woaibocai.top/bcblog/assets/icon/tag.png"
-                  alt="标签"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/tag.png" alt="标签" />
                 <h2>标签云</h2>
                 (点点标签~)
               </div>
-              <AppMainRightTagCloud
-                width="320"
-                height="320"
-                radius="120"
-                style="position: relative; left: 20px; top: -40px"
-              />
+              <AppMainRightTagCloud width="320" height="320" radius="120"
+                style="position: relative; left: 20px; top: -40px" />
             </div>
             <el-affix position="top" :offset="0">
               <MarkDownCataLog :editorId="articleData.url" />
@@ -147,11 +131,13 @@ getData();
   display: flex;
   justify-content: center;
   align-items: center;
+
   .friends-look {
     font-size: 60px;
     color: rgba(0, 0, 0, 0.8);
   }
 }
+
 .container {
   display: grid;
   justify-content: center;
@@ -163,6 +149,7 @@ getData();
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.4);
 }
+
 .item {
   height: 140px;
   border-radius: 25px;
@@ -170,6 +157,7 @@ getData();
   background-color: rgba(255, 255, 255, 0.45);
   border: 2px solid rgba($color: #49b1f5, $alpha: 0.3);
 }
+
 .avatar {
   height: 140px;
   width: 125px;
@@ -178,11 +166,13 @@ getData();
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
+
 .info-box {
   height: 140px;
   width: 235px;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+
   .title {
     display: flex;
     justify-content: center;
@@ -192,6 +182,7 @@ getData();
     color: rgba(50, 50, 93, 0.6);
     font-size: 20px;
   }
+
   .describe {
     padding: 5px 10px;
     height: 75px;
@@ -203,48 +194,59 @@ getData();
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
   }
+
   .a-box {
     height: 25px;
     border-bottom-right-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     a {
       display: block;
       color: rgba(50, 50, 93, 0.8);
       font-size: 16px;
     }
+
     a:hover {
       text-decoration: none;
     }
   }
 }
+
 .item:hover {
   background-color: rgba($color: #49b1f5, $alpha: 0.6);
+
   .avatar {
     display: none;
   }
+
   .info-box {
     width: 100%;
     border-radius: 25px;
+
     .title {
       border-top-left-radius: 25px;
     }
+
     .a-box {
       border-bottom-left-radius: 25px;
     }
   }
 }
+
 .affix-container {
   width: 100%;
   height: 100vh;
 }
+
 .tagCloud-box {
   min-width: 250px;
   max-width: 400px;
   border-radius: 20px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.6);
+
   .tagCloud-box-title {
     height: 40px;
     width: 100%;
@@ -253,19 +255,21 @@ getData();
     margin-left: 20px;
     padding-top: 10px;
     color: #32325d;
+
     img {
       width: "32px";
       height: "32px";
       margin-right: 10px;
     }
+
     h2 {
       font-size: 1.5rem;
     }
   }
 }
+
 .friendsMd {
   border-radius: 25px;
   padding: 10px 0;
   margin-bottom: 30px;
-}
-</style>
+}</style>

@@ -155,15 +155,13 @@ clickEffect()
 </script>
 
 <template>
-    <div>
-        <slot />
-    </div>
+  <div>
+    <slot />
+  </div>
 </template>
 <style>
 body {
-  background-image: url(https://qiniu.woaibocai.top/static/img/headbg05.jpeg);
+  background-image: url(https://cdn.likebocai.com/static/img/headbg05.jpeg);
 }
 </style>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,6 +1,7 @@
 import { useFetch } from "nuxt/app";
 // import { useMyFetch } from "~/composables/useMyFetch";
-const URL = "https://www.likebocai.com/api/user/";
+// const URL = "https://www.likebocai.com/api/user/";
+const URL = "https://www.likebocai.com/api/user";
 type formData = {
   userName: string;
   password: string;
@@ -22,7 +23,7 @@ type Token = {
   refresh_token: string;
 };
 const Logout = (data: Token) => {
-  return useFetch(URL + "auth/logout", {
+  return useFetch(URL + "/auth/logout", {
     method: "post",
     body: data,
   });
@@ -36,13 +37,13 @@ type RegisterData = {
   code: string;
 };
 const Register = (data: RegisterData) => {
-  return useMyOtherFetch(URL + "register", {
+  return useMyOtherFetch(URL + "/register", {
     method: "post",
     body: data,
   });
 };
 const RegisterCode = (email: string) => {
-  return useMyOtherFetch(URL + `registerEmail/${email}`, {
+  return useMyOtherFetch(URL + `/registerEmail/${email}`, {
     method: "get",
   });
 };
@@ -53,14 +54,14 @@ type ForgotData = {
   code: string;
 };
 const Forgot = (data: ForgotData) => {
-  return useMyOtherFetch(URL + "forgot", {
+  return useMyOtherFetch(URL + "/forgot", {
     method: "post",
     body: data,
   });
 };
 // forgotEmail/{email}
 const ForgotEmailCode = (email: string, userName: string) => {
-  return useMyOtherFetch(URL + `forgotEmail/${email}/${userName}`, {
+  return useMyOtherFetch(URL + `/forgotEmail/${email}/${userName}`, {
     method: "get",
   });
 };

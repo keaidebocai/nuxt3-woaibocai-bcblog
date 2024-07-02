@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BASE_URL: "https://www.likebocai.com/api",
-      HTTP_URL: "http://www.likebocai.com:16280/api",
+      HTTP_URL: "https://www.likebocai.com/api",
     },
   },
   modules: [
@@ -20,9 +20,9 @@ export default defineNuxtConfig({
   ],
   vite: {
     // 打包后清除console和debugger，注意：server下文件的不会删除
-    esbuild: {
-      drop: ["console", "debugger"],
-    },
+    // esbuild: {
+    //   drop: ["console", "debugger"],
+    // },
   },
   piniaPersistedstate: {
     cookieOptions: {

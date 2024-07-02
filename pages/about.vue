@@ -68,37 +68,21 @@ getAbout();
         </div>
         <div style="height: 50vh; display: flex; justify-content: center">
           <div>
-            <MdPreview
-              previewTheme="mk-cute"
-              :modelValue="aboutData.text"
-              :editorId="aboutData.editorId"
-              @onGetCatalog="onGetCatalog"
-              @onHtmlChanged="onHtmlChanged"
-              class="aboutMd"
-            />
-            <LazyAppMainComment
-              :article-id="'likebocaiabout114514'"
-              :comment-type="friendsCommentPlaceholder"
-            />
+            <MdPreview previewTheme="mk-cute" :modelValue="aboutData.text" :editorId="aboutData.editorId"
+              @onGetCatalog="onGetCatalog" @onHtmlChanged="onHtmlChanged" class="aboutMd" />
+            <LazyAppMainComment :article-id="'likebocaiabout114514'" :comment-type="friendsCommentPlaceholder" />
             <AppButtom :myClass="myClass" />
           </div>
           <div style="margin-left: 30px">
             <AppMainRightBlogInfo />
             <div class="tagCloud-box">
               <div class="tagCloud-box-title">
-                <img
-                  src="https://cdn.woaibocai.top/bcblog/assets/icon/tag.png"
-                  alt="标签"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/tag.png" alt="标签" />
                 <h2>标签云</h2>
                 (点点标签~)
               </div>
-              <AppMainRightTagCloud
-                width="320"
-                height="320"
-                radius="120"
-                style="position: relative; left: 20px; top: -40px"
-              />
+              <AppMainRightTagCloud width="320" height="320" radius="120"
+                style="position: relative; left: 20px; top: -40px" />
             </div>
             <el-affix position="top" :offset="0">
               <MarkDownCataLog :editorId="aboutData.editorId" />
@@ -118,22 +102,26 @@ getAbout();
   display: flex;
   justify-content: center;
   align-items: center;
+
   .about-look {
     font-size: 60px;
     color: rgba(0, 0, 0, 0.8);
   }
 }
+
 .aboutMd {
   border-radius: 25px;
   padding: 10px 0;
   margin-bottom: 30px;
 }
+
 .tagCloud-box {
   min-width: 250px;
   max-width: 400px;
   border-radius: 20px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.6);
+
   .tagCloud-box-title {
     height: 40px;
     width: 100%;
@@ -142,11 +130,13 @@ getAbout();
     margin-left: 20px;
     padding-top: 10px;
     color: #32325d;
+
     img {
       width: "32px";
       height: "32px";
       margin-right: 10px;
     }
+
     h2 {
       font-size: 1.5rem;
     }

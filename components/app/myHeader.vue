@@ -512,13 +512,8 @@ const userDialogVisibleButton = () => {
       <div class="myHeader-nav-letf">
         <h1 class="myHeader-nav-letf-logo">
           <a href="https://www.likebocai.com" title="菠菜的小窝">
-            <img
-              src="https://cdn.likebocai.com/bcblog/public/src/tou.png"
-              alt="菠菜的小窝,BoCai's Kennel网站log"
-              title="菠菜的小窝"
-              width="60px"
-              height="60px"
-            />
+            <img src="https://cdn.likebocai.com/bcblog/public/src/tou.png" alt="菠菜的小窝,BoCai's Kennel网站log" title="菠菜的小窝"
+              width="60px" height="60px" />
             菠菜的小窝
           </a>
         </h1>
@@ -532,10 +527,7 @@ const userDialogVisibleButton = () => {
         <ul class="myHeader-nav-right-menu">
           <li class="myHeader-nav-right-menu-ul-li">
             <div class="myHeader-nav-right-menu-img">
-              <img
-                src="https://cdn.likebocai.com/bcblog/assets/icon/search.png"
-                width="32px"
-              />
+              <img src="https://cdn.likebocai.com/bcblog/assets/icon/search.png" width="32px" />
             </div>
             <div class="myHeader-nav-right-menu-title">
               <h2>搜索</h2>
@@ -544,10 +536,7 @@ const userDialogVisibleButton = () => {
           <li class="myHeader-nav-right-menu-ul-li">
             <a class="myHeader-nav-right-menu-ul-li-a" href="/" title="首页">
               <div class="myHeader-nav-right-menu-img">
-                <img
-                  src="https://cdn.likebocai.com/bcblog/assets/icon/home.png"
-                  width="34px"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/home.png" width="34px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>首页</h2>
@@ -557,36 +546,28 @@ const userDialogVisibleButton = () => {
           <li class="myHeader-nav-right-menu-ul-li">
             <a class="myHeader-nav-right-menu-ul-li-a" title="文章分类">
               <div class="myHeader-nav-right-menu-img">
-                <img
-                  src="https://cdn.likebocai.com/bcblog/assets/icon/category.png"
-                  width="32px"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/category.png" width="32px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>分类</h2>
               </div>
 
               <ul class="myHeader-nav-right-menu-sub-ul">
-                <li
-                  v-for="category in categoryData"
-                  class="myHeader-nav-right-menu-sub-li"
-                >
+                <li v-for="category in categoryData" class="myHeader-nav-right-menu-sub-li">
                   <div @click="navigateTo(`/category/${category.categoryUrl}`)">
                     <img :src="category.categoryIconUrl" width="34px" />
                     <h2>
                       <a :href="`/category/${category.categoryUrl}`">{{
                         category.categoryName
                       }}</a>
-                      <p
-                        style="
+                      <p style="
                           color: rgba(0, 0, 0, 0.6);
                           background-color: rgba(255, 255, 255, 0.5);
                           font-size: 1rem;
                           border-radius: 50%;
                           position: absolute;
                           right: 5px;
-                        "
-                      >
+                        ">
                         {{ category.count }}
                       </p>
                     </h2>
@@ -614,17 +595,9 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a
-              class="myHeader-nav-right-menu-ul-li-a"
-              href="/friends"
-              target="_blank"
-              title="友情链接"
-            >
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/friends" target="_blank" title="友情链接">
               <div class="myHeader-nav-right-menu-img">
-                <img
-                  src="https://cdn.likebocai.com/bcblog/assets/icon/friends.png"
-                  width="32px"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/friends.png" width="32px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>友情链接</h2>
@@ -632,18 +605,9 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a
-              class="myHeader-nav-right-menu-ul-li-a"
-              href="/rss.xml"
-              target="_blank"
-              title="菠菜的小窝-RSS"
-            >
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/rss.xml" target="_blank" title="菠菜的小窝-RSS">
               <div class="myHeader-nav-right-menu-img">
-                <img
-                  src="https://cdn.likebocai.com/bcblog/assets/icon/RSS.png"
-                  title="菠菜的小窝-RSS"
-                  width="30px"
-                />
+                <img src="https://cdn.likebocai.com/bcblog/assets/icon/RSS.png" title="菠菜的小窝-RSS" width="30px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>RSS</h2>
@@ -651,18 +615,10 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a
-              class="myHeader-nav-right-menu-ul-li-a"
-              href="https://www.travellings.cn/go.html"
-              target="_blank"
-              title="随机去一个好看的博客"
-            >
+            <a class="myHeader-nav-right-menu-ul-li-a" href="https://www.travellings.cn/go.html" target="_blank"
+              title="随机去一个好看的博客">
               <div class="myHeader-nav-right-menu-img">
-                <img
-                  src="~/assets/icon/travelling.png"
-                  title="随机去一个好看的博客"
-                  width="32px"
-                />
+                <img src="~/assets/icon/travelling.png" title="随机去一个好看的博客" width="32px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
                 <h2>开往</h2>
@@ -670,12 +626,7 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a
-              class="myHeader-nav-right-menu-ul-li-a"
-              href="/about"
-              target="_blank"
-              title="关于"
-            >
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/about" target="_blank" title="关于">
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/about.png" width="32px" />
               </div>
@@ -684,17 +635,8 @@ const userDialogVisibleButton = () => {
               </div>
             </a>
           </li>
-          <li
-            v-show="showLogin"
-            class="myHeader-nav-right-menu-ul-li"
-            style="margin-right: 30px"
-          >
-            <a
-              class="myHeader-nav-right-menu-ul-li-a"
-              href="#"
-              title="登录"
-              @click="dialogVisible = true"
-            >
+          <li v-show="showLogin" class="myHeader-nav-right-menu-ul-li" style="margin-right: 30px">
+            <a class="myHeader-nav-right-menu-ul-li-a" href="#" title="登录" @click="dialogVisible = true">
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/login.png" width="32px" />
               </div>
@@ -706,10 +648,7 @@ const userDialogVisibleButton = () => {
         </ul>
         <div v-show="!showLogin" class="myHeader-nav-right-loginInfo">
           <div class="imgStyle">
-            <img
-              src="https://cdn.woaibocai.top/bcblog/public/src/avatar-1.jpg"
-              width="32px"
-            />
+            <img src="https://cdn.likebocai.com/bcblog/public/src/avatar-1.jpg" width="32px" />
           </div>
           <div class="myh2">
             <h2>Hi! {{ userInfo.nickName }}</h2>
@@ -729,201 +668,95 @@ const userDialogVisibleButton = () => {
         <el-tabs v-model="activeName" type="border-card">
           <el-tab-pane :lazy="true" label="注册" name="1">
             <div class="mycenter">
-              <el-form
-                label-position="right"
-                label-width="100px"
-                ref="registerRuleFormRef"
-                :model="registerRuleForm"
-                :rules="registerRules"
-                :loading="isLoading"
-                @keydown.enter="register(registerRuleFormRef)"
-                style="max-width: 400px"
-              >
+              <el-form label-position="right" label-width="100px" ref="registerRuleFormRef" :model="registerRuleForm"
+                :rules="registerRules" :loading="isLoading" @keydown.enter="register(registerRuleFormRef)"
+                style="max-width: 400px">
                 <el-form-item label="用户名:" prop="userName">
-                  <el-input
-                    v-model="registerRuleForm.userName"
-                    :prefix-icon="User"
-                    clearable
-                    :maxlength="18"
-                    placeholder="用户名: 用作登录"
-                  />
+                  <el-input v-model="registerRuleForm.userName" :prefix-icon="User" clearable :maxlength="18"
+                    placeholder="用户名: 用作登录" />
                 </el-form-item>
                 <el-form-item label="昵称:" prop="nickName">
-                  <el-input
-                    v-model="registerRuleForm.nickName"
-                    :prefix-icon="Orange"
-                    clearable
-                    :maxlength="18"
-                    placeholder="用户名: 别人知道你叫什么"
-                  />
+                  <el-input v-model="registerRuleForm.nickName" :prefix-icon="Orange" clearable :maxlength="18"
+                    placeholder="用户名: 别人知道你叫什么" />
                 </el-form-item>
                 <el-form-item label="密码:" prop="password">
-                  <el-input
-                    v-model="registerRuleForm.password"
-                    :prefix-icon="Lock"
-                    show-password
-                    :maxlength="18"
-                    placeholder="请输入密码"
-                  />
+                  <el-input v-model="registerRuleForm.password" :prefix-icon="Lock" show-password :maxlength="18"
+                    placeholder="请输入密码" />
                 </el-form-item>
                 <el-form-item label="确认密码:" prop="checkPass">
-                  <el-input
-                    v-model="registerRuleForm.checkPass"
-                    :prefix-icon="Lock"
-                    show-password
-                    :maxlength="18"
-                    placeholder="请再次输入密码"
-                  />
+                  <el-input v-model="registerRuleForm.checkPass" :prefix-icon="Lock" show-password :maxlength="18"
+                    placeholder="请再次输入密码" />
                 </el-form-item>
                 <el-form-item label="邮箱:" prop="email">
-                  <el-input
-                    v-model="registerRuleForm.email"
-                    :prefix-icon="Message"
-                    placeholder="请输入邮箱"
-                  >
+                  <el-input v-model="registerRuleForm.email" :prefix-icon="Message" placeholder="请输入邮箱">
                     <template #append>
-                      <el-button
-                        :disabled="isGetRegisterCode"
-                        @click="GetRegisterCode"
-                        >{{ !isGetRegisterCode ? "获取" : "已发送" }}</el-button
-                      >
+                      <el-button :disabled="isGetRegisterCode" @click="GetRegisterCode">{{ !isGetRegisterCode ? "获取" :
+                        "已发送" }}</el-button>
                     </template>
                   </el-input>
                 </el-form-item>
                 <el-form-item label="验证码:" prop="code">
-                  <el-input
-                    v-model="registerRuleForm.code"
-                    :prefix-icon="Key"
-                    clearable
-                    :maxlength="6"
-                    placeholder="验证码，5分钟有效！"
-                  />
+                  <el-input v-model="registerRuleForm.code" :prefix-icon="Key" clearable :maxlength="6"
+                    placeholder="验证码，5分钟有效！" />
                 </el-form-item>
                 <div style="height: 42px" class="mycenter">
-                  <el-button
-                    type="primary"
-                    class="loginButton"
-                    @click="register(registerRuleFormRef)"
-                    :disabled="isLoading"
-                    >加入小窝</el-button
-                  >
+                  <el-button type="primary" class="loginButton" @click="register(registerRuleFormRef)"
+                    :disabled="isLoading">加入小窝</el-button>
                 </div>
               </el-form>
             </div>
           </el-tab-pane>
           <el-tab-pane label="登录" name="0">
             <div class="mycenter">
-              <el-form
-                label-position="right"
-                label-width="80px"
-                ref="ruleFormRef"
-                :model="loginRuleForm"
-                :rules="loginRules"
-                :loading="isLoading"
-                @keydown.enter="login(ruleFormRef)"
-                style="max-width: 300px"
-              >
+              <el-form label-position="right" label-width="80px" ref="ruleFormRef" :model="loginRuleForm"
+                :rules="loginRules" :loading="isLoading" @keydown.enter="login(ruleFormRef)" style="max-width: 300px">
                 <el-form-item label="用户名:" prop="userName">
-                  <el-input
-                    v-model="loginRuleForm.userName"
-                    :prefix-icon="User"
-                    clearable
-                    :maxlength="18"
-                    placeholder="用户名/邮箱"
-                  />
+                  <el-input v-model="loginRuleForm.userName" :prefix-icon="User" clearable :maxlength="18"
+                    placeholder="用户名/邮箱" />
                 </el-form-item>
                 <el-form-item label="密码:" prop="password">
-                  <el-input
-                    v-model="loginRuleForm.password"
-                    :prefix-icon="Lock"
-                    show-password
-                    :maxlength="18"
-                    placeholder="请输入密码"
-                  />
+                  <el-input v-model="loginRuleForm.password" :prefix-icon="Lock" show-password :maxlength="18"
+                    placeholder="请输入密码" />
                 </el-form-item>
                 <div style="height: 42px" class="mycenter">
-                  <el-button
-                    type="primary"
-                    class="loginButton"
-                    @click="login(ruleFormRef)"
-                    :disabled="isLoading"
-                    >登录</el-button
-                  >
+                  <el-button type="primary" class="loginButton" @click="login(ruleFormRef)"
+                    :disabled="isLoading">登录</el-button>
                 </div>
               </el-form>
             </div>
           </el-tab-pane>
           <el-tab-pane :lazy="true" label="忘记密码" name="2">
             <div class="mycenter">
-              <el-form
-                label-position="right"
-                label-width="100px"
-                ref="ForgotRuleFormRef"
-                :model="ForgotRuleForm"
-                :rules="ForgotRules"
-                :loading="isLoading"
-                @keydown.enter="forgot(ForgotRuleFormRef)"
-                style="max-width: 400px"
-              >
+              <el-form label-position="right" label-width="100px" ref="ForgotRuleFormRef" :model="ForgotRuleForm"
+                :rules="ForgotRules" :loading="isLoading" @keydown.enter="forgot(ForgotRuleFormRef)"
+                style="max-width: 400px">
                 <el-form-item label="用户名:" prop="userName">
-                  <el-input
-                    v-model="ForgotRuleForm.userName"
-                    :prefix-icon="User"
-                    clearable
-                    :maxlength="18"
-                    placeholder="用户名: 用作登录"
-                  />
+                  <el-input v-model="ForgotRuleForm.userName" :prefix-icon="User" clearable :maxlength="18"
+                    placeholder="用户名: 用作登录" />
                 </el-form-item>
                 <el-form-item label="密码:" prop="password">
-                  <el-input
-                    v-model="ForgotRuleForm.password"
-                    :prefix-icon="Lock"
-                    show-password
-                    :maxlength="18"
-                    placeholder="请输入密码"
-                  />
+                  <el-input v-model="ForgotRuleForm.password" :prefix-icon="Lock" show-password :maxlength="18"
+                    placeholder="请输入密码" />
                 </el-form-item>
                 <el-form-item label="确认密码:" prop="checkPass">
-                  <el-input
-                    v-model="ForgotRuleForm.checkPass"
-                    :prefix-icon="Lock"
-                    show-password
-                    :maxlength="18"
-                    placeholder="请再次输入密码"
-                  />
+                  <el-input v-model="ForgotRuleForm.checkPass" :prefix-icon="Lock" show-password :maxlength="18"
+                    placeholder="请再次输入密码" />
                 </el-form-item>
                 <el-form-item label="邮箱:" prop="email">
-                  <el-input
-                    v-model="ForgotRuleForm.email"
-                    :prefix-icon="Message"
-                    placeholder="请输入邮箱"
-                  >
+                  <el-input v-model="ForgotRuleForm.email" :prefix-icon="Message" placeholder="请输入邮箱">
                     <template #append>
-                      <el-button
-                        :disabled="isGetForgotCode"
-                        @click="GetForgotCode"
-                        >{{ !isGetForgotCode ? "获取" : "已发送" }}</el-button
-                      >
+                      <el-button :disabled="isGetForgotCode" @click="GetForgotCode">{{ !isGetForgotCode ? "获取" : "已发送"
+                      }}</el-button>
                     </template>
                   </el-input>
                 </el-form-item>
                 <el-form-item label="验证码:" prop="code">
-                  <el-input
-                    v-model="ForgotRuleForm.code"
-                    :prefix-icon="Key"
-                    clearable
-                    :maxlength="6"
-                    placeholder="验证码，5分钟有效！"
-                  />
+                  <el-input v-model="ForgotRuleForm.code" :prefix-icon="Key" clearable :maxlength="6"
+                    placeholder="验证码，5分钟有效！" />
                 </el-form-item>
                 <div style="height: 42px" class="mycenter">
-                  <el-button
-                    type="primary"
-                    class="loginButton"
-                    @click="forgot(ForgotRuleFormRef)"
-                    :disabled="isLoading"
-                    >加入小窝</el-button
-                  >
+                  <el-button type="primary" class="loginButton" @click="forgot(ForgotRuleFormRef)"
+                    :disabled="isLoading">加入小窝</el-button>
                 </div>
               </el-form>
             </div>
@@ -938,29 +771,16 @@ const userDialogVisibleButton = () => {
     </el-dialog>
   </ClientOnly>
   <ClientOnly>
-    <el-dialog
-      v-model="userDialogVisible"
-      title="个人中心"
-      width="600"
-      draggable
-    >
+    <el-dialog v-model="userDialogVisible" title="个人中心" width="600" draggable>
       <div class="commonCenter">
-        <el-upload
-          ref="uploadavatar"
-          class="upload-demo"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload"
-          :headers="{
+        <el-upload ref="uploadavatar" class="upload-demo" :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload" :headers="{
             Authorization: `Bearer ${useToken.getToken.token}`,
             114514: useToken.getUserInfo.userId,
-          }"
-          action="https://www.likebocai.com/api/user/auth/userLoadAvatar"
-        >
+          }" action="https://www.likebocai.com/api/user/auth/userLoadAvatar">
           <template #trigger>
             <el-avatar :size="120" :src="updateUserINfo.avatar" @error="true">
-              <img
-                src="https://cdn.likebocai.com/bcblog/public/src/avatar-2.jpg"
-              />
+              <img src="https://cdn.likebocai.com/bcblog/public/src/avatar-2.jpg" />
             </el-avatar>
           </template>
           <template #tip>
@@ -974,21 +794,11 @@ const userDialogVisibleButton = () => {
         <h2>(点击头像以更换)</h2>
       </div> -->
       <div class="mycenter">
-        <el-form
-          label-position="right"
-          label-width="80px"
-          :model="loginRuleForm"
-          :loading="isLoading"
-          style="max-width: 300px"
-        >
+        <el-form label-position="right" label-width="80px" :model="loginRuleForm" :loading="isLoading"
+          style="max-width: 300px">
           <el-form-item label="昵称:">
-            <el-input
-              v-model="updateUserINfo.nickName"
-              :prefix-icon="Orange"
-              clearable
-              :maxlength="18"
-              :placeholder="userInfo.nickName"
-            />
+            <el-input v-model="updateUserINfo.nickName" :prefix-icon="Orange" clearable :maxlength="18"
+              :placeholder="userInfo.nickName" />
           </el-form-item>
           <el-form-item label="可选性别:" prop="password">
             <el-radio-group v-model="updateUserINfo.sex">
@@ -1000,19 +810,10 @@ const userDialogVisibleButton = () => {
             </el-radio-group>
           </el-form-item>
           <div style="height: 42px" class="mycenter">
-            <el-popconfirm
-              width="220"
-              confirm-button-text="那当然!"
-              cancel-button-text="No!"
-              title="确定要修改个人信息吗?"
-              @confirm="updateUserinfo"
-            >
+            <el-popconfirm width="220" confirm-button-text="那当然!" cancel-button-text="No!" title="确定要修改个人信息吗?"
+              @confirm="updateUserinfo">
               <template #reference>
-                <el-button
-                  type="primary"
-                  class="loginButton"
-                  :disabled="isLoading"
-                >
+                <el-button type="primary" class="loginButton" :disabled="isLoading">
                   确认修改
                 </el-button>
               </template>
@@ -1027,37 +828,46 @@ const userDialogVisibleButton = () => {
 .el-dialog__title {
   font-size: 25px;
 }
+
 .el-tabs__item {
   font-size: 18px;
 }
+
 .el-tabs__nav-scroll {
   display: flex;
   justify-content: center;
 }
+
 .el-form-item__label {
   font-size: 16px;
   height: 32px;
   width: 40px;
 }
+
 .el-input__inner {
   width: 100%;
   font-size: 16px;
   height: 40px;
 }
+
 .el-input {
   --el-input-border-radius: 10px;
 }
+
 .el-form-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .el-dialog {
   --el-dialog-border-radius: 10px;
 }
+
 .el-form-item__error {
   margin-left: 15px;
 }
+
 .el-form {
   margin-right: 80px;
 }
@@ -1070,20 +880,24 @@ const userDialogVisibleButton = () => {
   margin-top: 30px;
   margin-bottom: 5px;
 }
+
 .commonCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .loginButton {
   height: 40px;
   width: 150px;
   border-radius: 10px;
   margin-left: 80px;
 }
+
 .userinfo-avater {
   height: 30px;
   color: rgba($color: #000000, $alpha: 0.5);
+
   h2 {
     font-size: 14px;
   }

@@ -77,36 +77,20 @@ const articleCommentPlaceholder =
   <div style="display: flex; justify-content: center">
     <div class="article-main">
       <AppMainMyAlert />
-      <MdPreview
-        previewTheme="mk-cute"
-        :modelValue="text"
-        :editorId="editorId"
-        @onGetCatalog="onGetCatalog"
-        @onHtmlChanged="onHtmlChanged"
-      />
-      <LazyAppMainComment
-        :article-id="articleId"
-        :comment-type="articleCommentPlaceholder"
-      />
+      <MdPreview previewTheme="mk-cute" :modelValue="text" :editorId="editorId" @onGetCatalog="onGetCatalog"
+        @onHtmlChanged="onHtmlChanged" />
+      <LazyAppMainComment :article-id="articleId" :comment-type="articleCommentPlaceholder" />
       <AppButtom :my-class="'MyButtom'" />
     </div>
     <div class="right" style="margin-left: 30px">
       <AppMainRightBlogInfo />
       <div class="tagCloud-box">
         <div class="tagCloud-box-title">
-          <img
-            src="https://cdn.woaibocai.top/bcblog/assets/icon/tag.png"
-            alt="标签"
-          />
+          <img src="https://cdn.likebocai.com/bcblog/assets/icon/tag.png" alt="标签" />
           <h2>标签云</h2>
           (点点标签~)
         </div>
-        <AppMainRightTagCloud
-          width="320"
-          height="320"
-          radius="120"
-          style="position: relative; left: 20px; top: -40px"
-        />
+        <AppMainRightTagCloud width="320" height="320" radius="120" style="position: relative; left: 20px; top: -40px" />
       </div>
       <el-affix position="top" :offset="0">
         <MarkDownCataLog :editorId="editorId" />
@@ -119,21 +103,25 @@ const articleCommentPlaceholder =
 .articleMain {
   width: 100%;
 }
+
 .affix-container {
   height: 100vh;
 }
+
 .md-editor-previewOnly {
   max-width: 1200px;
   border: none;
   height: auto;
   border-radius: 20px;
 }
+
 .tagCloud-box {
   min-width: 250px;
   max-width: 400px;
   border-radius: 20px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.6);
+
   .tagCloud-box-title {
     height: 40px;
     width: 100%;
@@ -142,26 +130,31 @@ const articleCommentPlaceholder =
     margin-left: 20px;
     padding-top: 10px;
     color: #32325d;
+
     img {
       width: "32px";
       height: "32px";
       margin-right: 10px;
     }
+
     h2 {
       font-size: 1.5rem;
     }
   }
 }
+
 @media screen and (max-width: 1601px) {
   .md-editor-previewOnly {
     max-width: 873px;
   }
 }
+
 @media screen and (max-width: 1281px) {
   .md-editor-previewOnly {
     max-width: 600px;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .right {
     display: none;

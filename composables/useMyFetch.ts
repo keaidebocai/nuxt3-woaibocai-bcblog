@@ -1,22 +1,21 @@
 import { useTokenStore } from "~/store/useToken";
 const MyURl = "https://www.likebocai.com";
+const MUAUTHURL = "https://www.likebocai.com";
 export const useMyFetch = (url, opt) => {
   const store = useTokenStore();
-  const router = useRouter();
   let headers = {
     ...opt.headers,
   };
   if (store.getToken.token) {
     Object.assign(headers, {
       Authorization: "Bearer " + store.getToken.token,
-      114514: store.getUserInfo.userId,
+      114514: store.getUserInfo.userId
     });
   }
   // ssr服务器向api服务器传递客户端真实ip
   if (process.server) {
     Object.assign(
       headers,
-      useRequestHeaders(["x-forwarded-for", "x-real-ip", "user-agent"])
     );
   }
 
@@ -94,7 +93,6 @@ export const useMyFetch = (url, opt) => {
 
 export const useMyOtherFetch = <T>(url, opt) => {
   const store = useTokenStore();
-  const router = useRouter();
   let headers = {
     ...opt.headers,
   };
@@ -108,7 +106,6 @@ export const useMyOtherFetch = <T>(url, opt) => {
   if (process.server) {
     Object.assign(
       headers,
-      useRequestHeaders(["x-forwarded-for", "x-real-ip", "user-agent"])
     );
   }
 

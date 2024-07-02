@@ -16,7 +16,7 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/rss": "^0.0.32",
     "element-plus": "^2.4.3",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.9.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "vue": "^3.3.8",

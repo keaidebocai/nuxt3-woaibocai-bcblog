@@ -193,13 +193,14 @@ if (typeof window !== "undefined") {
 </template>
 <style>
 body {
-  background-image: url(https://qiniu.woaibocai.top/static/img/headbg05.jpeg);
+  background-image: url(https://cdn.likebocai.com/static/img/headbg05.jpeg);
 }
 </style>
 <style lang="scss" scoped>
 .affix-container {
   height: 100vh;
 }
+
 .mysolt {
   min-width: 873px;
   max-width: 1200px;
