@@ -234,7 +234,7 @@ const registerRules = reactive<FormRules<RegisterRuleForm>>({
     // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com)$ 必须是腾讯
     {
       pattern:
-        "^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com|163\.com|aliyun\.com)$",
+        "^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|163\.com|aliyun\.com)$",
       message: "请正确输入邮箱",
       trigger: "blur",
     },
@@ -381,7 +381,7 @@ const ForgotRules = reactive<FormRules<ForgotRuleForm>>({
     // ^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com)$ 必须是腾讯
     {
       pattern:
-        "^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|gmail\.com|163\.com|aliyun\.com)$",
+        "^[a-zA-Z0-9._%+-]+@(qq\.com|foxmail\.com|163\.com|aliyun\.com)$",
       message: "请正确输入邮箱",
       trigger: "blur",
     },
@@ -690,7 +690,7 @@ const userDialogVisibleButton = () => {
                 <el-form-item label="邮箱:" prop="email">
                   <el-input v-model="registerRuleForm.email" :prefix-icon="Message" placeholder="请输入邮箱">
                     <template #append>
-                      <el-button :disabled="isGetRegisterCode" @click="GetRegisterCode">{{ !isGetRegisterCode ? "获取" :
+                      <el-button :disabled="isGetRegisterCode || registerRuleForm.email == '' || !registerRuleForm.email.match('@')" @click="GetRegisterCode">{{ !isGetRegisterCode ? "获取" :
                         "已发送" }}</el-button>
                     </template>
                   </el-input>
@@ -745,7 +745,7 @@ const userDialogVisibleButton = () => {
                 <el-form-item label="邮箱:" prop="email">
                   <el-input v-model="ForgotRuleForm.email" :prefix-icon="Message" placeholder="请输入邮箱">
                     <template #append>
-                      <el-button :disabled="isGetForgotCode" @click="GetForgotCode">{{ !isGetForgotCode ? "获取" : "已发送"
+                      <el-button :disabled="isGetForgotCode || ForgotRuleForm.userName == ''" @click="GetForgotCode">{{ !isGetForgotCode ? "获取" : "已发送"
                       }}</el-button>
                     </template>
                   </el-input>
@@ -756,7 +756,7 @@ const userDialogVisibleButton = () => {
                 </el-form-item>
                 <div style="height: 42px" class="mycenter">
                   <el-button type="primary" class="loginButton" @click="forgot(ForgotRuleFormRef)"
-                    :disabled="isLoading">加入小窝</el-button>
+                    :disabled="isLoading">回到小窝</el-button>
                 </div>
               </el-form>
             </div>
