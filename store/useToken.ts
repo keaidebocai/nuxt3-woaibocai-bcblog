@@ -28,7 +28,7 @@ export const useTokenStore = defineStore("useToken", () => {
   const getUserInfo = computed<UserInfo>(() => {
     try {
       return JSON.parse(
-        tokenJson.value ||
+        userInfoJson.value ||
           window.localStorage.getItem("likebocai:userInfo") ||
           "{}"
       );
