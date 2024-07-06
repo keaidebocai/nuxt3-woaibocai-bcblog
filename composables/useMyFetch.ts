@@ -108,7 +108,6 @@ export const useMyOtherFetch = <T>(url, opt) => {
       headers,
     );
   }
-
   opt.headers = headers;
   return $fetch(url, {
     ...opt,
@@ -128,28 +127,6 @@ export const useMyOtherFetch = <T>(url, opt) => {
           body: retoken,
           onResponse({ response }) {
             if (response._data.code === 208) {
-              //   router.push("/login");
-              // ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
-              //   confirmButtonText: "去登录",
-              //   cancelButtonText: "返回首页",
-              //   type: "warning",
-              // })
-              //   .then(() => {
-              //     ElMessage({
-              //       type: "success",
-              //       message: "快快加入我们！",
-              //     });
-              //     navigateTo("/login", { external: true });
-              //     return;
-              //   })
-              //   .catch(() => {
-              //     ElMessage({
-              //       type: "success",
-              //       message: "回到小窝喽",
-              //     });
-              //     navigateTo("/", { external: true });
-              //   });
-              // console.log("你需要重新登录");
               store.removeToken();
               store.removeUserInfo();
               ElMessageBox.confirm(
@@ -162,6 +139,9 @@ export const useMyOtherFetch = <T>(url, opt) => {
             }
             if (response._data.code === 200) {
               store.saveToken(response._data.data);
+              // 重启发起那个请求
+              useMyOtherFetch(url, opt);
+              location.reload()
               return response;
             }
           },
@@ -182,28 +162,6 @@ export const useMyOtherFetch = <T>(url, opt) => {
           body: retoken,
           onResponse({ response }) {
             if (response._data.code === 208) {
-              //   router.push("/login");
-              // ElMessageBox.confirm("您的身份已经过期...", "菠菜最后的轻语~", {
-              //   confirmButtonText: "去登录",
-              //   cancelButtonText: "返回首页",
-              //   type: "warning",
-              // })
-              //   .then(() => {
-              //     ElMessage({
-              //       type: "success",
-              //       message: "快快加入我们！",
-              //     });
-              //     navigateTo("/login", { external: true });
-              //     return;
-              //   })
-              //   .catch(() => {
-              //     ElMessage({
-              //       type: "success",
-              //       message: "回到小窝喽",
-              //     });
-              //     navigateTo("/", { external: true });
-              //   });
-              // console.log("你需要重新登录");
               store.removeToken();
               store.removeUserInfo();
               ElMessageBox.confirm(
@@ -225,7 +183,8 @@ export const useMyOtherFetch = <T>(url, opt) => {
     },
 
     async onRequest({ request, options }) {
-      console.log("[fetch request]");
+      options.headers = headers;
+      return request;
     },
     async onRequestError({ request, options, error }) {
       console.log("[fetch request error]", error);
