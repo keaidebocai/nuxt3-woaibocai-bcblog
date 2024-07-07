@@ -615,6 +615,17 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/TimePostOffice" target="_blank"
+              title="菠菜的时光邮局">
+              <div class="myHeader-nav-right-menu-img">
+                <img src="~/assets/icon/邮局.png" title="菠菜的时光邮局" width="32px" />
+              </div>
+              <div class="myHeader-nav-right-menu-title">
+                <h2>时光邮局</h2>
+              </div>
+            </a>
+          </li>
+          <li class="myHeader-nav-right-menu-ul-li">
             <a class="myHeader-nav-right-menu-ul-li-a" href="https://www.travellings.cn/go.html" target="_blank"
               title="随机去一个好看的博客">
               <div class="myHeader-nav-right-menu-img">
