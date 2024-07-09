@@ -1,7 +1,7 @@
 export default defineSitemapEventHandler(async () => {
   const [article] = await Promise.all([
     //
-    $fetch("http://localhost:16280/api/blog/other/sitemap").then(
+    $fetch("https://www.likebocai.com/api/blog/other/sitemap").then(
       (article) => article
     ),
   ]);

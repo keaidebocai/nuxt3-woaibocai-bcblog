@@ -3,7 +3,7 @@ definePageMeta({
   layout: "mobile",
 });
 // import
-const MyUrl = "http://localhost:16280/api/blog";
+const MyUrl = "https://www.likebocai.com/api/blog";
 const route = useRoute();
 const url = route.params.id;
 const text = ref();

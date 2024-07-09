@@ -198,6 +198,29 @@ blogInfo.value = blogInfoData.value.data;
         </li>
       </ul>
     </div>
+    <div class="little-link">
+      <ul>
+        <li>
+          <el-link
+            :underline="false"
+            href="https://www.likebocai.com/letter"
+            target="_blank"
+          >
+            <div class="li-icon">
+              <img
+                src="~/assets/icon/邮局.png"
+                alt="菠菜的小窝-时光邮局"
+                width="30"
+              />
+            </div>
+            <div class="li-span">
+              时光邮局
+            </div>
+          </el-link>
+        </li>
+        <li></li>
+      </ul>
+    </div>
   </div>
 </template>
 

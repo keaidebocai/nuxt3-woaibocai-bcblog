@@ -615,7 +615,7 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a class="myHeader-nav-right-menu-ul-li-a" href="/TimePostOffice" target="_blank"
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/letter" target="_blank"
               title="菠菜的时光邮局">
               <div class="myHeader-nav-right-menu-img">
                 <img src="~/assets/icon/邮局.png" title="菠菜的时光邮局" width="32px" />
