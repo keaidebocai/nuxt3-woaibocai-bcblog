@@ -50,7 +50,7 @@ const issueList = ref([
                             <p style="font-size:3.5rem;font-weight: bolder;margin-bottom: 10px;color: #F0F2F5;">亲爱的旅人……</p>
                             <p style="font-size: 1.5rem;color: #F0F2F5">愿你在未来的某一天，读到这封信，依旧怀揣着当初的勇气和梦想。</p>
                             <div class="index-left-word-button-box">
-                                <a href="/letter/writeLetter" class="aLinkStyle">
+                                <a href="/m/letter/writeLetter" class="aLinkStyle">
                                     <div class="myButtonLink" style="">
                                         <span>编写信件</span>
                                     </div>

@@ -85,7 +85,9 @@ getAbout();
                 style="position: relative; left: 20px; top: -40px" />
             </div>
             <el-affix position="top" :offset="0">
-              <MarkDownCataLog :editorId="aboutData.editorId" />
+              <div style=" max-height: 80vh;overflow: auto;border-radius: 25px;">
+                <MarkDownCataLog :editorId="aboutData.editorId" style="background-color:  rgba(255, 255, 255, 0.6);;"/>
+              </div>
             </el-affix>
           </div>
         </div>

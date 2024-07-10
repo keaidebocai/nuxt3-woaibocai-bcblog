@@ -148,7 +148,7 @@ blogInfo.value = blogInfoData.value.data;
         <li>
           <el-link
             :underline="false"
-            href="https://www.likebocai.com/rss.xml"
+            href="/rss.xml"
             target="_blank"
           >
             <div class="li-icon">
@@ -203,7 +203,7 @@ blogInfo.value = blogInfoData.value.data;
         <li>
           <el-link
             :underline="false"
-            href="https://www.likebocai.com/letter"
+            href="/letter"
             target="_blank"
           >
             <div class="li-icon">
