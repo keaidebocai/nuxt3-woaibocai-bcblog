@@ -9,7 +9,8 @@ useHead({
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import type { ToolbarNames } from "md-editor-v3";
-
+import { useTokenStore } from '~/store/useToken';
+const useLocalInfo = useTokenStore()
 const toolbars: ToolbarNames[] = [
   "bold",
   "underline",
@@ -98,6 +99,12 @@ const checkTable = () => {
     return
   }
 }
+const onBlurBySave = () => {
+  useLocalInfo.saveEmailText(sendEmailDate.emailText)
+}
+onMounted(() =>{
+  sendEmailDate.emailText = useLocalInfo.getEmailText
+})
 </script>
 
 <template>
@@ -141,7 +148,7 @@ const checkTable = () => {
                       你的邮箱：&emsp;
                       <ElInput maxlength="30" type="text" :show-word-limit="true"
                         input-style="font-family: YunFengHanChanTi;font-size: 18px;" v-model="sendEmailDate.userEmail"
-                        style="width: 360px;height: 40px;" placeholder="此信息完全保密" />
+                        style="width: 360px;height: 40px;" placeholder="此信息完全保密，通知发信状态" />
                     </div>
                     <div style="margin-left: 10px;margin-bottom: 10px;">
                       给TA写信？&emsp;
@@ -193,7 +200,7 @@ const checkTable = () => {
             </div>
             <!-- 书写区 -->
             <div class="writeLetter-box">
-              <MdEditor v-model="sendEmailDate.emailText" placeholder="<p style='color: red;'>这个子就可以变成红色了</p>" :toolbars="toolbars" />
+              <MdEditor :toolbars="toolbars" @onBlur="onBlurBySave" v-model="sendEmailDate.emailText" placeholder="1.&nbsp;请在此输入内容……&#10;2.&nbsp;内容会自动保存到你的本地，不小心手滑关了浏览器也无需担心……&#10;3.&nbsp;<p style='color: red;'>这段文字就可以变成红色了</p>&#10;4.&nbsp;长按工具栏的图片点击 上传图片 即可获取到 图片链接&#10;5.&nbsp;**这里是要加粗的字体**(直接点击工具栏的B然后再输入也可)&#10;6.&nbsp;<u>这里是要加下划线的的字体</u>&#10;7.&nbsp;<u>**这里是要加粗加下划线的的字体**</u>" />
             </div>
           </div>
 
