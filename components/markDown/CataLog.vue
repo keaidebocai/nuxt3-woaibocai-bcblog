@@ -19,7 +19,7 @@ if (typeof window !== "undefined") {
 </script>
 
 <template>
-  <div class="myCataLog">
+  <div class="myCataLog" >
     <div class="title">
       <img src="https://cdn.likebocai.com/bcblog/assets/icon/directory.png" alt="目录" />
       <h2>目录</h2>
@@ -34,8 +34,8 @@ if (typeof window !== "undefined") {
   margin-top: 10px;
   min-width: 250px;
   max-width: 400px;
-  // height: 500px;
-  background-color: rgba(255, 255, 255, 0.6);
+  height: 100%;
+  // background-color: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 1rem 0;
 
