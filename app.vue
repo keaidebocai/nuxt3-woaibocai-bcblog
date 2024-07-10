@@ -181,15 +181,17 @@ if (typeof window !== "undefined") {
 
   clickEffect();
 }
-const show = ref(true);
+import { useTokenStore } from './store/useToken';
+const isShow = useTokenStore()
 const open1 = () => {
-  if (show.value) {
+  if (isShow.getIsShow == 'true') {
     ElNotification({
       title: "欢迎来到菠菜的小窝",
       message: "年轻人你记住，不管记住什么，你一定要记住！",
       offset: 120,
       duration: 0,
       icon: ElIconBell,
+      onClose: () => isShow.closeIsShow()
     });
   }
 };
@@ -203,5 +205,17 @@ onMounted(() => {
     <nuxt-page />
   </NuxtLayout>
 </template>
+
+<style>
+.el-message__content {
+  font-size: 18px;
+}
+.el-notification__title {
+  font-size: 18px;
+}
+.el-notification__content {
+  font-size: 18px;
+}
+</style>
 
 <style lang="scss" scoped></style>
