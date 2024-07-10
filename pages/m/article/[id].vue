@@ -43,6 +43,29 @@ keywords.value = articleData.keywords;
 text.value = articleData.content;
 editorId.value = articleData.url;
 articleId.value = articleData.id;
+const onHtmlChanged = () => {
+  // Check if `document` is available
+  if (process.browser) {
+    const { hash } = location;
+
+    if (/^#/.test(hash)) {
+      const headingId = decodeURIComponent(hash.replace("#", ""));
+
+      if (headingId) {
+        const targetHeadDom = document.getElementById(headingId);
+        if (targetHeadDom) {
+          const scrollLength =
+            (targetHeadDom as HTMLHeadElement).offsetTop + 414 - 10;
+
+          window.scrollTo({
+            top: scrollLength,
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  }
+};
 </script>
 
 <template>
@@ -50,12 +73,17 @@ articleId.value = articleData.id;
     <el-col :span="22">
       <AppArticleInfo :articleData="articleData" :isMoblie="true" />
       <AppMainMyAlert />
+      <div style="max-height: 40vh;overflow: auto;width: 100%;display: flex;justify-content: center;border-radius: 25px;margin-bottom: 10px;background-color: rgba(255, 255, 255, 0.6);">
+        <MarkDownCataLog :editorId="editorId" />
+      </div>
       <MdPreview
         previewTheme="mk-cute"
         :modelValue="text"
+        :editorId="editorId"
         @onGetCatalog="onGetCatalog"
+        @onHtmlChanged="onHtmlChanged"
       />
-      <AppMainComment :article-id="articleId" />
+      <AppMainComment :article-id="articleId"/>
       <AppButtom :is-mobile="true" :my-class="'MyButtomMobile'" />
     </el-col>
   </el-row>
