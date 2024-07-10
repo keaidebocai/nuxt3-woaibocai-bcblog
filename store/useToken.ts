@@ -14,6 +14,8 @@ export const useTokenStore = defineStore("useToken", () => {
   // //ref 相当于state
   const tokenJson = ref("");
   const userInfoJson = ref("");
+  const emailTextJson = ref("");
+  const isShow = ref(false)
   const getToken = computed<Token>(() => {
     try {
       return JSON.parse(
@@ -38,6 +40,28 @@ export const useTokenStore = defineStore("useToken", () => {
       throw err;
     }
   });
+  // getEmailText
+  const getEmailText = computed<string>(() => {
+    try {
+      return emailTextJson.value || window.localStorage.getItem("likebocai:email:text") || ""
+    } catch (err) {
+      ElMessage.error("读取本地文件出现错误，请清除浏览器缓存！");
+      window.localStorage.setItem("likebocai:email:text", "");
+      throw err;
+    }
+  })
+
+  // getIsShow
+  const getIsShow = computed<string>(() => {
+    try {
+      return window.localStorage.getItem("likebocai:isShow")  || 'true'
+    } catch (err) {
+      ElMessage.error("读取本地文件出现错误，请清除浏览器缓存！");
+      window.localStorage.setItem("likebocai:isShow", "true");
+      throw err;
+    }
+  })
+
   //funtion 相当于actions
   function saveToken(data: string) {
     tokenJson.value = data;
@@ -55,13 +79,35 @@ export const useTokenStore = defineStore("useToken", () => {
     // window.localStorage.setItem("likebocai:userInfo", "");
     window.localStorage.removeItem("likebocai:userInfo");
   }
+
+  // 保存文章到本地
+  function saveEmailText(data: string) {
+    emailTextJson.value = data
+    window.localStorage.setItem("likebocai:email:text",data);
+  }
+  // 删除本地邮件
+  function removeEmailText() {
+    window.localStorage.removeItem("likebocai:email:text")
+  }
+
+  // close通知字段
+  function closeIsShow(){
+    isShow.value = false
+    window.localStorage.setItem("likebocai:isShow",'false');
+  }
+
   // 导出
   return {
     getToken,
     getUserInfo,
+    getEmailText,
+    getIsShow,
     saveToken,
     saveUserInfo,
+    saveEmailText,
+    closeIsShow,
     removeToken,
     removeUserInfo,
+    removeEmailText
   };
 });
