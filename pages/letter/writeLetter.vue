@@ -101,9 +101,14 @@ const checkTable = () => {
 }
 const onBlurBySave = () => {
   useLocalInfo.saveEmailText(sendEmailDate.emailText)
+  console.log("onBlurBySave")
 }
 onMounted(() =>{
   sendEmailDate.emailText = useLocalInfo.getEmailText
+})
+// 监听邮件内容数据
+watch(() => { return sendEmailDate.emailText},() => {
+  onBlurBySave()
 })
 </script>
 

@@ -105,6 +105,10 @@ const onBlurBySave = () => {
 onMounted(() =>{
   sendEmailDate.emailText = useLocalInfo.getEmailText
 })
+// 监听邮件内容数据
+watch(() => { return sendEmailDate.emailText},() => {
+  onBlurBySave()
+})
 </script>
 
 <template>
