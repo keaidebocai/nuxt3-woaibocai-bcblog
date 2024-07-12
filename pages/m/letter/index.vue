@@ -55,7 +55,7 @@ const issueList = ref([
                                         <span>编写信件</span>
                                     </div>
                                 </a>
-                                <a class="linkStyle" href="/letter/weiter">
+                                <a class="linkStyle" href="/m/letter/weiter">
                                     <span style="color: #E6A23C;">
                                         看看别人写的信→
                                     </span>
@@ -81,7 +81,7 @@ const issueList = ref([
                                 <div class="open-letter-looking-item-info">
                                     <!-- 标题 -->
                                     <div style="display: flex;align-items: center;">
-                                        <a href="/letter/asdasdas">
+                                        <a href="/m/letter/asdasdas">
                                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
                                                 <el-tooltip raw-content content="<p style='font-size: 18px;'>写给三年后的自己</p>" effect="light" placement="top">
                                                     写给三年后的自己
@@ -114,7 +114,7 @@ const issueList = ref([
                                 <div class="open-letter-looking-item-info">
                                     <!-- 标题 -->
                                     <div style="display: flex;align-items: center;">
-                                        <a href="/letter/asdasdas">
+                                        <a href="/m/letter/asdasdas">
                                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
                                                 <el-tooltip raw-content content="<p style='font-size: 18px;'>写给三年后的自己</p>" effect="light" placement="top">
                                                     写给三年后的自己
@@ -147,7 +147,7 @@ const issueList = ref([
                                 <div class="open-letter-looking-item-info">
                                     <!-- 标题 -->
                                     <div style="display: flex;align-items: center;">
-                                        <a href="/letter/asdasdas">
+                                        <a href="/m/letter/asdasdas">
                                             <p style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
                                                 <el-tooltip raw-content content="<p style='font-size: 18px;'>写给三年后的自己</p>" effect="light" placement="top">
                                                     写给三年后的自己
@@ -179,7 +179,7 @@ const issueList = ref([
                      </div>
                      <!-- 公开信的按钮 -->
                       <div class="open-letter-buttom-box">
-                        <a href="/letter/writeLetter" class="open-letter-buttom" style="width: 140px;box-shadow: 0px 0px 15px #fff;">
+                        <a href="/m/letter/writeLetter" class="open-letter-buttom" style="width: 140px;box-shadow: 0px 0px 15px #fff;">
                             <div class="mybuttom" style="color: #fff;">
                                 现在写信一封
                             </div>
