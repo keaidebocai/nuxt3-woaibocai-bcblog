@@ -35,7 +35,7 @@ const toolbars: ToolbarNames[] = [
 // 发送数据 sendEmailReg
 const sendEmailDate = reactive({
   emailTitle: '',
-  userEmail: '123@qq.com',
+  userEmail: '',
   userEmailReg: computed(() => {
   if(sendEmailDate.userEmail == '') {
     return ''
@@ -170,16 +170,20 @@ watch(() => { return sendEmailDate.emailText},() => {
                       收信邮箱：&emsp;
                       <ElInput maxlength="30" type="text" :show-word-limit="true"
                         input-style="font-family: YunFengHanChanTi;font-size: 18px;" v-model="sendEmailDate.sendEmail"
-                        style="width: 360px;height: 40px;" placeholder="尽量填写国内邮箱……" />
+                        style="width: 360px;height: 40px;" placeholder="收信人信箱" />
                     </div>
                     <div style="margin-left: 10px;margin-bottom: 10px;">
-                      投递日期：&emsp;<el-date-picker :editable="false" :clearable="false" v-model="sendEmailDate.dateString" style="width: 360px;height: 40px;"
+                      投递日期：&emsp;
+                      <ClientOnly>
+                        <el-date-picker :editable="false" :clearable="false" v-model="sendEmailDate.dateString" style="width: 360px;height: 40px;"
                         type="datetime" placeholder="请选择投递日期" />
+                      </ClientOnly>
                     </div>
-                    <div style="margin-left: 10px;margin-bottom: 10px;">
-                      <ElButton @click="realDate(1)">一天后</ElButton>
-                      <ElButton @click="realDate(7)">一周后</ElButton>
-                      <ElButton @click="realDate(365)">一年后</ElButton>
+                    <div style="margin-left: 110px;margin-bottom: 10px;">
+                      <ElButton style="font-family: YunFengHanChanTi;border-radius: 15px;" @click="realDate(1)">一天</ElButton>
+                      <ElButton style="font-family: YunFengHanChanTi;border-radius: 15px;" @click="realDate(7)">一周</ElButton>
+                      <ElButton style="font-family: YunFengHanChanTi;border-radius: 15px;" @click="realDate(365)">一年</ElButton>
+                      <ElButton style="font-family: YunFengHanChanTi;border-radius: 15px;" @click="realDate(521)">521天</ElButton>
                     </div>
                     <div style="margin-left: 10px;margin-bottom: 10px;display: flex;align-items: center;">
                       <p>是否公开？</p>&emsp;

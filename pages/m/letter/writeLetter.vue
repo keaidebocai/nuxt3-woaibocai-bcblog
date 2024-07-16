@@ -174,7 +174,7 @@ watch(() => { return sendEmailDate.emailText},() => {
                     </div>
                     <ElInput maxlength="30" type="text" :show-word-limit="true"
                       input-style="font-family: YunFengHanChanTi;font-size: 18px;" v-model="sendEmailDate.sendEmail"
-                      style="width: 100%;height: 40px;margin-top: 10px;" placeholder="尽量填写国内邮箱……" />
+                      style="width: 100%;height: 40px;margin-top: 10px;" placeholder="收信人信箱" />
                   </div>
                   <div style="margin-left: 10px;margin-bottom: 10px;">
                     <div>
@@ -183,9 +183,10 @@ watch(() => { return sendEmailDate.emailText},() => {
                       style="width: 100%;height: 40px;" type="datetime" placeholder="请选择投递日期" />
                   </div>
                   <div style="margin-left: 10px;margin-bottom: 10px;">
-                    <ElButton @click="realDate(1)">一天后</ElButton>
-                    <ElButton @click="realDate(7)">一周后</ElButton>
-                    <ElButton @click="realDate(365)">一年后</ElButton>
+                    <ElButton style="font-family: YunFengHanChanTi;" @click="realDate(1)">一天</ElButton>
+                    <ElButton style="font-family: YunFengHanChanTi;" @click="realDate(7)">一周</ElButton>
+                    <ElButton style="font-family: YunFengHanChanTi;" @click="realDate(365)">一年</ElButton>
+                    <ElButton style="font-family: YunFengHanChanTi;" @click="realDate(521)">521天</ElButton>
                   </div>
                   <div
                     style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;display: flex;justify-content: center;align-items: center;height: 60px;">
