@@ -57,7 +57,7 @@ const issueList = ref([
                                         <span>编写信件</span>
                                     </div>
                                 </a>
-                                <a class="linkStyle" href="/letter/weiter">
+                                <a class="linkStyle" href="/letter/public/selection">
                                     <span>
                                         看看别人写的信→
                                     </span>
@@ -209,7 +209,7 @@ const issueList = ref([
                                 刷新
                             </div>
                         </div>
-                        <a href="/letter/asdasdasd" class="open-letter-buttom" style="background-color: #E6A23C;box-shadow: 0px 0px 15px #409eff;">
+                        <a href="/letter/public/selection" class="open-letter-buttom" style="background-color: #E6A23C;box-shadow: 0px 0px 15px #409eff;">
                             <div class="mybuttom" style="color: #409eff;">
                                 查看更多→
                             </div>
