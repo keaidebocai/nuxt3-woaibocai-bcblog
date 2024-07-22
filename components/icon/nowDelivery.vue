@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
+const props = defineProps(['size'])
 </script>
 
 <template>
     <div>
         <svg t="1720848106838" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="14429" width="32" height="32">
+            p-id="14429" :width="props.size ? props.size : '32'" :height="props.size ? props.size : '32'">
             <path
                 d="M1004 1020H20c-8.8 0-16-7.2-16-16V392c0-8.8 7.2-16 16-16s16 7.2 16 16v596h952V392c0-8.8 7.2-16 16-16s16 7.2 16 16v612c0 8.8-7.2 16-16 16z"
                 fill="#303C42" p-id="14430"></path>
