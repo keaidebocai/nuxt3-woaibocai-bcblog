@@ -31,6 +31,7 @@ const logout = async () => {
   useToken.removeToken();
   useToken.removeUserInfo();
   showLogin.value = true;
+  location.reload()
   // navigateTo(`${route.fullPath}`, { external: true });
 };
 // 初始化数据
@@ -493,6 +494,7 @@ const updateUserinfo = async () => {
       userInfo.sex = updateUserINfo.sex;
       ElMessage.success("成功!");
       userDialogVisible.value = false;
+      logout()
       return;
     }
     ElMessage.error(res.message);
@@ -605,12 +607,12 @@ const userDialogVisibleButton = () => {
             </a>
           </li>
           <li class="myHeader-nav-right-menu-ul-li">
-            <a class="myHeader-nav-right-menu-ul-li-a" href="/rss.xml" target="_blank" title="菠菜的小窝-RSS">
+            <a class="myHeader-nav-right-menu-ul-li-a" href="/history" target="_blank" title="菠菜的小窝-RSS">
               <div class="myHeader-nav-right-menu-img">
-                <img src="https://cdn.likebocai.com/bcblog/assets/icon/RSS.png" title="菠菜的小窝-RSS" width="30px" />
+                <img src="~/assets/icon/history.png" title="菠菜的小窝-站点事记" width="32px" />
               </div>
               <div class="myHeader-nav-right-menu-title">
-                <h2>RSS</h2>
+                <h2>站点事记</h2>
               </div>
             </a>
           </li>
@@ -821,7 +823,7 @@ const userDialogVisibleButton = () => {
             </el-radio-group>
           </el-form-item>
           <div style="height: 42px" class="mycenter">
-            <el-popconfirm width="220" confirm-button-text="那当然!" cancel-button-text="No!" title="确定要修改个人信息吗?"
+            <el-popconfirm width="220" confirm-button-text="那当然!" cancel-button-text="No!" title="确定要修改个人信息吗?修改成功会退出登录！！！"
               @confirm="updateUserinfo">
               <template #reference>
                 <el-button type="primary" class="loginButton" :disabled="isLoading">
