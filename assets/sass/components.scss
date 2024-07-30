@@ -146,12 +146,13 @@
             .myHeader-nav-right-menu-sub-li:hover {
               color: green;
               background-color: rgba(0, 0, 0, 0.15);
+              animation: intoSub 1s ease-in-out;
               a {
                 text-decoration: none;
                 color: green;
               }
             }
-            animation: intoSub 1s ease-in-out;
+            // animation: intoSub 1s ease-in-out;
             .myHeader-nav-right-menu-sub-li {
               height: 34px;
               background-size: 0 0;
