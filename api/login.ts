@@ -1,6 +1,5 @@
 import { useFetch } from "nuxt/app";
 // import { useMyFetch } from "~/composables/useMyFetch";
-// const URL = "https://www.likebocai.com/api/user/";
 const URL = "https://www.likebocai.com/api/user";
 type formData = {
   userName: string;
@@ -23,7 +22,7 @@ type Token = {
   refresh_token: string;
 };
 const Logout = (data: Token) => {
-  return useFetch(URL + "/auth/logout", {
+  return useFetch(URL + "/logout", {
     method: "post",
     body: data,
   });

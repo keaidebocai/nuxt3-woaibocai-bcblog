@@ -1,6 +1,6 @@
 import { useTokenStore } from "~/store/useToken";
+// const MyURl = "https://www.likebocai.com";
 const MyURl = "https://www.likebocai.com";
-const MUAUTHURL = "https://www.likebocai.com";
 export const useMyFetch = (url, opt) => {
   const store = useTokenStore();
   let headers = {
