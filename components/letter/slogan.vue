@@ -11,7 +11,7 @@
                 <h3 style="font-size: 24px;color: #fff;">一封封等待时光解锁的信件，记录着每个心愿的轨迹</h3>
                 <div
                     style="width: 1000px;height: 50px;display: flex;justify-content: center;align-items: center;margin-top: 20px;">
-                    <a href="http://localhost:3000/letter/writeLetter" style="text-decoration: none;color: #febcae;">
+                    <a href="/letter/writeLetter" style="text-decoration: none;color: #febcae;">
                         <div
                             class="selection-slogan-button" >
                             <h1 style="margin-right: 10px;font-size: 20px;">去写一封</h1>
@@ -37,7 +37,7 @@
       width: 1000px;
       height: 100%;
       border-radius: 15px;
-      background-image: url(https://clubimg.club.vmall.com/data/attachment/forum/202012/21/150839toe7tqmi6xt9npkd.jpeg);
+      background-image: url(https://cdn.likebocai.com/static/img/slogan.jpeg);
       background-size: 1000px 300px;
       display: flex;
       justify-content: center;

@@ -44,7 +44,10 @@ type myData = {
 };
 const MyUrl = useRuntimeConfig().public.HTTP_URL;
 const blogInfo = ref<myData>();
-const { data: blogInfoData } = await useFetch(MyUrl + `/blog/info/blogInfo`);
+// const { data: blogInfoData } = await useFetch(MyUrl + `/blog/info/blogInfo`);
+const { data: blogInfoData } = await useAsyncData('selection', () =>
+    $fetch(MyUrl + `/blog/info/blogInfo`, { method: "get" })
+);
 blogInfo.value = blogInfoData.value.data;
 </script>
 
@@ -218,7 +221,24 @@ blogInfo.value = blogInfoData.value.data;
             </div>
           </el-link>
         </li>
-        <li></li>
+        <li>
+          <el-link
+            :underline="false"
+            href="/history"
+            target="_blank"
+          >
+            <div class="li-icon">
+              <img
+                src="~/assets/icon/history.png"
+                alt="菠菜的小窝-站点事记"
+                width="30"
+              />
+            </div>
+            <div class="li-span">
+              站点事记
+            </div>
+          </el-link>
+        </li>
       </ul>
     </div>
   </div>
