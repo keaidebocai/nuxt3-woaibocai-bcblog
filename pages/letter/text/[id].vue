@@ -11,8 +11,29 @@ import { MdPreview } from 'md-editor-v3';
 // preview.css相比style.css少了编辑器那部分样式
 import 'md-editor-v3/lib/preview.css';
 const id = 'preview-only';
-const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人：</p>**\n当你看见这封信的时候我已经将菠菜的时光邮局开发出来了\n我开发时光邮局的目的很简单！\n\n1.人是感性的\n2.我想看看别人的故事');
+const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人：</p>**\n<div style="width:100%;text-align:center;margin-bottom: 20px;"><img width="400px" style="border-radius: 15px;box-shadow: 0px 0px 5px #b1b3b8;" src="https://cdn.likebocai.com/bcblog/public/src/tou.png"></div>\n当你看见这封信的时候我已经将菠菜的时光邮局开发出来了\n我开发时光邮局的目的很简单！\n\n1.人是感性的\n2.我想看看别人的故事');
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
+const route = useRoute()
+const { data } = await useAsyncData('selection', () =>
+    $fetch(MyUrl + `/blog/email/public/text/${route.params.id}`, { method: "get" })
+);
+const textData = ref(data.value.data)
+const errorHandler = () => true
 
+import { LikeEmailContent } from '~/api/email/user'
+const isLike = ref(true)
+const likeEmailContentMethods = async(id: string) => {
+    await LikeEmailContent(id)
+    .then(res => {
+        if(res.code == 200) {
+            isLike.value = false
+            ElMessage.success("点赞成功！")
+        }
+    })
+    .catch(err => {
+        ElMessage.error("网络异常！")
+    })
+}
 </script>
 
 <template>
@@ -32,36 +53,49 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                             <div class="text-looking-text">
                                 <!-- 标题 -->
                                 <div style="display: flex;align-items: center;justify-content: center;height: 60px;">
-                                    <p style="font-size: 28px;font-weight: bolder;">2024年写给未来菠菜的一封信</p>
-                                    <div class="isSend">
+                                    <p style="font-size: 28px;font-weight: bolder;">{{ textData.title }}</p>
+                                    <div class="isSend" v-if="textData.isDelivery == 'Y'">
                                         <p>已投递</p>
                                     </div>
+                                    <div v-else class="isSend" style="background-color: #fcd3d3;border: 1px solid #c45656;">
+                                        <p style="color: #F56C6C;">待投递</p>
+                                    </div>
                                 </div>
-                                <div style="height: 30px;background-color: #fde2e2;border: 1px solid red;border-radius: 10px;display: flex;align-items: center;margin: 5px 0px;">
+                                <div v-if="textData.isPublic == 'N'"
+                                    style="height: 30px;background-color: #fde2e2;border: 1px solid red;border-radius: 10px;display: flex;align-items: center;margin: 5px 0px;">
                                     <p style="font-size: 18px;margin: 0px 10px;color:  #c45656;">
                                         ⭐ 此信为私密信件，只有寄信人和收信人可以在到达投递日后知晓此信件地址
                                     </p>
                                 </div>
                                 <!-- 发送人信息 -->
                                 <div class="text-looking-text-senderInfo">
-                                    <el-avatar :size="50"
-                                        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
+                                    <el-avatar :size="50" :src="textData.url"  @error="errorHandler">
+                                        <img src="~/assets/error-avatar.png" />
+                                    </el-avatar>
                                     <p style="font-size: 22px;color: #6b7280;margin-left: 10px;font-weight: bold;">
-                                        可爱的小菠菜</p>
+                                        {{ textData.nickName }}</p>
                                 </div>
                                 <!-- 发送时间 -->
                                 <div class="text-looking-text-sendTime">
                                     <IconEmailNo :size="28" />
-                                    <p style="font-size: 16px;margin: 0px 15px 0px 5px;color: #6b7280;">书写于&nbsp;2024年5月21日13时14分</p>
+                                    <p style="font-size: 16px;margin: 0px 15px 0px 5px;color: #6b7280;">
+                                        书写于&nbsp;{{ textData.writingDate.slice(0,16).replace("T","日").replace("-","年").replace("-","月") }}</p>
                                     <IconEmailTime :size="28" />
-                                    <p style="font-size: 16px;margin: 0px 15px 0px 5px;color: #6b7280;">经历123天</p>
+                                    <p style="font-size: 16px;margin: 0px 15px 0px 5px;color: #6b7280;">经历{{ textData.useTime }}天</p>
                                     <IconEmailOpen :size="28" />
                                     <p style="font-size: 16px;margin: 0px 15px 0px 5px;color: #6b7280;">
-                                        已于&nbsp;2024年5月21日13时14分&nbsp;投递</p>
+                                        已于&nbsp;{{ textData.deliveryDate.slice(0,16).replace("T","日").replace("-","年").replace("-","月") }}&nbsp;投递</p>
+                                </div>
+                                <!-- 开始分隔符 -->
+                                <div style="display: flex;justify-content: center;align-items: center;height: 60px;">
+                                    <hr style="width: calc(50% - 100px);border-top: 1px solid #7e8e9b;margin-right: 10px;">
+                                    <IconNowDelivery />
+                                    <p style="font-size: 16px;color: #7e8e9b;margin-left: 5px;">书信内容</p>
+                                    <hr style="width: calc(50% - 100px);border-top: 1px solid #7e8e9b;margin-left: 10px;">
                                 </div>
                                 <!-- 发送内容 -->
                                 <div class="text-looking-text-sendText">
-                                    <MdPreview previewTheme="vuepress" :editorId="id" :modelValue="text" />
+                                    <MdPreview previewTheme="vuepress" :editorId="id" :modelValue="textData.content" />
                                 </div>
                                 <!-- 就此搁笔 -->
                                 <div class="text-looking-text-end-box">
@@ -74,11 +108,11 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                                 </div>
                                 <!-- 赞 -->
                                 <div class="text-looking-text-love-box">
-                                    <div class="selection-letters-text-item-bottom-button" v-if="true">
-                                        &nbsp;赞&nbsp;🩵&nbsp;10
+                                    <div @click="likeEmailContentMethods(textData.id)" class="selection-letters-text-item-bottom-button" v-if="isLike">
+                                        &nbsp;赞&nbsp;🩵&nbsp;{{ textData.likeCount }}
                                     </div>
                                     <div class="selection-letters-text-item-bottom-button-love" v-else>
-                                        &nbsp;已赞&nbsp;❤️&nbsp;11&nbsp;
+                                        &nbsp;已赞&nbsp;❤️&nbsp;{{ Number(textData.likeCount) + 1}}&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -87,21 +121,25 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                         <!-- 随机翻一页和去写一封 -->
                         <div class="text-goWriting-goLooing">
                             <div class="text-goWriting-goLooing-left">
-                                <a href="http://localhost:3000/letter/text/asdasd"  class="text-goWriting-goLooing-left-button">
-                                    <IconEmailOpen /><p style="font-size: 24px;margin-left: 10px;color: #fff;">随机看一封</p>
+                                <a :href="`/letter/text/${textData.id}`"
+                                    class="text-goWriting-goLooing-left-button">
+                                    <IconEmailOpen />
+                                    <p style="font-size: 24px;margin-left: 10px;color: #fff;">随机看一封</p>
                                 </a>
                             </div>
                             <div class="text-goWriting-goLooing-right">
-                                <a href="http://localhost:3000/letter/writeLetter" class="text-goWriting-goLooing-right-button">
-                                    <p style="font-size: 24px;margin-right: 10px;color: #fff;">去写一封</p><IconWriteEmail />
+                                <a href="/letter/writeLetter"
+                                    class="text-goWriting-goLooing-right-button">
+                                    <p style="font-size: 24px;margin-right: 10px;color: #fff;">去写一封</p>
+                                    <IconWriteEmail />
                                 </a>
                             </div>
                         </div>
 
                         <!-- 评论及其展示 -->
-                        <div class="text-comment-box">
+                        <!-- <div class="text-comment-box">
 
-                        </div>
+                        </div> -->
                     </div>
 
 
@@ -121,7 +159,7 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
 }
 
 .text-looking-text-sendText .md-editor-preview-wrapper {
-    padding: 0px 0px;
+    padding: 0px 60px;
 }
 </style>
 
@@ -144,10 +182,12 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
             justify-content: center;
             align-items: center;
             box-shadow: 0px 0px 5px #dcfce7;
+
             .text-looking-text {
                 margin-top: 30px;
                 width: calc(100% - 60px);
                 margin: 15px 15px;
+
                 .isSend {
                     background-color: #dcfce7;
                     width: 60px;
@@ -249,7 +289,7 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                
+
                 .text-goWriting-goLooing-left-button {
                     height: 100%;
                     border-radius: 20px;
@@ -263,6 +303,7 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                     transition: 0.5s;
                     text-decoration: none;
                 }
+
                 .text-goWriting-goLooing-left-button:hover {
                     transform: scale(1.1);
                 }
@@ -274,7 +315,8 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                .text-goWriting-goLooing-right-button{
+
+                .text-goWriting-goLooing-right-button {
                     height: 100%;
                     border-radius: 20px;
                     padding: 0 10px;
@@ -287,6 +329,7 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
                     transition: 0.5s;
                     text-decoration: none;
                 }
+
                 .text-goWriting-goLooing-right-button:hover {
                     transform: scale(1.1);
                 }
@@ -296,8 +339,9 @@ const text = ref('#### Hello Editor\n  **<p style="color:red;">亲爱的旅人�
         // 留言及评论
         .text-comment-box {
             width: 100%;
-            height: 200px;
+            height: 300px;
             background-color: azure;
+
         }
     }
 }

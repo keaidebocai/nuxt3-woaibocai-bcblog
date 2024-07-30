@@ -161,7 +161,7 @@ clickEffect()
 </template>
 <style>
 body {
-  background-image: url(D:\webCode\nuxt3-woaibocai-bcblog\assets\bgm-letter.jpg);
+  background-image: url(https://cdn.likebocai.com/letter/statis/bgm-letter.jpg);
 }
 </style>
 <style lang="scss" scoped>

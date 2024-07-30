@@ -3,12 +3,12 @@ definePageMeta({
   layout: "email",
 });
 useHead({
-  title: "甄选 - 公开信 - 时光邮局",
+  title: "最新书写 - 公开信 - 时光邮局",
 });
 const MyUrl = useRuntimeConfig().public.HTTP_URL;
 const route = useRoute()
 const { data } = await useAsyncData('selection', () =>
-  $fetch(MyUrl + `/blog/email/public/selection/6/${route.params.id}`, { method: "get" })
+  $fetch(MyUrl + `/blog/email/public/writing/6/${route.params.id}`, { method: "get" })
 );
 const selectionData = ref(data.value.data)
 </script>
@@ -23,11 +23,9 @@ const selectionData = ref(data.value.data)
         </el-affix>
         <!-- 公开信 -->
         <div class="selection-box">
-          <!-- 标语盒子 -->
           <LetterSlogan />
           <!-- 内容 -->
-          <LetterLabelText :paginationUrl="'/letter/public/selection'" :total="selectionData.total" :current="selectionData.current" :selectionDate="selectionData.pageData"/>
-
+          <LetterLabelText :paginationUrl="'/letter/public/writing'" :total="selectionData.total" :current="selectionData.current" :selectionDate="selectionData.pageData"/>
           <div style="width: 100%;display: flex; justify-content: center">
             <AppButtom :myClass="'MyButtom'" />
           </div>

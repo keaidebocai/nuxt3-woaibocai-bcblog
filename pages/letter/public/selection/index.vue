@@ -5,7 +5,11 @@ definePageMeta({
 useHead({
   title: "甄选 - 公开信 - 时光邮局",
 });
-console.log(Math.ceil(1) == 1)
+const MyUrl = useRuntimeConfig().public.HTTP_URL;
+const { data } = await useAsyncData('selection', () =>
+  $fetch(MyUrl + `/blog/email/public/selection/6/1`, { method: "get" })
+);
+const selectionData = ref(data.value.data)
 </script>
 
 <template>
@@ -21,7 +25,7 @@ console.log(Math.ceil(1) == 1)
           <!-- 标语盒子 -->
           <LetterSlogan />
           <!-- 内容 -->
-          <LetterLabelText :paginationUrl="'/letter/public/selection'" :total="55" :current="3" :selectionDate="[1,2,3]"/>
+          <LetterLabelText :paginationUrl="'/letter/public/selection'" :total="selectionData.total" :current="selectionData.current" :selectionDate="selectionData.pageData"/>
           <div style="width: 100%;display: flex; justify-content: center">
             <AppButtom :myClass="'MyButtom'" />
           </div>

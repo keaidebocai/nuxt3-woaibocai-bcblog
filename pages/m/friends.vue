@@ -2,7 +2,7 @@
 import { GetAllLink } from "~/api/blog/link";
 import { GetLink } from "~/api/blog/other";
 definePageMeta({
-  layout: "nothing",
+    layout: "mobile",
 });
 useHead({
   title: "友情链接",
@@ -67,20 +67,11 @@ const onHtmlChanged = () => {
 getLinkData();
 getData();
 </script>
-
 <template>
-  <div>
-    <div style="display: flex; justify-content: center; align-content: center">
-      <div class="affix-container">
-        <el-affix target=".affix-container">
-          <!-- <AppHeader /> -->
-          <AppMyHeader />
-        </el-affix>
-        <div class="friends-look-box">
-          <div class="friends-look">友情链接</div>
-        </div>
-        <div style="height: 50vh; display: flex; justify-content: center">
-          <div>
+    <el-row>
+        <el-col :span="22">
+            <AppMainMyAlert />
+
             <MdPreview previewTheme="mk-cute" :modelValue="articleData.content" :editorId="articleData.url"
               @onGetCatalog="onGetCatalog" @onHtmlChanged="onHtmlChanged" class="friendsMd" />
             <div class="container">
@@ -100,31 +91,10 @@ getData();
               </div>
             </div>
             <LazyAppMainComment :article-id="'likebocaifriends114514'" :comment-type="friendsCommentPlaceholder" />
-            <AppButtom :myClass="myClass" />
-          </div>
-          <div style="margin-left: 30px">
-            <AppMainRightBlogInfo />
-            <div class="tagCloud-box">
-              <div class="tagCloud-box-title">
-                <img src="https://cdn.likebocai.com/bcblog/assets/icon/tag.png" alt="标签" />
-                <h2>标签云</h2>
-                (点点标签~)
-              </div>
-              <AppMainRightTagCloud width="320" height="320" radius="120"
-                style="position: relative; left: 20px; top: -40px" />
-            </div>
-            <el-affix position="top" :offset="0">
-              <div style=" max-height: 80vh;overflow: auto;border-radius: 25px;">
-                <MarkDownCataLog :editorId="articleData.url" style="background-color:  rgba(255, 255, 255, 0.6);;"/>
-              </div>
-            </el-affix>
-          </div>
-        </div>
-        <!-- <slot /> -->
-      </div>
-    </div>
-    <el-backtop :right="40" :bottom="40" :visibility-height="1000" />
-  </div>
+
+            <AppButtom :is-mobile="true" :my-class="'MyButtomMobile'" />
+        </el-col>
+    </el-row>
 </template>
 
 <style lang="scss" scoped>
@@ -139,19 +109,17 @@ getData();
     color: rgba(0, 0, 0, 0.8);
   }
 }
-
-.container {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, 360px);
-  //   grid-template-rows: repeat(auto-fill, 200px 200px);
-  row-gap: 20px;
-  column-gap: 60px;
-  padding: 20px 10px;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.4);
+.el-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.md-editor-previewOnly {
+    border: none;
+    height: auto;
+    border-radius: 20px;
+}
 .item {
   height: 140px;
   border-radius: 25px;
